@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bizde – Çok Yakında | İlan & Teklif Platformu</title>
+  <meta name="description" content="Bizde, Türkiye'nin en kapsamlı ilan ve teklif platformu. Yakında hizmetinizde!" />
+  <meta property="og:title" content="Bizde – Çok Yakında" />
+  <meta property="og:description" content="İlanlar, teklifler ve fırsatlar tek platformda. Çok yakında!" />
+  <meta property="og:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* Immediate font fallback until Google Fonts loads */
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Animated background particles -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- Gradient orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="hero-section">
+      <!-- Logo -->
+      <header class="logo-wrap" id="logo-wrap">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
+          class="logo" id="site-logo" />
+      </header>
+
+      <div class="badge" id="launch-badge">
+        <span class="badge-dot"></span>
+        <span>Yakında Yayında</span>
+      </div>
+
+      <h1 class="headline" id="main-headline">
+        İlanlar &amp; Teklifler<br />
+        <span class="gradient-text">Tek Platformda</span>
+      </h1>
+
+      <p class="sub" id="sub-headline">
+        Bizde ile ilanlarını yayınla, teklif al, en iyi fırsatları keşfet.<br class="br-desktop" />
+        Tamamen yeni bir deneyim geliyor.
+      </p>
+
+      <!-- Countdown -->
+      <div class="countdown" id="countdown-wrap">
+        <div class="count-item" id="c-days">
+          <span class="count-num" id="days">00</span>
+          <span class="count-label">Gün</span>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-item" id="c-hours">
+          <span class="count-num" id="hours">00</span>
+          <span class="count-label">Saat</span>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-item" id="c-minutes">
+          <span class="count-num" id="minutes">00</span>
+          <span class="count-label">Dakika</span>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-item" id="c-seconds">
+          <span class="count-num" id="seconds">00</span>
+          <span class="count-label">Saniye</span>
+        </div>
+      </div>
+
+
+
+      <!-- Feature pills -->
+      <section class="features" id="features-section">
+        <div class="pill" id="pill-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+          <span>İlan Yönetimi</span>
+        </div>
+        <div class="pill" id="pill-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          <span>Teklif Sistemi</span>
+        </div>
+        <div class="pill" id="pill-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          <span>Anlık Mesajlaşma</span>
+        </div>
+        <div class="pill" id="pill-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          <span>Güvenli Ödeme</span>
+        </div>
+        <div class="pill" id="pill-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+          <span>Tüm Türkiye</span>
+        </div>
+      </section>
+
+      <!-- Social -->
+      <footer class="footer" id="page-footer">
+        <div class="social-links">
+          <a href="#" class="social-link" id="social-instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" id="social-twitter" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" id="social-linkedin" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+        </div>
+        <p class="copyright" id="copyright-text">© 2026 Bizde. Tüm hakları saklıdır.</p>
+      </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
