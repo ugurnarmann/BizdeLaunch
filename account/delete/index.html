@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hesap Silme – Bizde</title>
+  <meta name="description" content="Bizde uygulamasından hesabınızı kalıcı olarak silebilirsiniz. Hesap silme talebi için formu doldurun." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================
+       BIZDE – ACCOUNT DELETE PAGE
+       Dark, Premium, Professional
+    ============================================ */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #080b12;
+      --bg-card: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.1);
+      --border-danger: rgba(255, 59, 90, 0.35);
+      --accent: #6c63ff;
+      --accent-2: #ff6584;
+      --accent-3: #43e8b0;
+      --danger: #ff3b5a;
+      --danger-glow: rgba(255, 59, 90, 0.25);
+      --text-primary: #f0f2ff;
+      --text-muted: rgba(240,242,255,0.55);
+      --font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Canvas Particles ── */
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* ── Noise texture ── */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.3;
+    }
+
+    /* ── Gradient Orbs ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 2;
+      animation: orbFloat 12s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,59,90,0.12) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(108,99,255,0.1) 0%, transparent 70%);
+      bottom: -100px; right: -150px;
+      animation-delay: -4s;
+    }
+
+    @keyframes orbFloat {
+      0%   { transform: scale(1) translate(0, 0); }
+      50%  { transform: scale(1.08) translate(30px, -20px); }
+      100% { transform: scale(0.95) translate(-20px, 30px); }
+    }
+
+    /* ── Layout ── */
+    .page-wrap {
+      position: relative;
+      z-index: 20;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── Top Nav ── */
+    .topnav {
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .topnav a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .topnav a:hover { color: var(--text-primary); }
+
+    .topnav a svg {
+      width: 16px; height: 16px;
+    }
+
+    .topnav-logo img {
+      height: 36px;
+      width: auto;
+      filter: drop-shadow(0 0 12px rgba(108,99,255,0.3));
+    }
+
+    /* ── Main card ── */
+    .delete-card {
+      width: 100%;
+      max-width: 540px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-danger);
+      border-radius: 24px;
+      padding: 44px 40px 40px;
+      backdrop-filter: blur(24px);
+      box-shadow:
+        0 0 0 1px rgba(255,59,90,0.08),
+        0 32px 64px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    /* ── Icon ── */
+    .danger-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: rgba(255, 59, 90, 0.1);
+      border: 1px solid rgba(255, 59, 90, 0.25);
+      margin: 0 auto 24px;
+      animation: iconPulse 3s ease-in-out infinite;
+    }
+
+    .danger-icon-wrap svg {
+      width: 32px; height: 32px;
+      color: var(--danger);
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,90,0.25); }
+      50%       { box-shadow: 0 0 0 12px rgba(255,59,90,0); }
+    }
+
+    /* ── Card header ── */
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .card-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* ── Warning box ── */
+    .warning-box {
+      background: rgba(255, 59, 90, 0.07);
+      border: 1px solid rgba(255, 59, 90, 0.2);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+
+    .warning-box-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--danger);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .warning-box-title svg {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+    }
+
+    .warning-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .warning-list li {
+      font-size: 0.84rem;
+      color: rgba(255, 180, 190, 0.85);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+    }
+
+    .warning-list li::before {
+      content: '·';
+      font-size: 1.2rem;
+      line-height: 1;
+      margin-top: 1px;
+      flex-shrink: 0;
+      color: var(--danger);
+      opacity: 0.7;
+    }
+
+    /* ── Form ── */
+    .delete-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: rgba(240,242,255,0.7);
+      text-transform: uppercase;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-family: var(--font);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+      backdrop-filter: blur(12px);
+    }
+
+    .form-input::placeholder { color: var(--text-muted); }
+
+    .form-input:focus {
+      border-color: rgba(255, 59, 90, 0.5);
+      background: rgba(255, 59, 90, 0.04);
+      box-shadow: 0 0 0 3px rgba(255, 59, 90, 0.1);
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(240,242,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background: #12161f;
+      color: var(--text-primary);
+    }
+
+    /* ── Confirm checkbox ── */
+    .confirm-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(255,59,90,0.05);
+      border: 1px solid rgba(255,59,90,0.15);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .confirm-row:hover {
+      background: rgba(255,59,90,0.09);
+      border-color: rgba(255,59,90,0.3);
+    }
+
+    .confirm-check {
+      width: 18px; height: 18px;
+      border: 1.5px solid rgba(255,59,90,0.5);
+      border-radius: 5px;
+      background: rgba(255,59,90,0.08);
+      flex-shrink: 0;
+      margin-top: 1px;
+      cursor: pointer;
+      accent-color: var(--danger);
+    }
+
+    .confirm-label {
+      font-size: 0.87rem;
+      color: rgba(255,180,190,0.8);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    /* ── Submit button ── */
+    .btn-danger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 24px;
+      background: linear-gradient(135deg, #ff3b5a 0%, #c0392b 100%);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      box-shadow: 0 4px 24px rgba(255,59,90,0.35);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.01em;
+      margin-top: 4px;
+    }
+
+    .btn-danger::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .btn-danger:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .btn-danger:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(255,59,90,0.5);
+    }
+
+    .btn-danger:not(:disabled):active { transform: translateY(0); }
+
+    .btn-danger svg {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── Alternative link ── */
+    .alt-link-wrap {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .alt-link-wrap p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .alt-link-wrap a {
+      color: rgba(108,99,255,0.9);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+
+    .alt-link-wrap a:hover { color: var(--accent); }
+
+    /* ── Success state ── */
+    .success-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      padding: 20px 0;
+    }
+
+    .success-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(67,232,176,0.1);
+      border: 1px solid rgba(67,232,176,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: successPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .success-icon svg {
+      width: 32px; height: 32px;
+      color: var(--accent-3);
+    }
+
+    @keyframes successPop {
+      0%   { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .success-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .success-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 340px;
+      line-height: 1.6;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0;
+    }
+
+    /* ── Footer note ── */
+    .page-footer-note {
+      margin-top: 36px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,242,255,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .page-footer-note a {
+      color: rgba(240,242,255,0.3);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .page-footer-note a:hover { color: rgba(240,242,255,0.6); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(108,99,255,0.3);
+      border-radius: 3px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .delete-card {
+        padding: 32px 22px 28px;
+        border-radius: 18px;
+      }
+
+      .card-title { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Animated background particles -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- Gradient orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="page-wrap">
+    <!-- Top nav -->
+    <nav class="topnav" aria-label="Sayfa navigasyonu">
+      <a href="/" id="back-link" aria-label="Ana sayfaya dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Ana Sayfa
+      </a>
+      <div class="topnav-logo">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo" />
+      </div>
+    </nav>
+
+    <!-- Main card -->
+    <main class="delete-card" id="delete-card" role="main">
+
+      <!-- Form state -->
+      <div id="form-state">
+        <!-- Icon -->
+        <div class="danger-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z"/>
+            <line x1="10" y1="11" x2="10" y2="17"/>
+            <line x1="14" y1="11" x2="14" y2="17"/>
+          </svg>
+        </div>
+
+        <h1 class="card-title" id="delete-page-title">Hesabı Sil</h1>
+        <p class="card-subtitle">
+          Hesabınızı kalıcı olarak silmek istediğinizden emin misiniz?<br />
+          Bu işlem <strong style="color:var(--danger)">geri alınamaz.</strong>
+        </p>
+
+        <!-- Warning box -->
+        <div class="warning-box" role="alert" aria-label="Uyarı">
+          <div class="warning-box-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Dikkat – Kalıcı İşlem
+          </div>
+          <ul class="warning-list">
+            <li>Profil bilgileriniz ve tüm kişisel verileriniz silinir</li>
+            <li>Yayınladığınız tüm ilanlar kalıcı olarak kaldırılır</li>
+            <li>Aktif mezat ve teklif geçmişiniz silinir</li>
+            <li>Canlı yayın kayıtlarınız ve mesajlarınız kaldırılır</li>
+            <li>Hesabınızı geri almak mümkün olmayacaktır</li>
+          </ul>
+        </div>
+
+        <!-- Form -->
+        <form class="delete-form" id="delete-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="delete-email">E-posta Adresi</label>
+            <input
+              type="email"
+              id="delete-email"
+              name="email"
+              class="form-input"
+              placeholder="hesabiniz@ornek.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="delete-reason">Silme Nedeni</label>
+            <select id="delete-reason" name="reason" class="form-input form-select" required>
+              <option value="" disabled selected>Bir neden seçin…</option>
+              <option value="not-using">Uygulamayı artık kullanmıyorum</option>
+              <option value="privacy">Gizlilik endişeleri</option>
+              <option value="another-account">Başka bir hesabım var</option>
+              <option value="bad-experience">Kötü deneyim yaşadım</option>
+              <option value="other">Diğer</option>
+            </select>
+          </div>
+
+          <div class="divider"></div>
+
+          <label class="confirm-row" for="delete-confirm" id="confirm-label">
+            <input
+              type="checkbox"
+              id="delete-confirm"
+              name="confirm"
+              class="confirm-check"
+            />
+            <span class="confirm-label">
+              Hesabımı ve tüm verilerimi <strong>kalıcı olarak silmek</strong> istediğimi onaylıyorum. Bu işlemin geri alınamayacağını anlıyorum.
+            </span>
+          </label>
+
+          <button type="submit" id="delete-submit-btn" class="btn-danger" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z"/>
+            </svg>
+            Hesabımı Kalıcı Olarak Sil
+          </button>
+        </form>
+
+        <div class="alt-link-wrap">
+          <p>Fikrinizi mi değiştirdiniz? <a href="/" id="cancel-link">İptal Et &amp; Geri Dön</a></p>
+        </div>
+      </div>
+
+      <!-- Success state (hidden by default) -->
+      <div class="success-state" id="success-state" aria-live="polite">
+        <div class="success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2 class="success-title">Talebiniz Alındı</h2>
+        <p class="success-sub">
+          Hesap silme talebiniz başarıyla iletildi. Verileriniz en geç <strong style="color:var(--accent-3)">30 gün</strong> içinde sistemimizden kalıcı olarak silinecektir.
+        </p>
+        <p class="success-sub" style="font-size:0.82rem; margin-top:4px;">
+          Bu süre zarfında hesabınıza giriş yapmanız durumunda talebiniz iptal edilecektir.
+        </p>
+      </div>
+
+    </main>
+
+    <!-- Footer note -->
+    <footer class="page-footer-note">
+      <span>© 2026 Bizde. Tüm hakları saklıdır.</span>
+      <span><a href="/privacy-policy/" id="footer-privacy-link">Gizlilik Politikası</a> · <a href="mailto:kvkk@bizde.app" id="footer-contact-link">İletişim</a></span>
+    </footer>
+  </div>
+
+  <script>
+    /* ── Particle Canvas ── */
+    (function () {
+      const canvas = document.getElementById('particleCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      function mkParticle() {
+        return {
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.4 + 0.3,
+          dx: (Math.random() - 0.5) * 0.25,
+          dy: (Math.random() - 0.5) * 0.25,
+          a: Math.random() * 0.4 + 0.05,
+        };
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: 80 }, mkParticle);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,59,90,${p.a})`;
+          ctx.fill();
+          p.x += p.dx; p.y += p.dy;
+          if (p.x < -5 || p.x > W + 5) p.dx *= -1;
+          if (p.y < -5 || p.y > H + 5) p.dy *= -1;
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      init();
+      draw();
+    })();
+
+    /* ── Form Logic ── */
+    const form        = document.getElementById('delete-form');
+    const emailInput  = document.getElementById('delete-email');
+    const reasonSel   = document.getElementById('delete-reason');
+    const confirmChk  = document.getElementById('delete-confirm');
+    const submitBtn   = document.getElementById('delete-submit-btn');
+    const formState   = document.getElementById('form-state');
+    const successState = document.getElementById('success-state');
+
+    function validate() {
+      const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+      const reasonOk = reasonSel.value !== '';
+      const checked  = confirmChk.checked;
+      submitBtn.disabled = !(emailOk && reasonOk && checked);
+    }
+
+    emailInput.addEventListener('input', validate);
+    reasonSel.addEventListener('change', validate);
+    confirmChk.addEventListener('change', validate);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (submitBtn.disabled) return;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg style="animation:spin 0.8s linear infinite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="10" opacity="0.3"/>
+          <path d="M12 2a10 10 0 0 1 10 10"/>
+        </svg>
+        İşleniyor…
+      `;
+
+      // Simulate request (replace with real API call)
+      setTimeout(() => {
+        formState.style.display = 'none';
+        successState.style.display = 'flex';
+      }, 1800);
+    });
+
+    /* Spin keyframes injected */
+    const style = document.createElement('style');
+    style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+    document.head.appendChild(style);
+  </script>
+</body>
+
+</html>
