@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yardım &amp; Destek – Bizde</title>
+  <meta name="description" content="Bizde uygulaması hakkında sık sorulan sorular ve yardım konuları." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================
+       BIZDE – HELP & SUPPORT PAGE
+       Dark, Premium, Professional
+    ============================================ */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #080b12;
+      --bg-card: rgba(255,255,255,0.05);
+      --bg-card-hover: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.1);
+      --accent: #6c63ff;
+      --accent-2: #ff6584;
+      --accent-3: #43e8b0;
+      --text-primary: #f0f2ff;
+      --text-muted: rgba(240,242,255,0.55);
+      --font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Canvas Particles ── */
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* ── Noise texture ── */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.3;
+    }
+
+    /* ── Gradient Orbs ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 2;
+      animation: orbFloat 12s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.18) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(67,232,176,0.1) 0%, transparent 70%);
+      bottom: -100px; right: -150px;
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,101,132,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -8s;
+    }
+
+    @keyframes orbFloat {
+      0%   { transform: scale(1) translate(0, 0); }
+      50%  { transform: scale(1.08) translate(30px, -20px); }
+      100% { transform: scale(0.95) translate(-20px, 30px); }
+    }
+
+    /* ── Layout ── */
+    .page-wrap {
+      position: relative;
+      z-index: 20;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── Top Nav ── */
+    .topnav {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .topnav a.back-link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .topnav a.back-link:hover { color: var(--text-primary); }
+
+    .topnav a.back-link svg {
+      width: 16px; height: 16px;
+    }
+
+    .topnav-logo img {
+      height: 36px;
+      width: auto;
+      filter: drop-shadow(0 0 12px rgba(108,99,255,0.3));
+    }
+
+    /* ── Content ── */
+    .content {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    /* ── Hero Header ── */
+    .help-header {
+      background: linear-gradient(135deg, rgba(108,99,255,0.08) 0%, rgba(108,99,255,0.03) 100%);
+      border: 1px solid rgba(108,99,255,0.15);
+      border-radius: 20px;
+      padding: 32px 28px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .help-header-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.25);
+      margin-bottom: 16px;
+      animation: iconPulse 3s ease-in-out infinite;
+    }
+
+    .help-header-icon svg {
+      width: 30px; height: 30px;
+      color: var(--accent);
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(108,99,255,0.3); }
+      50%       { box-shadow: 0 0 0 12px rgba(108,99,255,0); }
+    }
+
+    .help-header h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .help-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ── Section Card ── */
+    .section-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .section-card.is-open {
+      border-color: rgba(108,99,255,0.3);
+      box-shadow: 0 0 28px rgba(108,99,255,0.07);
+    }
+
+    /* ── Section Header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: background var(--transition);
+    }
+
+    .section-header:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .section-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(108,99,255,0.12);
+      flex-shrink: 0;
+      transition: background var(--transition);
+    }
+
+    .section-card.is-open .section-icon {
+      background: rgba(108,99,255,0.2);
+    }
+
+    .section-icon svg {
+      width: 18px; height: 18px;
+      color: var(--accent);
+    }
+
+    .section-title {
+      flex: 1;
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .section-chevron {
+      width: 20px; height: 20px;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .section-card.is-open .section-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ── Section Body ── */
+    .section-body {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0 16px 14px;
+    }
+
+    .section-card.is-open .section-body {
+      display: flex;
+    }
+
+    /* ── FAQ Item ── */
+    .faq-item {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: background var(--transition);
+    }
+
+    .faq-item.is-open {
+      background: rgba(108,99,255,0.05);
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 13px 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.is-open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-q-text {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 14px 13px 42px;
+    }
+
+    .faq-item.is-open .faq-answer {
+      display: block;
+    }
+
+    .faq-answer p {
+      font-size: 0.855rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      white-space: pre-line;
+    }
+
+    /* ── Page footer ── */
+    .page-footer-note {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,242,255,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .page-footer-note a {
+      color: rgba(240,242,255,0.3);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .page-footer-note a:hover { color: rgba(240,242,255,0.6); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(108,99,255,0.3);
+      border-radius: 3px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .help-header { padding: 24px 20px; }
+      .help-header h1 { font-size: 1.25rem; }
+      .section-header { padding: 14px 16px; }
+      .section-body { padding: 0 10px 12px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Animated background particles -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- Gradient orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="page-wrap">
+    <!-- Top nav -->
+    <nav class="topnav" aria-label="Sayfa navigasyonu">
+      <a href="/" class="back-link" id="back-link" aria-label="Ana sayfaya dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Ana Sayfa
+      </a>
+      <div class="topnav-logo">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo" />
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="content" role="main" id="help-content">
+
+      <!-- Header -->
+      <div class="help-header" id="help-header">
+        <div class="help-header-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="10" r="1" fill="currentColor"/>
+            <path d="M12 7v1M12 13v1"/>
+          </svg>
+        </div>
+        <h1>Size nasıl yardımcı olabiliriz?</h1>
+        <p>Aşağıdaki konulara göz atarak sorularınıza yanıt bulabilirsiniz.</p>
+      </div>
+
+      <!-- Section 1: Nasıl Başlarım? -->
+      <div class="section-card" id="section-0">
+        <div class="section-header" id="section-header-0" role="button" aria-expanded="false" aria-controls="section-body-0" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <span class="section-title">Nasıl Başlarım?</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-0" role="region" aria-labelledby="section-header-0">
+          <div class="faq-item" id="faq-0-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Bizde nedir?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Bizde, ikinci el ürün alım satımını kolaylaştıran bir platformdur. İlan oluşturabilir, diğer kullanıcıların ilanlarına teklif verebilir ve güvenli bir şekilde alışveriş yapabilirsiniz.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-0-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Nasıl hesap oluşturabilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Profil sekmesinden "Giriş Yap" butonuna, ardından "Kayıt Ol" bağlantısına tıklayın. Ad, soyad, e-posta, telefon numarası ve 6 haneli şifre ile kaydınızı tamamlayın. E-posta ve telefon doğrulaması yapmanız gerekecektir.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-0-2">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Şifremi unuttum, ne yapmalıyım?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Giriş ekranında "Şifremi Unuttum" seçeneğine tıklayın. Kayıtlı e-posta adresinize bir doğrulama kodu gönderilecektir. Kodu girerek yeni şifrenizi oluşturabilirsiniz.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: İlan Oluşturma -->
+      <div class="section-card" id="section-1">
+        <div class="section-header" id="section-header-1" role="button" aria-expanded="false" aria-controls="section-body-1" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+          </div>
+          <span class="section-title">İlan Oluşturma</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-1" role="region" aria-labelledby="section-header-1">
+          <div class="faq-item" id="faq-1-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Nasıl ilan oluşturabilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Alt menüdeki "+" butonuna tıklayın. Kategori seçimi yapın, ürün bilgilerini (başlık, açıklama, fiyat, konum, fotoğraf) girin ve ilanınızı yayınlayın. İlanınız onaylandıktan sonra diğer kullanıcılar tarafından görülebilir.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-1-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Kaç adet ilan oluşturabilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Aktif ilan sayınızda herhangi bir sınırlama bulunmamaktadır. Dilediğiniz kadar ilan oluşturabilirsiniz.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-1-2">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">İlanımı nasıl düzenleyebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Profil &gt; İlanlarım bölümünden düzenlemek istediğiniz ilana tıklayın. İlan detay sayfasında düzenleme seçeneğini kullanarak başlık, açıklama, fiyat ve diğer bilgileri güncelleyebilirsiniz.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-1-3">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">İlanımı nasıl silebilir veya kapatabilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>İlanlarım sayfasından ilgili ilanın detayına gidin. Düzenleme menüsünden ilanınızı pasife alabilir veya silebilirsiniz. Satılan ürünlerin ilanları otomatik olarak "Satıldı" durumuna geçer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Teklif Verme & Alma -->
+      <div class="section-card" id="section-2">
+        <div class="section-header" id="section-header-2" role="button" aria-expanded="false" aria-controls="section-body-2" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2H2v10l9.29 9.29a1 1 0 0 0 1.41 0l7.3-7.3a1 1 0 0 0 0-1.41L12 2z"/><circle cx="7" cy="7" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="section-title">Teklif Verme &amp; Alma</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-2" role="region" aria-labelledby="section-header-2">
+          <div class="faq-item" id="faq-2-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Bir ilana nasıl teklif verebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Beğendiğiniz ilanın detay sayfasına gidin ve "Teklif Ver" butonuna tıklayın. Teklif tutarınızı girerek teklifinizi gönderin. İlan sahibi teklifinizi kabul ederse bildirim alırsınız.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-2-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Gelen teklifleri nasıl görebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>İlanlarım sayfasından ilanınızın detayına gidin. "Teklifler" sekmesinden gelen tüm teklifleri görebilir, kabul veya red işlemi yapabilirsiniz.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-2-2">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Teklifimi geri çekebilir miyim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Verdiğiniz teklif henüz kabul edilmemişse geri çekebilirsiniz. İlan detay sayfasından teklifinizi iptal edebilirsiniz.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Mesajlaşma -->
+      <div class="section-card" id="section-3">
+        <div class="section-header" id="section-header-3" role="button" aria-expanded="false" aria-controls="section-body-3" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <span class="section-title">Mesajlaşma</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-3" role="region" aria-labelledby="section-header-3">
+          <div class="faq-item" id="faq-3-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Satıcıyla nasıl iletişime geçebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>İlan detay sayfasında "Mesaj Gönder" butonuna tıklayarak satıcıyla doğrudan iletişime geçebilirsiniz. İlan alıntısı otomatik olarak mesaja eklenir.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-3-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Mesaj karakter limiti var mı?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Evet, her mesaj en fazla 500 karakter olabilir. Uzun açıklamalar için birden fazla mesaj gönderebilirsiniz.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-3-2">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Mesajlarımı nasıl görebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Alt menüdeki "Mesajlar" sekmesine tıklayarak tüm sohbetlerinizi görüntüleyebilirsiniz. Yeni mesaj geldiğinde bildirim alırsınız.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Favoriler -->
+      <div class="section-card" id="section-4">
+        <div class="section-header" id="section-header-4" role="button" aria-expanded="false" aria-controls="section-body-4" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <span class="section-title">Favoriler</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-4" role="region" aria-labelledby="section-header-4">
+          <div class="faq-item" id="faq-4-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Bir ilanı nasıl favorilere eklerim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>İlan kartındaki veya ilan detay sayfasındaki kalp ikonuna tıklayarak ilanı favorilerinize ekleyebilirsiniz. Favori ilanlarınızı Profil &gt; Favorilerim bölümünden görüntüleyebilirsiniz.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-4-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Favorilerime eklediğim ilan kaldırıldığında ne olur?</span>
+            </div>
+            <div class="faq-answer">
+              <p>İlan sahibi ilanı kaldırırsa veya ürün satılırsa, favorilerinizden otomatik olarak çıkarılır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Hesap & Profil -->
+      <div class="section-card" id="section-5">
+        <div class="section-header" id="section-header-5" role="button" aria-expanded="false" aria-controls="section-body-5" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="section-title">Hesap &amp; Profil</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-5" role="region" aria-labelledby="section-header-5">
+          <div class="faq-item" id="faq-5-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Profil bilgilerimi nasıl güncellerim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Profil &gt; Profili Düzenle bölümünden ad, soyad bilgilerinizi düzenleyebilirsiniz. E-posta ve telefon numarası değişikliği için doğrulama işlemi gereklidir.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-5-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Şifremi nasıl değiştirebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Profil &gt; Güvenlik &gt; Şifreni Güncelle yolunu izleyin. Mevcut şifrenizi girdikten sonra yeni 6 haneli şifrenizi belirleyebilirsiniz. Şifre sadece rakamlardan oluşmalı ve ardışık sayılar içermemelidir.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-5-2">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Hesabımı nasıl silebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Hesap silme işlemi için <a href="/account/delete/" style="color:var(--accent);text-decoration:none;font-weight:600;">bizimle iletişime geçmeniz</a> gerekmektedir. Destek ekibimiz hesap silme talebinizi en kısa sürede işleme alacaktır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 7: Bildirimler -->
+      <div class="section-card" id="section-6">
+        <div class="section-header" id="section-header-6" role="button" aria-expanded="false" aria-controls="section-body-6" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </div>
+          <span class="section-title">Bildirimler</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-6" role="region" aria-labelledby="section-header-6">
+          <div class="faq-item" id="faq-6-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Hangi durumlarda bildirim alırım?</span>
+            </div>
+            <div class="faq-answer">
+              <p>• İlanınıza yeni teklif geldiğinde
+• Teklifiniz kabul veya reddedildiğinde
+• Yeni mesaj aldığınızda
+• İlanınızla ilgili güncellemeler olduğunda
+
+Bildirim ayarlarınızı cihazınızın ayarlar bölümünden yönetebilirsiniz.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-6-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Bildirimleri nasıl filtreleyebilirim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Bildirimler sayfasındaki filtre seçeneklerini kullanarak bildirimlerinizi türüne göre (teklifler, mesajlar vb.) filtreleyebilirsiniz.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 8: Canlı Yayın -->
+      <div class="section-card" id="section-7">
+        <div class="section-header" id="section-header-7" role="button" aria-expanded="false" aria-controls="section-body-7" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
+          </div>
+          <span class="section-title">Canlı Yayın</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-7" role="region" aria-labelledby="section-header-7">
+          <div class="faq-item" id="faq-7-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Canlı yayın nasıl çalışır?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Canlı yayın özelliği ile ürünlerinizi gerçek zamanlı olarak tanıtabilir, alıcılarla anlık iletişim kurabilirsiniz. Canlı yayın sekmesinden aktif yayınları izleyebilir veya kendi yayınınızı başlatabilirsiniz.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 9: Güvenlik & Gizlilik -->
+      <div class="section-card" id="section-8">
+        <div class="section-header" id="section-header-8" role="button" aria-expanded="false" aria-controls="section-body-8" tabindex="0">
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <span class="section-title">Güvenlik &amp; Gizlilik</span>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-body" id="section-body-8" role="region" aria-labelledby="section-header-8">
+          <div class="faq-item" id="faq-8-0">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Kişisel bilgilerim güvende mi?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Evet, tüm kişisel bilgileriniz şifreli olarak saklanır. Telefon numaranız ve e-posta adresiniz diğer kullanıcılarla doğrudan paylaşılmaz. İletişim sadece uygulama içi mesajlaşma üzerinden gerçekleşir.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-8-1">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Şüpheli bir ilanı nasıl bildiririm?</span>
+            </div>
+            <div class="faq-answer">
+              <p>İlan detay sayfasında bulunan bildirim/şikayet seçeneğini kullanarak şüpheli veya uygunsuz ilanları ekibimize bildirebilirsiniz. Bildirilen ilanlar en kısa sürede incelenir.</p>
+            </div>
+          </div>
+          <div class="faq-item" id="faq-8-2">
+            <div class="faq-question" role="button" tabindex="0">
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="faq-q-text">Güvenli alışveriş için nelere dikkat etmeliyim?</span>
+            </div>
+            <div class="faq-answer">
+              <p>• Ürünü teslim almadan ödeme yapmayın
+• Mümkünse yüz yüze ve güvenli bir ortamda buluşun
+• Şüpheli fiyatlandırmalara dikkat edin
+• Kişisel bilgilerinizi (IBAN, TC no vb.) mesajla paylaşmayın
+• Sorun yaşarsanız destek ekibimize bildirin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer note -->
+    <footer class="page-footer-note" id="page-footer">
+      <span>© 2026 Bizde. Tüm hakları saklıdır.</span>
+      <span>
+        <a href="/privacy-policy/" id="footer-privacy-link">Gizlilik Politikası</a>
+        ·
+        <a href="mailto:destek@bizde.app" id="footer-contact-link">İletişim</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    /* ── Particle Canvas ── */
+    (function () {
+      const canvas = document.getElementById('particleCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      function mkParticle() {
+        return {
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.4 + 0.3,
+          dx: (Math.random() - 0.5) * 0.22,
+          dy: (Math.random() - 0.5) * 0.22,
+          a: Math.random() * 0.35 + 0.05,
+        };
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: 80 }, mkParticle);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(108,99,255,${p.a})`;
+          ctx.fill();
+          p.x += p.dx; p.y += p.dy;
+          if (p.x < -5 || p.x > W + 5) p.dx *= -1;
+          if (p.y < -5 || p.y > H + 5) p.dy *= -1;
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      init();
+      draw();
+    })();
+
+    /* ── Accordion Logic ── */
+    // Section toggle
+    document.querySelectorAll('.section-header').forEach(function (header) {
+      function toggle() {
+        const card = header.closest('.section-card');
+        const isOpen = card.classList.contains('is-open');
+        card.classList.toggle('is-open', !isOpen);
+        header.setAttribute('aria-expanded', String(!isOpen));
+      }
+      header.addEventListener('click', toggle);
+      header.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+
+    // FAQ item toggle
+    document.querySelectorAll('.faq-question').forEach(function (question) {
+      function toggle() {
+        const item = question.closest('.faq-item');
+        item.classList.toggle('is-open');
+      }
+      question.addEventListener('click', toggle);
+      question.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+  </script>
+</body>
+
+</html>
