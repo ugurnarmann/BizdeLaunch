@@ -43,6 +43,7 @@
       background: var(--bg);
       color: var(--text-primary);
       min-height: 100vh;
+      min-height: -webkit-fill-available;
       overflow-x: hidden;
       position: relative;
     }
@@ -78,6 +79,8 @@
       border-radius: 50%;
       pointer-events: none;
       z-index: 2;
+      will-change: transform;
+      transform: translateZ(0);
       animation: orbFloat 12s ease-in-out infinite alternate;
     }
 
@@ -180,8 +183,8 @@
     }
 
     @keyframes iconPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,90,0.25); }
-      50%       { box-shadow: 0 0 0 12px rgba(255,59,90,0); }
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.05); }
     }
 
     /* ── Card header ── */
@@ -663,8 +666,11 @@
       const canvas = document.getElementById('particleCanvas');
       const ctx = canvas.getContext('2d');
       let W, H, particles = [];
+      let lastW = 0;
 
       function resize() {
+        if (window.innerWidth === lastW) return;
+        lastW = window.innerWidth;
         W = canvas.width = window.innerWidth;
         H = canvas.height = window.innerHeight;
       }

@@ -27,6 +27,7 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   overflow-x: hidden;
   position: relative;
 }
@@ -62,6 +63,8 @@ body {
   border-radius: 50%;
   pointer-events: none;
   z-index: 2;
+  will-change: transform;
+  transform: translateZ(0);
   animation: orbFloat 12s ease-in-out infinite alternate;
 }
 
@@ -184,7 +187,6 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 200% 200%;
-  animation: gradientShift 5s ease-in-out infinite;
 }
 
 @keyframes gradientShift {

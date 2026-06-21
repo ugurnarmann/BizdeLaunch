@@ -8,11 +8,14 @@
   const canvas = document.getElementById('particleCanvas');
   const ctx = canvas.getContext('2d');
   let W, H, particles = [], animId;
+  let lastW = 0;
 
   const COLORS = ['#6c63ff', '#ff6584', '#43e8b0'];
   const COUNT = 80;
 
   function resize() {
+    if (window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
   }
@@ -68,8 +71,6 @@
       ctx.save();
       ctx.globalAlpha = a;
       ctx.fillStyle = p.color;
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 6;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();

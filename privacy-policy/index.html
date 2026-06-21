@@ -39,6 +39,7 @@
       background: var(--bg);
       color: var(--text-primary);
       min-height: 100vh;
+      min-height: -webkit-fill-available;
       overflow-x: hidden;
       position: relative;
     }
@@ -74,6 +75,8 @@
       border-radius: 50%;
       pointer-events: none;
       z-index: 2;
+      will-change: transform;
+      transform: translateZ(0);
       animation: orbFloat 14s ease-in-out infinite alternate;
     }
 
@@ -579,8 +582,11 @@
       const canvas = document.getElementById('particleCanvas');
       const ctx = canvas.getContext('2d');
       let W, H, particles = [];
+      let lastW = 0;
 
       function resize() {
+        if (window.innerWidth === lastW) return;
+        lastW = window.innerWidth;
         W = canvas.width = window.innerWidth;
         H = canvas.height = window.innerHeight;
       }
