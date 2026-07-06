@@ -95,92 +95,6 @@
 })();
 
 
-/* ── 2. COUNTDOWN TIMER ──────────────────────────────────── */
-(function initCountdown() {
-  // Launch date: set to 60 days from now for demo purposes
-  const stored = localStorage.getItem('bizde_launch_date');
-  let launch;
-
-  if (stored) {
-    launch = new Date(stored);
-  } else {
-    launch = new Date();
-    launch.setDate(launch.getDate() + 60);
-    localStorage.setItem('bizde_launch_date', launch.toISOString());
-  }
-
-  const elDays    = document.getElementById('days');
-  const elHours   = document.getElementById('hours');
-  const elMins    = document.getElementById('minutes');
-  const elSecs    = document.getElementById('seconds');
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function animFlip(el) {
-    el.classList.remove('flip');
-    void el.offsetWidth; // reflow
-    el.classList.add('flip');
-  }
-
-  let prevVals = { d: '', h: '', m: '', s: '' };
-
-  function tick() {
-    const now  = new Date();
-    const diff = launch - now;
-
-    if (diff <= 0) {
-      elDays.textContent  = '00';
-      elHours.textContent = '00';
-      elMins.textContent  = '00';
-      elSecs.textContent  = '00';
-      return;
-    }
-
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000)  / 60000);
-    const s = Math.floor((diff % 60000)    / 1000);
-
-    const pd = pad(d), ph = pad(h), pm = pad(m), ps = pad(s);
-
-    if (pd !== prevVals.d) { elDays.textContent  = pd; animFlip(elDays);  prevVals.d = pd; }
-    if (ph !== prevVals.h) { elHours.textContent = ph; animFlip(elHours); prevVals.h = ph; }
-    if (pm !== prevVals.m) { elMins.textContent  = pm; animFlip(elMins);  prevVals.m = pm; }
-    if (ps !== prevVals.s) { elSecs.textContent  = ps; animFlip(elSecs);  prevVals.s = ps; }
-  }
-
-  tick();
-  setInterval(tick, 1000);
-})();
-
-
-/* ── 3. EMAIL FORM ───────────────────────────────────────── */
-function handleSubmit(e) {
-  e.preventDefault();
-
-  const form    = document.getElementById('notify-form');
-  const btn     = document.getElementById('notify-btn');
-  const btnText = document.getElementById('btn-text');
-  const input   = document.getElementById('email-input');
-  const note    = document.getElementById('form-note');
-  const success = document.getElementById('success-msg');
-
-  // Loading state
-  btn.disabled   = true;
-  btnText.textContent = 'Kaydediliyor…';
-
-  setTimeout(() => {
-    // Success state
-    form.style.display    = 'none';
-    note.style.display    = 'none';
-    success.style.display = 'block';
-    input.value = '';
-    btn.disabled = false;
-    btnText.textContent = 'Beni Haberdar Et';
-  }, 1200);
-}
-
-
 /* ── 4. PARALLAX MOUSE EFFECT ────────────────────────────── */
 (function initParallax() {
   const orbs = document.querySelectorAll('.orb');
@@ -233,19 +147,30 @@ function handleSubmit(e) {
 (function initReveal() {
   if (!('IntersectionObserver' in window)) return;
 
-  const targets = document.querySelectorAll('.pill, .count-item');
+  const targets = document.querySelectorAll('.pill, .store-btn, .scroll-reveal');
   const io = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          if (entry.target.classList.contains('scroll-reveal')) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
           io.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.15 }
   );
 
-  targets.forEach(t => io.observe(t));
+  targets.forEach(t => {
+    if (t.classList.contains('store-btn')) {
+      t.style.opacity = '0';
+      t.style.transform = 'translateY(20px)';
+      t.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    }
+    io.observe(t);
+  });
 })();
