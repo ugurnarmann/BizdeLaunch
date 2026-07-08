@@ -367,24 +367,50 @@
 
     .contact-box a:hover { text-decoration: underline; }
 
-    /* ── Footer ── */
+    /* ── Page Footer ── */
     .page-footer {
-      text-align: center;
-      margin-top: 56px;
-      font-size: 0.8rem;
-      color: rgba(240,242,255,0.2);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 24px;
     }
 
-    .page-footer a {
-      color: rgba(240,242,255,0.3);
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-size: 0.85rem;
+      color: var(--text-muted);
       text-decoration: none;
-      transition: color var(--transition);
+      transition: color var(--transition), text-decoration-color var(--transition);
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
 
-    .page-footer a:hover { color: rgba(240,242,255,0.6); }
+    .footer-link:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: rgba(108,99,255,0.8);
+      text-underline-offset: 6px;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .copyright {
+      font-size: 0.78rem;
+      color: rgba(240,242,255,0.25);
+    }
 
     /* ── Animations ── */
     @keyframes fadeUp {
@@ -564,14 +590,16 @@
 
     <!-- Footer -->
     <footer class="page-footer" id="page-footer-privacy">
-      <span>© 2026 Bizde. Tüm hakları saklıdır.</span>
-      <span>
-        <a href="/" id="footer-home-link">Ana Sayfa</a>
-        &nbsp;·&nbsp;
-        <a href="/account/delete/" id="footer-delete-link">Hesap Silme</a>
-        &nbsp;·&nbsp;
-        <a href="mailto:kvkk@bizde.app" id="footer-kvkk-link">kvkk@bizde.app</a>
-      </span>
+      <div class="footer-links">
+        <a href="/" class="footer-link">Ana Sayfa</a>
+        <span class="footer-dot"></span>
+        <a href="/privacy-policy/" class="footer-link">Gizlilik Politikası</a>
+        <span class="footer-dot"></span>
+        <a href="/help/" class="footer-link">Yardım Merkezi</a>
+        <span class="footer-dot"></span>
+        <a href="/account/delete/" class="footer-link">Hesap Silme</a>
+      </div>
+      <p class="copyright">© 2026 Bizde. Tüm hakları saklıdır.</p>
     </footer>
 
   </div><!-- /page-wrap -->

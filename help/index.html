@@ -350,22 +350,49 @@
 
     /* ── Page footer ── */
     .page-footer-note {
-      margin-top: 48px;
-      text-align: center;
-      font-size: 0.78rem;
-      color: rgba(240,242,255,0.2);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 24px;
+      margin-top: auto;
     }
 
-    .page-footer-note a {
-      color: rgba(240,242,255,0.3);
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-size: 0.85rem;
+      color: var(--text-muted);
       text-decoration: none;
-      transition: color var(--transition);
+      transition: color var(--transition), text-decoration-color var(--transition);
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
 
-    .page-footer-note a:hover { color: rgba(240,242,255,0.6); }
+    .footer-link:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: rgba(108,99,255,0.8);
+      text-underline-offset: 6px;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .copyright {
+      font-size: 0.78rem;
+      color: rgba(240,242,255,0.25);
+    }
 
     /* ── Animations ── */
     @keyframes fadeUp {
@@ -803,12 +830,16 @@ Bildirim ayarlarınızı cihazınızın ayarlar bölümünden yönetebilirsiniz.
 
     <!-- Footer note -->
     <footer class="page-footer-note" id="page-footer">
-      <span>© 2026 Bizde. Tüm hakları saklıdır.</span>
-      <span>
-        <a href="/privacy-policy/" id="footer-privacy-link">Gizlilik Politikası</a>
-        ·
-        <a href="mailto:destek@bizde.app" id="footer-contact-link">İletişim</a>
-      </span>
+      <div class="footer-links">
+        <a href="/" class="footer-link">Ana Sayfa</a>
+        <span class="footer-dot"></span>
+        <a href="/privacy-policy/" class="footer-link">Gizlilik Politikası</a>
+        <span class="footer-dot"></span>
+        <a href="/help/" class="footer-link">Yardım Merkezi</a>
+        <span class="footer-dot"></span>
+        <a href="/account/delete/" class="footer-link">Hesap Silme</a>
+      </div>
+      <p class="copyright">© 2026 Bizde. Tüm hakları saklıdır.</p>
     </footer>
   </div>
 
