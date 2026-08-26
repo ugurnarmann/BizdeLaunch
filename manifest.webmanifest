@@ -1,0 +1,62 @@
+{
+  "name": "Bizde - İlan ve Teklifler",
+  "short_name": "Bizde",
+  "description": "Türkiye'nin en kapsamlı ilan, açık arttırma ve teklif verme platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#0B1120",
+  "theme_color": "#3B82F6",
+  "lang": "tr",
+  "orientation": "portrait-primary",
+  "categories": [
+    "shopping",
+    "business",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "/assets/images/bizde_logo_dark.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/bizde_logo_dark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "İlan Ara",
+      "short_name": "Ara",
+      "description": "Güncel ilanları keşfedin",
+      "url": "/#/",
+      "icons": [
+        {
+          "src": "/assets/images/bizde_logo_dark.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Destek & Yardım",
+      "short_name": "Destek",
+      "description": "Sıkça sorulan sorular ve destek",
+      "url": "/help/",
+      "icons": [
+        {
+          "src": "/assets/images/bizde_logo_dark.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

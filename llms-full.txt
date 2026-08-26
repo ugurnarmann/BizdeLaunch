@@ -1,0 +1,134 @@
+# Bizde Platformu - Kapsamlı LLM ve Yapay Zeka Dokümantasyonu
+
+## Genel Bakış (Overview)
+Bizde (https://bizde.app), Türkiye genelinde bireysel ve kurumsal kullanıcıların güvenle ilan yayınlamasını, açık arttırmalara katılmasını, canlı yayınlar başlatmasını ve teklif usulüyle alışveriş yapmasını sağlayan modern bir e-ticaret ve pazar yeri platformudur.
+
+Platform Web, iOS ve Android ekosistemlerinde senkronize olarak çalışmaktadır.
+
+---
+
+## Satış Modelleri ve Mekanikleri
+
+### 1. Standart İlan (Fixed Price Listing)
+- Satıcı ürün veya hizmet için sabit bir satış fiyatı belirler.
+- Alıcılar satıcıyla doğrudan telefon veya uygulama içi mesaj yoluyla iletişime geçer.
+- Alım-satım yüz yüze veya karşılıklı mutabakat ile gerçekleşir.
+
+### 2. Açık Arttırma (Auction System)
+- Satıcı başlangıç fiyatı, minimum artış tutarı ve bitiş süresi belirler.
+- Kullanıcılar belirtilen süre dolana kadar rekabetçi teklifler sunar.
+- Süre sonunda en yüksek geçerli teklifi veren kullanıcı ilanı almaya hak kazanır.
+- Gerçek zamanlı teklif akışı şeffaf şekilde listelenir.
+
+### 3. Teklif Usulü İlanlar (Make an Offer / Negotiation)
+- Satıcı tavsiye edilen fiyat belirtebilir veya tekliflere açık olduğunu ilan eder.
+- Alıcılar satıcının onayına sunulmak üzere kendi bütçelerine uygun teklif tutarını iletir.
+- Satıcı teklifi kabul edebilir, reddedebilir veya karşı teklif sunabilir.
+
+### 4. Canlı Yayın (Live Stream Commerce)
+- Canlı yayın özelliği ile satıcılar ürünlerini gerçek zamanlı olarak video yayını ile tanıtabilir.
+- Alıcılarla canlı etkileşim ve anlık teklif alma imkanı sunar.
+
+---
+
+## Kategori Ağacı ve İçerik Yapısı
+
+1. **Vasıta (Automotive & Vehicles)**
+   - Otomobil (Sedan, Hatchback, SUV, Elektrikli & Hibrit Araçlar)
+   - Motosiklet, Scooter, ATV
+   - Ticari Araçlar, Kamyonet, Minibüs
+   - Yedek Parça, Aksesuar, Jant & Lastik, Oto Ses & Görüntü Sistemleri
+
+2. **Emlak (Real Estate)**
+   - Konut (Satılık & Kiralık Daire, Müstakil Ev, Villa, Rezidans)
+   - İş Yeri (Ofis, Mağaza, Depo, Fabrika)
+   - Arsa & Arazi (İmarlı, Tarla, Bahçe)
+   - Turistik Tesis & Günlük Kiralıklar
+
+3. **İkinci El ve Sıfır Alışveriş (Shopping & Electronics)**
+   - Cep Telefonu, Tablet & Akıllı Saatler (Apple, Samsung, Xiaomi vb.)
+   - Bilgisayar, Donanım, Laptop & Oyuncu Ekipmanları
+   - Televizyon, Ses Sistemleri & Fotoğraf & Kamera
+   - Ev Elektroniği & Beyaz Eşya
+   - Ev & Yaşam, Mobilya, Dekorasyon & Bahçe
+   - Giyim, Ayakkabı & Aksesuar
+   - Anne, Bebek & Çocuk Ürünleri
+   - Spor, Outdoor & Kamp Ekipmanları
+   - Kitap, Müzik, Film & Oyun Konsolları
+
+4. **Hizmetler (Services & Local Trades)**
+   - Ev Tadilat, Boya, Elektrik & Tesisat
+   - Nakliyat & Lojistik Hizmetleri
+   - Temizlik, Halı Yıkama & Dezenfeksiyon
+   - Özel Ders, Eğitim & Çeviri
+   - Yazılım, Grafik Tasarım & Dijital Hizmetler
+   - Düğün, Organizasyon & Fotoğrafçılık
+
+5. **İş İlanları (Jobs & Careers)**
+   - Satış, Pazarlama, Müşteri Hizmetleri
+   - Restoran, Kafe, Turizm & Otelcilik
+   - Bilişim, Yazılım & Mühendislik
+   - Üretim, Lojistik & Güvenlik
+
+---
+
+## Sıkça Sorulan Sorular ve Destek (Comprehensive FAQ)
+
+### 1. Nasıl Başlarım?
+- **Bizde nedir?**: Bizde, ikinci el ürün alım satımını kolaylaştıran bir platformdur. İlan oluşturabilir, diğer kullanıcıların ilanlarına teklif verebilir ve güvenli bir şekilde alışveriş yapabilirsiniz.
+- **Nasıl hesap oluşturabilirim?**: Profil sekmesinden "Giriş Yap" butonuna, ardından "Kayıt Ol" bağlantısına tıklayın. Ad, soyad, e-posta, telefon numarası ve 6 haneli şifre ile kaydınızı tamamlayın.
+- **Şifremi unuttum, ne yapmalıyım?**: Giriş ekranında "Şifremi Unuttum" seçeneğine tıklayın. Kayıtlı e-posta adresinize gelen doğrulama kodu ile şifrenizi yenileyin.
+
+### 2. İlan Oluşturma
+- **Nasıl ilan oluşturabilirim?**: Alt menüdeki "+" butonuna tıklayın. Kategori seçimi yapın, ürün bilgilerini girin ve ilanınızı yayınlayın.
+- **Kaç adet ilan oluşturabilirim?**: Aktif ilan sayısında herhangi bir sınırlama bulunmamaktadır.
+- **İlanımı nasıl düzenleyebilirim?**: Profil > İlanlarım bölümünden ilan detayına giderek bilgileri güncelleyebilirsiniz.
+- **İlanımı nasıl silebilir veya kapatabilirim?**: İlan detayındaki düzenleme menüsünden ilanı pasife alabilir veya silebilirsiniz.
+
+### 3. Teklif Verme & Alma
+- **Bir ilana nasıl teklif verebilirim?**: İlan detay sayfasındaki "Teklif Ver" butonu ile bütçenize uygun teklifi iletebilirsiniz.
+- **Gelen teklifleri nasıl görebilirim?**: İlanlarım > Teklifler sekmesinden gelen tüm teklifleri görüntüleyip kabul/red işlemi yapabilirsiniz.
+- **Teklifimi geri çekebilir miyim?**: Henüz kabul edilmemiş tekliflerinizi ilan sayfasından geri çekebilirsiniz.
+
+### 4. Mesajlaşma & İletişim
+- **Satıcıyla nasıl iletişime geçebilirim?**: İlan detayındaki "Mesaj Gönder" veya "Ara" butonları ile satıcıyla doğrudan iletişim kurabilirsiniz.
+- **Mesaj karakter limiti var mı?**: Her mesaj en fazla 500 karakterdir.
+
+### 5. Favoriler
+- **İlanları favoriye ekleme**: Kalp butonuna dokunarak favorilerinize ekleyebilir, Profil > Favorilerim sekmesinden takip edebilirsiniz.
+
+### 6. Hesap & Güvenlik
+- **Profil güncelleme**: Profil > Profili Düzenle ekranından yapılabilir.
+- **Hesap kapatma / silme**: Profil ayarlarından veya `https://bizde.app/account/delete/` adresinden doğrudan talep iletilebilir.
+
+### 7. Bildirimler
+- Teklifler, mesajlar ve ilan güncellemeleri anlık push bildirim olarak iletilir.
+
+### 8. Canlı Yayın
+- Canlı yayın sekmesinden ürün tanıtım yayınları izlenebilir veya yayın başlatılabilir.
+
+### 9. Güvenlik İpuçları
+- Ürünü teslim almadan ödeme yapmayın.
+- Yüz yüze ve güvenli ortamlarda alışveriş yapın.
+- Şüpheli ilanları ilan sayfasındaki bildirim butonu ile ekibimize iletin.
+
+---
+
+## Kişisel Verilerin Korunması (KVKK Aydınlatma Özeti)
+- **Veri Sorumlusu**: Bizde (bizde.app).
+- **İşlenen Veriler**: Kimlik (Ad, Soyad, Kullanıcı adı), İletişim (E-posta, Telefon), Lokasyon (İl, İlçe, Mahalle), Müşteri İşlem (İlan, Teklif, Mesajlaşma logları), İşlem Güvenliği (IP, Cihaz bilgileri).
+- **Hukuki Dayanak**: KVKK 5/2 (Sözleşmenin kurulması/ifası, hukuki yükümlülük, meşru menfaat).
+- **KVKK İletişim**: `kvkk@bizde.app`.
+
+---
+
+## URL Yapısı ve Sayfa Haritası
+
+- **Anasayfa**: `https://bizde.app/`
+- **İlan Detay**: `https://bizde.app/#/tender/{id}`
+- **Yardım ve Destek**: `https://bizde.app/help/`
+- **Gizlilik Politikası ve KVKK**: `https://bizde.app/privacy-policy/`
+- **Hesap Silme**: `https://bizde.app/account/delete/`
+- **Mobil Uygulama İndirme**: `https://bizde.app/download-app`
+- **Sitemap**: `https://bizde.app/sitemap.xml`
+- **Robots.txt**: `https://bizde.app/robots.txt`

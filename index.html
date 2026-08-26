@@ -1,424 +1,345 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" prefix="og: https://ogp.me/ns#">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Primary Meta Tags -->
-  <title>Bizde - İlan ve Teklifler</title>
-  <meta name="title" content="Bizde - İlan ve Teklifler" />
-  <meta name="description" content="Bizde, Türkiye'nin en kapsamlı ilan ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap. Hemen indir!" />
-  <meta name="keywords" content="ilan, teklif, alım satım, ikinci el, hizmet, ürün, bizde, pazar yeri" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu</title>
+  <meta name="title" content="Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu" />
+  <meta name="description"
+    content="Bizde, Türkiye'nin yenilikçi ilan, açık arttırma ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap." />
+  <meta name="keywords"
+    content="bizde, ilan, teklif ver, açık arttırma, ikinci el, vasıta, emlak, alışveriş, türkiye ilan sitesi, güvenli alım satım, mobil ilan uygulaması, online mezat, oto ilan, konut ilan" />
+  <meta name="author" content="Bizde" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://bizde.app/" />
+
+  <!-- Mobile & PWA Metadata -->
+  <meta name="theme-color" content="#0B1120" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Bizde" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- Geographic & Language Meta -->
+  <meta name="geo.region" content="TR" />
+  <meta name="geo.placename" content="Türkiye" />
+  <meta name="language" content="Turkish" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="assets/images/bizde_logo_dark.png" />
+  <link rel="apple-touch-icon" href="assets/images/bizde_logo_dark.png" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bizde.app/" />
-  <meta property="og:title" content="Bizde - İlan ve Teklif Platformu" />
-  <meta property="og:description" content="İlanlar, teklifler ve fırsatlar tek platformda. Güvenle alım satım yap, aradığını kolayca bul." />
-  <meta property="og:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
   <meta property="og:site_name" content="Bizde" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:title" content="Bizde - İlan ve Teklifler | Alım Satımda Yeni Nesil Deneyim" />
+  <meta property="og:description"
+    content="Türkiye'nin en kapsamlı ilan ve teklif platformu. İlanlarını ücretsiz yayınla, teklif al, açık arttırmalara katıl." />
+  <meta property="og:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bizde - İlan ve Teklifler" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://bizde.app/" />
-  <meta property="twitter:title" content="Bizde - İlan ve Teklif Platformu" />
-  <meta property="twitter:description" content="İlanlar, teklifler ve fırsatlar tek platformda. Güvenle alım satım yap, aradığını kolayca bul." />
-  <meta property="twitter:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bizde.app/" />
+  <meta name="twitter:title" content="Bizde - İlan ve Teklifler" />
+  <meta name="twitter:description"
+    content="Türkiye'nin en kapsamlı ilan ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap." />
+  <meta name="twitter:image"
+    content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <meta name="twitter:image:alt" content="Bizde - İlan ve Teklifler" />
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
-  <link rel="apple-touch-icon" href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
-
-  <!-- Schema.org JSON-LD -->
+  <!-- Structured Data: Organization, WebSite, MobileApplication (Schema.org JSON-LD) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Bizde",
-    "operatingSystem": "ANDROID, IOS",
-    "applicationCategory": "BusinessApplication",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1024"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "TRY"
-    },
-    "description": "Bizde, Türkiye'nin en kapsamlı ilan ve teklif platformu. İlanlarınızı yayınlayıp kolayca teklif alabilirsiniz."
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://bizde.app/#organization",
+        "name": "Bizde",
+        "url": "https://bizde.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png",
+          "caption": "Bizde Logo"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "destek@bizde.app",
+          "contactType": "customer support",
+          "areaServed": "TR",
+          "availableLanguage": ["Turkish"]
+        },
+        "sameAs": [
+          "https://bizde.app/download-app"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bizde.app/#website",
+        "url": "https://bizde.app/",
+        "name": "Bizde",
+        "alternateName": ["Bizde App", "Bizde İlan", "Bizde İlan ve Teklifler"],
+        "description": "Türkiye'nin yenilikçi ilan, açık arttırma ve teklif platformu.",
+        "publisher": {
+          "@id": "https://bizde.app/#organization"
+        },
+        "inLanguage": "tr-TR"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://bizde.app/#application",
+        "name": "Bizde - İlan ve Teklifler",
+        "operatingSystem": "iOS, Android, Web",
+        "applicationCategory": "ShoppingApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "1250",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "downloadUrl": "https://bizde.app/download-app"
+      }
+    ]
   }
   </script>
+
+  <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
-  <style>
-    /* Immediate font fallback until Google Fonts loads */
-    body {
-      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    }
-  </style>
+  <!-- Material Symbols Rounded font for Flutter 1:1 Icons -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,1,0" />
+  <!-- Leaflet for OpenStreetMap (Flutter 1:1 Map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-logo">
-        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo" />
-      </a>
-      <div class="nav-links">
-        <a href="#highlights" class="nav-link">Özellikler</a>
-        <a href="/help/" class="nav-link">Yardım Merkezi</a>
+  <!-- Full-Width Top Navigation Bar -->
+  <header class="app-header" id="app-header">
+    <div class="header-container">
+      <div class="header-left">
+        <!-- Back button on detail page, hidden on home -->
+        <button id="header-back-btn" class="header-icon-btn" style="display: none;"
+          onclick="window.location.hash = '#/'" title="Geri" aria-label="Geri">
+          <span class="material-symbols-rounded" style="font-size: 26px;">arrow_back_ios_new</span>
+        </button>
       </div>
-      <a href="#download-section" class="nav-btn">Hemen İndir</a>
-    </div>
-  </nav>
 
-  <!-- Animated background particles -->
-  <canvas id="particleCanvas"></canvas>
+      <!-- Center: Large Prominent Bizde Logo -->
+      <a href="#/" class="logo-link" id="logo-link" title="Bizde Anasayfa" aria-label="Bizde Anasayfa">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png"
+          alt="Bizde - İlan ve Teklifler" class="logo-img" id="main-logo-img" />
+      </a>
 
-  <!-- Noise overlay -->
-  <div class="noise"></div>
+      <!-- Right: Desktop QR / Mobile Download -->
+      <div class="header-right">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="header-icon-btn" onclick="toggleTheme()" title="Tema Değiştir"
+          aria-label="Tema Değiştir" style="margin-right: 12px;">
+          <span class="material-symbols-rounded" id="theme-toggle-icon" style="font-size: 22px;">light_mode</span>
+        </button>
 
-  <!-- Gradient orbs -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
-  <main class="container">
-    <div class="hero-wrapper">
-      <!-- Hero -->
-      <section class="hero" id="hero-section">
-        <!-- Logo -->
-        <header class="logo-wrap" id="logo-wrap">
-          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
-            class="logo" id="site-logo" />
-        </header>
-
-        <div class="badge" id="launch-badge">
-          <span class="badge-dot"
-            style="background: #43e8b0; box-shadow: 0 0 10px #43e8b0, 0 0 20px rgba(67,232,176,0.5);"></span>
-          <span>Şimdi Yayında</span>
+        <div class="header-qr-badge desktop-only" onclick="openDownloadModal('Uygulama İndir')" role="button"
+          tabindex="0" title="Uygulamayı İndir">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://bizde.app/download-app&bgcolor=0F172A&color=F1F5F9"
+            alt="Bizde Uygulamasını İndir QR Kodu" class="header-qr-img" />
+          <span class="header-qr-text">Uygulamayı İndir</span>
         </div>
+        <button class="btn-download-mobile mobile-only" onclick="openDownloadModal('Uygulama İndir')"
+          aria-label="Uygulamayı İndir">
+          İndir
+        </button>
+      </div>
+    </div>
+  </header>
 
-        <h1 class="headline" id="main-headline">
-          İlanlar &amp; Teklifler<br />
-          <span class="gradient-text">Tek Platformda</span>
-        </h1>
+  <!-- Main App Viewport Container -->
+  <div class="app-viewport">
+    <main id="app-root" class="app-main">
+      <!-- Initial Shimmer Skeleton -->
+      <div class="skeleton-hero shimmer"></div>
+      <div class="skeleton-categories">
+        <div class="skeleton-cat-item">
+          <div class="skeleton-cat-box shimmer"></div>
+          <div class="skeleton-cat-text shimmer"></div>
+        </div>
+        <div class="skeleton-cat-item">
+          <div class="skeleton-cat-box shimmer"></div>
+          <div class="skeleton-cat-text shimmer"></div>
+        </div>
+        <div class="skeleton-cat-item">
+          <div class="skeleton-cat-box shimmer"></div>
+          <div class="skeleton-cat-text shimmer"></div>
+        </div>
+        <div class="skeleton-cat-item">
+          <div class="skeleton-cat-box shimmer"></div>
+          <div class="skeleton-cat-text shimmer"></div>
+        </div>
+        <div class="skeleton-cat-item">
+          <div class="skeleton-cat-box shimmer"></div>
+          <div class="skeleton-cat-text shimmer"></div>
+        </div>
+      </div>
+      <div class="skeleton-section-title shimmer"></div>
+      <div class="tenders-list-container">
+        <div class="skeleton-card">
+          <div class="skeleton-card-img shimmer"></div>
+          <div class="skeleton-card-body">
+            <div class="skeleton-line title shimmer"></div>
+            <div class="skeleton-line location shimmer"></div>
+            <div class="skeleton-line badge shimmer"></div>
+            <div class="skeleton-card-bottom">
+              <div class="skeleton-line meta shimmer"></div>
+              <div class="skeleton-line price shimmer"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-card-img shimmer"></div>
+          <div class="skeleton-card-body">
+            <div class="skeleton-line title shimmer"></div>
+            <div class="skeleton-line location shimmer"></div>
+            <div class="skeleton-line badge shimmer"></div>
+            <div class="skeleton-card-bottom">
+              <div class="skeleton-line meta shimmer"></div>
+              <div class="skeleton-line price shimmer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-        <p class="sub" id="sub-headline">
-          Bizde ile ilanlarını yayınla, teklif al, en iyi fırsatları keşfet.<br class="br-desktop" />
-          Mobil uygulamamızı hemen indirin ve fırsatları yakalayın.
+    <!-- Semantic Crawler & Non-JS Fallback for Search Engines & AI Crawlers -->
+    <noscript>
+      <section style="padding: 24px; color: #fff; background: #0F172A; border-radius: 12px; margin: 16px;">
+        <h2>Bizde - Türkiye'nin Yenilikçi İlan, Teklif ve Açık Arttırma Platformu</h2>
+        <p>Bizde ile vasıta, emlak, ikinci el elektronik, ev eşyaları ve hizmet sektörlerinde ücretsiz ilan
+          yayınlayabilir, açık arttırmalara katılabilir ve en uygun fiyatlarla teklif vererek alışveriş yapabilirsiniz.
         </p>
-
-        <!-- Store Buttons -->
-        <div class="store-buttons" id="store-buttons-wrap">
-          <a href="https://apps.apple.com/tr/app/bizde-i-lan-ve-teklifler/id6779144153" target="_blank"
-            class="store-btn apple-btn">
-            <div class="icon-wrapper">
-              <svg viewBox="0 0 384 512" fill="currentColor" class="store-icon">
-                <path
-                  d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-              </svg>
-            </div>
-            <div class="store-text">
-              <span class="store-sub">App Store'dan</span>
-              <span class="store-title">İndirin</span>
-            </div>
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.sirri.bizdemobile" target="_blank"
-            class="store-btn google-btn">
-            <div class="icon-wrapper">
-              <svg viewBox="0 0 512 512" fill="currentColor" class="store-icon">
-                <path
-                  d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
-              </svg>
-            </div>
-            <div class="store-text">
-              <span class="store-sub">Google Play'den</span>
-              <span class="store-title">Alın</span>
-            </div>
-          </a>
-        </div>
-
-
-
-        <!-- Feature pills -->
-        <section class="features" id="features-section">
-          <div class="pill" id="pill-1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="2" y="3" width="20" height="14" rx="2" />
-              <path d="M8 21h8M12 17v4" />
-            </svg>
-            <span>İlan Yönetimi</span>
-          </div>
-          <div class="pill" id="pill-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-            <span>Teklif Sistemi</span>
-          </div>
-          <div class="pill" id="pill-3">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
-            <span>Anlık Mesajlaşma</span>
-          </div>
-          <div class="pill" id="pill-4">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="2" y1="12" x2="22" y2="12" />
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1 4-10z" />
-            </svg>
-            <span>Tüm Türkiye</span>
-          </div>
-        </section>
+        <h3>Popüler Kategoriler</h3>
+        <ul>
+          <li><strong>Vasıta:</strong> Otomobil, Motosiklet, Ticari Araçlar, Yedek Parça</li>
+          <li><strong>Emlak:</strong> Satılık & Kiralık Daireler, İş Yeri, Arsa</li>
+          <li><strong>İkinci El Alışveriş:</strong> Telefon, Bilgisayar, Beyaz Eşya, Giyim</li>
+          <li><strong>Hizmetler:</strong> Usta, Nakliyat, Temizlik, Özel Ders</li>
+        </ul>
+        <p><a href="https://bizde.app/download-app" style="color: #38BDF8;">Bizde Mobil Uygulamasını İndirin</a></p>
       </section>
+    </noscript>
 
-      <!-- Scroll Indicator -->
-      <a href="#highlights" class="scroll-indicator">
-        <span class="scroll-text">Keşfet</span>
-        <div class="mouse-icon">
-          <div class="wheel"></div>
+    <!-- Floating Action Button (Flutter FAB 1:1) -->
+    <button id="fab-add-tender" class="fab-btn" onclick="openDownloadModal('İlan Verme')" aria-label="Yeni İlan Ver">
+      <span class="material-symbols-rounded" style="font-size: 20px;">add</span>
+      <span>İlan Ver</span>
+    </button>
+
+    <!-- App Download Modal / Dialog -->
+    <div id="download-modal" class="modal-overlay" style="display: none;" onclick="closeDownloadModal(event)"
+      role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card" onclick="event.stopPropagation()">
+        <button class="modal-close-btn" onclick="closeDownloadModal()" aria-label="Kapat">&times;</button>
+        <div class="modal-header">
+          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
+            class="modal-logo" id="modal-logo-img" />
+          <h3 id="modal-title">Bizde Mobil Uygulaması</h3>
         </div>
-      </a>
+        <p class="modal-desc" id="modal-desc">
+          Teklif vermek, ilan yayınlamak ve tüm fırsatları yakalamak için Bizde uygulamasını indirin.
+        </p>
+        <div class="modal-qr-section desktop-only">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://bizde.app/download-app&bgcolor=0F172A&color=F1F5F9"
+            alt="Bizde Uygulaması QR Kodu" class="modal-qr-img" />
+          <span class="modal-qr-hint">Telefonunuzun kamerasıyla QR kodu taratın</span>
+        </div>
+        <div class="modal-actions">
+          <a href="https://bizde.app/download-app" target="_blank" class="modal-btn-download" rel="noopener noreferrer">
+            <span class="material-symbols-rounded" style="font-size: 20px;">download</span>
+            Uygulamayı İndir
+          </a>
+        </div>
+      </div>
     </div>
 
-    <!-- Feature Highlights -->
-    <section class="feature-highlights" id="highlights">
-
-      <!-- 1. Üç İlan Tipi -->
-      <div class="feature-row scroll-reveal">
-        <div class="feature-text">
-          <div class="feature-badge">3 Farklı İlan Tipi</div>
-          <h2 class="feature-title">İhtiyacına Uygun <span class="gradient-text">İlanı Seç</span></h2>
-          <p class="feature-desc">Bizde platformunda ilanlarını tam istediğin gibi yayınlayabilirsin. İster hemen sat,
-            ister teklifleri değerlendir, ister en yüksek verene sat!</p>
-          <ul class="feature-list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span><strong>Açık Arttırma:</strong> Ürününü en yüksek teklifi verene sat.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#ff6584" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span><strong>Teklif Usulü:</strong> Alıcıların tekliflerini topla, en uygununu seç.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#43e8b0" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span><strong>Normal İlan:</strong> Sabit fiyatını belirle, hemen alıcı bul.</span>
-            </li>
-          </ul>
-        </div>
-        <div class="feature-visual">
-          <div class="mockup-card">
-            <div class="mockup-header">
-              <div class="dot red"></div>
-              <div class="dot yellow"></div>
-              <div class="dot green"></div>
-            </div>
-            <div class="mockup-body">
-              <div class="mockup-item">
-                <div class="mockup-icon" style="background: rgba(108,99,255,0.2); color: #6c63ff;">A</div>
-                <div class="mockup-lines">
-                  <div class="line w-full"></div>
-                  <div class="line w-half"></div>
-                </div>
-              </div>
-              <div class="mockup-item">
-                <div class="mockup-icon" style="background: rgba(255,101,132,0.2); color: #ff6584;">T</div>
-                <div class="mockup-lines">
-                  <div class="line w-full"></div>
-                  <div class="line w-half"></div>
-                </div>
-              </div>
-              <div class="mockup-item">
-                <div class="mockup-icon" style="background: rgba(67,232,176,0.2); color: #43e8b0;">N</div>
-                <div class="mockup-lines">
-                  <div class="line w-full"></div>
-                  <div class="line w-half"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- Fullscreen Image Zoom / Lightbox Modal -->
+    <div id="image-lightbox-modal" class="lightbox-overlay" style="display: none;" onclick="closeLightbox(event)"
+      role="dialog" aria-modal="true" aria-label="Görsel Önizleme">
+      <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Kapat">&times;</button>
+      <div class="lightbox-controls">
+        <button class="lightbox-ctrl-btn" onclick="zoomInLightbox()" title="Yakınlaştır" aria-label="Yakınlaştır">
+          <span class="material-symbols-rounded">zoom_in</span>
+        </button>
+        <button class="lightbox-ctrl-btn" onclick="zoomOutLightbox()" title="Uzaklaştır" aria-label="Uzaklaştır">
+          <span class="material-symbols-rounded">zoom_out</span>
+        </button>
+        <button class="lightbox-ctrl-btn" onclick="resetLightboxZoom()" title="Sıfırla" aria-label="Görünümü Sıfırla">
+          <span class="material-symbols-rounded">fit_screen</span>
+        </button>
       </div>
 
-      <!-- 2. Anlık Mesajlaşma -->
-      <div class="feature-row reverse scroll-reveal">
-        <div class="feature-text">
-          <div class="feature-badge"
-            style="border-color: rgba(67,232,176,0.4); background: rgba(67,232,176,0.1); color: #43e8b0;">Hızlı İletişim
-          </div>
-          <h2 class="feature-title">Kesintisiz <span class="gradient-text">Anlık Mesajlaşma</span></h2>
-          <p class="feature-desc">Alıcılar ve satıcılar arasında hiçbir aracı olmadan, doğrudan uygulama içinden anında
-            iletişim kurun.</p>
-          <ul class="feature-list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#43e8b0" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Hızlı ve güvenli altyapı</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#43e8b0" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Fotoğraf ve detay paylaşımı</span>
-            </li>
-          </ul>
-        </div>
-        <div class="feature-visual">
-          <div class="mockup-card chat-mockup">
-            <div class="mockup-header">
-              <div class="dot red"></div>
-              <div class="dot yellow"></div>
-              <div class="dot green"></div>
-            </div>
-            <div class="mockup-body chat-body">
-              <div class="chat-bubble left">Merhaba, ilan hala güncel mi?</div>
-              <div class="chat-bubble right">Evet, güncel! Teklifinizi iletebilirsiniz.</div>
-              <div class="chat-bubble left">Hemen teklif veriyorum.</div>
-            </div>
-          </div>
-        </div>
+      <button class="lightbox-nav-btn left" id="lightbox-prev-btn" onclick="prevLightboxImage(event)"
+        aria-label="Önceki Görsel">
+        <span class="material-symbols-rounded" style="font-size: 32px;">chevron_left</span>
+      </button>
+
+      <div class="lightbox-img-wrapper" id="lightbox-img-wrapper" onmousedown="startDragLightbox(event)"
+        onmousemove="doDragLightbox(event)" onmouseup="stopDragLightbox()" onwheel="wheelZoomLightbox(event)">
+        <img src="" id="lightbox-active-img" alt="Büyütülmüş İlan Fotoğrafı" draggable="false" />
       </div>
 
-      <!-- 3. Canlı İlan -->
-      <div class="feature-row scroll-reveal">
-        <div class="feature-text">
-          <div class="feature-badge"
-            style="border-color: rgba(255,101,132,0.4); background: rgba(255,101,132,0.1); color: #ff6584;">Anında
-            Etkileşim</div>
-          <h2 class="feature-title"><span class="gradient-text">Canlı İlan</span> ile Anında Sat</h2>
-          <p class="feature-desc">İlanlarınızı canlı olarak (video/canlı yayın) sergileyin! Potansiyel alıcılarla anında
-            etkileşime geçin, soruları cevaplayın ve ürününüzü tüm detaylarıyla göstererek hızla satın.</p>
-          <ul class="feature-list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#ff6584" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Gerçek zamanlı ürün tanıtımı</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#ff6584" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Canlı yayında teklif toplama</span>
-            </li>
-          </ul>
-        </div>
-        <div class="feature-visual">
-          <div class="mockup-card">
-            <div class="mockup-header">
-              <div class="dot red"></div>
-              <div class="dot yellow"></div>
-              <div class="dot green"></div>
-            </div>
-            <div class="mockup-body"
-              style="align-items: center; justify-content: center; position: relative; gap: 10px;">
-              <div
-                style="width: 100%; height: 160px; background: rgba(255,101,132,0.05); border-radius: 12px; border: 1px dashed rgba(255,101,132,0.3); display: flex; align-items: center; justify-content: center;">
-                <span
-                  style="padding: 6px 12px; background: rgba(255,101,132,0.2); color: #ff6584; font-size: 0.8rem; font-weight: bold; border-radius: 6px; letter-spacing: 0.05em; animation: pulseDot 2s infinite;">CANLI
-                  YAYIN</span>
-              </div>
-              <div
-                style="width: 80%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-top: 10px;">
-              </div>
-              <div style="width: 60%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button class="lightbox-nav-btn right" id="lightbox-next-btn" onclick="nextLightboxImage(event)"
+        aria-label="Sonraki Görsel">
+        <span class="material-symbols-rounded" style="font-size: 32px;">chevron_right</span>
+      </button>
 
-    </section>
+      <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+    </div>
+  </div>
 
-    <!-- Bottom CTA -->
-    <section class="bottom-cta scroll-reveal" id="download-section">
-      <div class="cta-content">
-        <h2>Hemen İndir ve <span class="gradient-text">Fırsatları Yakala!</span></h2>
-        <p>Bizde uygulaması ile ilan ver, teklif al, güvenle alım satım yap.</p>
-
-        <div class="store-buttons">
-          <a href="https://apps.apple.com/tr/app/bizde-i-lan-ve-teklifler/id6779144153" target="_blank"
-            class="store-btn apple-btn">
-            <div class="icon-wrapper">
-              <svg viewBox="0 0 384 512" fill="currentColor" class="store-icon">
-                <path
-                  d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-              </svg>
-            </div>
-            <div class="store-text">
-              <span class="store-sub">App Store'dan</span>
-              <span class="store-title">İndirin</span>
-            </div>
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.sirri.bizdemobile" target="_blank"
-            class="store-btn google-btn">
-            <div class="icon-wrapper">
-              <svg viewBox="0 0 512 512" fill="currentColor" class="store-icon">
-                <path
-                  d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
-              </svg>
-            </div>
-            <div class="store-text">
-              <span class="store-sub">Google Play'den</span>
-              <span class="store-title">Alın</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Social -->
-    <footer class="footer" id="page-footer">
-      <div class="social-links">
-        <a href="https://www.instagram.com/bizdeapp" target="_blank" class="social-link" id="social-instagram"
-          aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-          </svg>
+  <!-- Unified Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#/" class="footer-logo-link" aria-label="Bizde Anasayfa">
+          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
+            class="footer-logo-img" id="footer-logo-img" />
         </a>
-        <a href="https://x.com/bizdeapp" target="_blank" class="social-link" id="social-twitter"
-          aria-label="Twitter / X">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-        </a>
-        <a href="#" target="_blank" class="social-link" id="social-linkedin" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect x="2" y="9" width="4" height="12" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
-        </a>
+        <p class="footer-desc">İlan ve Teklifler.</p>
       </div>
-
-      <div class="footer-links">
-        <a href="/privacy-policy/" class="footer-link">Gizlilik Politikası</a>
-        <span class="footer-dot"></span>
-        <a href="/help/" class="footer-link">Yardım Merkezi</a>
-        <span class="footer-dot"></span>
-        <a href="/account/delete/" class="footer-link">Hesap Silme</a>
+      <div class="footer-links-row">
+        <a href="help/" class="footer-link">Yardım & Destek</a>
+        <span class="footer-link-dot">•</span>
+        <a href="privacy-policy/" class="footer-link">Gizlilik Politikası</a>
+        <span class="footer-link-dot">•</span>
+        <a href="account/delete/" class="footer-link">Hesap Silme</a>
       </div>
-
-      <p class="copyright" id="copyright-text">© 2026 Bizde. Tüm hakları saklıdır.</p>
-    </footer>
-  </main>
+      <div class="footer-copyright">
+        © 2026 Bizde. Tüm hakları saklıdır.
+      </div>
+    </div>
+  </footer>
 
   <script src="app.js"></script>
 </body>
