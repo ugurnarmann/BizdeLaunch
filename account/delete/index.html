@@ -1,17 +1,88 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" prefix="og: https://ogp.me/ns#">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Hesap Silme Talebi – Bizde</title>
-  <meta name="description"
-    content="Bizde uygulamasından hesabınızı kalıcı olarak silebilirsiniz. Hesap silme adımları ve talep formu." />
 
+  <!-- Primary SEO Meta Tags -->
+  <title>Hesap Silme Talebi – Bizde</title>
+  <meta name="title" content="Hesap Silme Talebi – Bizde" />
+  <meta name="description"
+    content="Bizde uygulamasından hesabınızı ve kişisel verilerinizi kalıcı olarak silme rehberi ve resmi talep formu." />
+  <meta name="keywords" content="bizde hesap silme, bizde üyelik iptali, veri silme talebi, kvkk hesap silme" />
+  <meta name="author" content="Bizde" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bizde.app/account/delete/" />
+
+  <!-- Mobile & PWA Metadata -->
+  <meta name="theme-color" content="#0B1120" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="../../manifest.webmanifest" />
+
+  <!-- Favicons -->
   <link rel="icon" type="image/png"
     href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
   <link rel="apple-touch-icon" href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bizde.app/account/delete/" />
+  <meta property="og:site_name" content="Bizde" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:title" content="Hesap Silme Talebi – Bizde" />
+  <meta property="og:description"
+    content="Bizde hesabınızı ve tüm kişisel verilerinizi kalıcı olarak silebilirsiniz." />
+  <meta property="og:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bizde.app/account/delete/" />
+  <meta name="twitter:title" content="Hesap Silme Talebi – Bizde" />
+  <meta name="twitter:description"
+    content="Bizde hesabınızı ve kişisel verilerinizi kalıcı olarak silme rehberi ve talep formu." />
+  <meta name="twitter:image"
+    content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+
+  <!-- Structured Data: WebPage & BreadcrumbList (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Anasayfa",
+            "item": "https://bizde.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Hesap Silme Talebi",
+            "item": "https://bizde.app/account/delete/"
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://bizde.app/account/delete/#webpage",
+        "url": "https://bizde.app/account/delete/",
+        "name": "Hesap Silme Talebi – Bizde",
+        "description": "Bizde uygulamasından hesabınızı ve kişisel verilerinizi kalıcı olarak silme rehberi ve resmi talep formu.",
+        "inLanguage": "tr-TR"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -26,24 +97,25 @@
   <header class="app-header">
     <div class="header-container">
       <div class="header-left">
-        <a href="../../#/" class="header-icon-btn" title="Anasayfaya Dön">
+        <a href="../../#/" class="header-icon-btn" title="Anasayfaya Dön" aria-label="Anasayfaya Dön">
           <span class="material-symbols-rounded" style="font-size: 24px;">arrow_back_ios_new</span>
         </a>
       </div>
 
       <!-- Center Logo -->
-      <a href="../../#/" class="logo-link" title="Bizde Anasayfa">
-        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+      <a href="../../#/" class="logo-link" title="Bizde Anasayfa" aria-label="Bizde Anasayfa">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
           class="logo-img" id="main-logo-img" />
       </a>
 
       <!-- Right Actions -->
       <div class="header-right">
         <button id="theme-toggle-btn" class="header-icon-btn" onclick="toggleTheme()" title="Tema Değiştir"
-          style="margin-right: 12px;">
+          aria-label="Tema Değiştir" style="margin-right: 12px;">
           <span class="material-symbols-rounded" id="theme-toggle-icon" style="font-size: 22px;">light_mode</span>
         </button>
-        <a href="https://bizde.app/download-app" target="_blank" class="btn-download-mobile">Uygulamayı İndir</a>
+        <a href="https://bizde.app/download-app" target="_blank" class="btn-download-mobile"
+          rel="noopener noreferrer">Uygulamayı İndir</a>
       </div>
     </div>
   </header>
@@ -133,8 +205,8 @@
   <footer class="app-footer">
     <div class="footer-container">
       <div class="footer-brand">
-        <a href="../../#/" class="footer-logo-link">
-          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+        <a href="../../#/" class="footer-logo-link" aria-label="Bizde Anasayfa">
+          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
             class="footer-logo-img" id="footer-logo-img" />
         </a>
         <p class="footer-desc">İlan ve Teklifler.</p>

@@ -181,6 +181,54 @@ const getTenderTypeInfo = (type, bidCount) => {
   };
 };
 
+// ── DYNAMIC SEO & SCHEMA.ORG JSON-LD UPDATER ─────────────
+const updatePageSEO = ({ title, description, image, url, jsonLd }) => {
+  if (title) {
+    document.title = title;
+    const metaTitle = document.querySelector('meta[name="title"]');
+    if (metaTitle) metaTitle.setAttribute('content', title);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', title);
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute('content', title);
+  }
+
+  if (description) {
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', description);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', description);
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute('content', description);
+  }
+
+  if (image) {
+    const ogImg = document.querySelector('meta[property="og:image"]');
+    if (ogImg) ogImg.setAttribute('content', image);
+    const twImg = document.querySelector('meta[name="twitter:image"]');
+    if (twImg) twImg.setAttribute('content', image);
+  }
+
+  if (url) {
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute('content', url);
+  }
+
+  // Inject or update Dynamic JSON-LD for single item views
+  let dynamicScript = document.getElementById('dynamic-tender-jsonld');
+  if (jsonLd) {
+    if (!dynamicScript) {
+      dynamicScript = document.createElement('script');
+      dynamicScript.id = 'dynamic-tender-jsonld';
+      dynamicScript.type = 'application/ld+json';
+      document.head.appendChild(dynamicScript);
+    }
+    dynamicScript.textContent = JSON.stringify(jsonLd);
+  } else if (dynamicScript) {
+    dynamicScript.remove();
+  }
+};
+
 // ── SHIMMER SKELETON RENDERERS ───────────────────────────
 const renderHomeSkeleton = () => {
   const cardSkeletons = Array(6).fill(0).map(() => `
@@ -484,6 +532,14 @@ const renderSectionHeader = (title, iconName, iconColor) => {
 const renderHome = async () => {
   headerBackBtn.style.display = 'none';
   fabAddTender.style.display = 'flex';
+
+  updatePageSEO({
+    title: "Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu",
+    description: "Bizde, Türkiye'nin yenilikçi ilan, açık arttırma ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap.",
+    image: "https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png",
+    url: "https://bizde.app/",
+    jsonLd: null
+  });
 
   if (!globalMainPageData) {
     appRoot.innerHTML = renderHomeSkeleton();
@@ -820,6 +876,37 @@ const renderDetail = async (id) => {
     // Description & Detail Key-Values (detailName & detailValue 1:1)
     const description = detail.description || 'Bu ilan için detaylı açıklama belirtilmemiş.';
     const detailInfo = Array.isArray(detail.detailInfo) ? detail.detailInfo : [];
+
+    // Dynamic SEO & Structured Data Injection for Detail Page
+    const breadcrumbTitles = breadcrumb.map(b => b.title || b.name || '').filter(Boolean);
+    const categoryName = breadcrumbTitles.length > 0 ? breadcrumbTitles.join(' > ') : (detail.categoryTitle || 'Genel');
+    const cleanDesc = description.replace(/<[^>]*>?/gm, '').trim();
+
+    updatePageSEO({
+      title: `${title} - ${priceFormatted} | Bizde`,
+      description: `${title} - ${priceFormatted} (${location}). ${cleanDesc.substring(0, 140)}...`,
+      image: images[0] || "https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png",
+      url: window.location.href,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": title,
+        "description": cleanDesc.substring(0, 300),
+        "image": images,
+        "category": categoryName,
+        "offers": {
+          "@type": "Offer",
+          "price": budget || 0,
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock",
+          "url": window.location.href,
+          "seller": {
+            "@type": "Person",
+            "name": userName
+          }
+        }
+      }
+    });
 
     // Location Coordinates
     const lat = detail.latitude || 41.0082;

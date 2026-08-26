@@ -1,17 +1,279 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" prefix="og: https://ogp.me/ns#">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Yardım &amp; Destek – Bizde</title>
-  <meta name="description"
-    content="Bizde uygulaması hakkında sık sorulan sorular, güvenli alışveriş ipuçları ve yardım konuları. Bizde Destek Merkezi." />
 
+  <!-- Primary SEO Meta Tags -->
+  <title>Yardım &amp; Destek Merkezi | Sıkça Sorulan Sorular – Bizde</title>
+  <meta name="title" content="Yardım &amp; Destek Merkezi | Sıkça Sorulan Sorular – Bizde" />
+  <meta name="description"
+    content="Bizde uygulaması hakkında hesap açma, ilan oluşturma, teklif verme, mesajlaşma, canlı yayın, güvenlik ve sıkça sorulan sorular." />
+  <meta name="keywords"
+    content="bizde yardım, bizde destek, sıkça sorulan sorular, ilan nasıl verilir, teklif nasıl verilir, canlı yayın, bizde iletişim, güvenli alışveriş" />
+  <meta name="author" content="Bizde" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://bizde.app/help/" />
+
+  <!-- Mobile & PWA Metadata -->
+  <meta name="theme-color" content="#0B1120" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+
+  <!-- Favicons -->
   <link rel="icon" type="image/png"
     href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
   <link rel="apple-touch-icon" href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bizde.app/help/" />
+  <meta property="og:site_name" content="Bizde" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:title" content="Yardım &amp; Destek Merkezi – Bizde" />
+  <meta property="og:description"
+    content="Bizde platformu, ilan yayınlama, teklif verme, mesajlaşma, canlı yayın ve hesap yönetimi hakkında tüm soruların cevapları." />
+  <meta property="og:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bizde Destek Merkezi" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bizde.app/help/" />
+  <meta name="twitter:title" content="Yardım &amp; Destek Merkezi – Bizde" />
+  <meta name="twitter:description"
+    content="Bizde platformu, ilan yayınlama, teklif verme ve hesap yönetimi hakkında merak ettiğiniz tüm soruların cevapları." />
+  <meta name="twitter:image"
+    content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+
+  <!-- FAQPage & Breadcrumb Structured Data (JSON-LD) with ALL Questions -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Anasayfa",
+            "item": "https://bizde.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Yardım & Destek",
+            "item": "https://bizde.app/help/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Bizde nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bizde, ikinci el ürün ve ilan alım satımını kolaylaştıran bir platformdur. İlan oluşturabilir, diğer kullanıcıların ilanlarına teklif verebilir, açık arttırmalara katılabilir ve güvenli bir şekilde alışveriş yapabilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Nasıl hesap oluşturabilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Profil sekmesinden 'Giriş Yap' butonuna, ardından 'Kayıt Ol' bağlantısına tıklayın. Ad, soyad, e-posta, telefon numarası ve 6 haneli şifre ile kaydınızı tamamlayın. E-posta ve telefon doğrulaması yapmanız gerekecektir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Şifremi unuttum, ne yapmalıyım?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Giriş ekranında 'Şifremi Unuttum' seçeneğine tıklayın. Kayıtlı e-posta adresinize bir doğrulama kodu gönderilecektir. Kodu girerek yeni şifrenizi oluşturabilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Nasıl ilan oluşturabilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Alt menüdeki '+' butonuna tıklayın. Kategori seçimi yapın, ürün bilgilerini (başlık, açıklama, fiyat, konum, fotoğraf) girin ve ilanınızı yayınlayın. İlanınız onaylandıktan sonra diğer kullanıcılar tarafından görülebilir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kaç adet ilan oluşturabilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Aktif ilan sayınızda herhangi bir sınırlama bulunmamaktadır. Bireysel kullanıcılar dilediği kadar ücretsiz ilan oluşturabilir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "İlanımı nasıl düzenleyebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Profil > İlanlarım bölümünden düzenlemek istediğiniz ilana tıklayın. İlan detay sayfasında düzenleme seçeneğini kullanarak başlık, açıklama, fiyat ve diğer bilgileri güncelleyebilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "İlanımı nasıl silebilir veya kapatabilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İlanlarım sayfasından ilgili ilanın detayına gidin. Düzenleme menüsünden ilanınızı pasife alabilir veya silebilirsiniz. Satılan ürünlerin ilanları otomatik olarak 'Satıldı' durumuna geçer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bir ilana nasıl teklif verebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Beğendiğiniz ilanın detay sayfasına gidin ve 'Teklif Ver' butonuna tıklayın. Teklif tutarınızı girerek teklifinizi gönderin. İlan sahibi teklifinizi kabul ederse bildirim alırsınız."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Gelen teklifleri nasıl görebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İlanlarım sayfasından ilanınızın detayına gidin. 'Teklifler' sekmesinden gelen tüm teklifleri görebilir, kabul veya red işlemi yapabilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Teklifimi geri çekebilir miyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Verdiğiniz teklif henüz kabul edilmemişse geri çekebilirsiniz. İlan detay sayfasından teklifinizi iptal edebilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Satıcıyla nasıl iletişime geçebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İlan detay sayfasında 'Mesaj Gönder' butonuna tıklayarak satıcıyla doğrudan iletişime geçebilirsiniz. İlan alıntısı otomatik olarak mesaja eklenir. Ayrıca 'Ara' butonu ile doğrudan telefon görüşmesi yapabilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mesaj karakter limiti var mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet, her mesaj en fazla 500 karakter olabilir. Uzun açıklamalar için birden fazla mesaj gönderebilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mesajlarımı nasıl görebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Alt menüdeki 'Mesajlar' sekmesine tıklayarak tüm sohbetlerinizi görüntüleyebilirsiniz. Yeni mesaj geldiğinde anlık bildirim alırsınız."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bir ilanı nasıl favorilere eklerim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İlan kartındaki veya ilan detay sayfasındaki kalp ikonuna tıklayarak ilanı favorilerinize ekleyebilirsiniz. Favori ilanlarınızı Profil > Favorilerim bölümünden görüntüleyebilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Favorilerime eklediğim ilan kaldırıldığında ne olur?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İlan sahibi ilanı kaldırırsa veya ürün satılırsa, favorilerinizden otomatik olarak çıkarılır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Profil bilgilerimi nasıl güncellerim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Profil > Profili Düzenle bölümünden ad, soyad bilgilerinizi düzenleyebilirsiniz. E-posta ve telefon numarası değişikliği için doğrulama işlemi gereklidir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Şifremi nasıl değiştirebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Profil > Güvenlik > Şifreni Güncelle yolunu izleyin. Mevcut şifrenizi girdikten sonra yeni 6 haneli şifrenizi belirleyebilirsiniz. Şifre sadece rakamlardan oluşmalı ve ardışık sayılar içermemelidir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hesabımı nasıl kapatabilirim / silebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Profil > Profili Düzenle bölümünden veya bizde.app/account/delete sayfasından hesap kapatma ve veri silme talebi oluşturabilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hangi durumlarda bildirim alırım?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İlanınıza yeni teklif geldiğinde, teklifiniz kabul veya reddedildiğinde, yeni mesaj aldığınızda ve ilanınızla ilgili güncellemeler olduğunda anlık bildirim alırsınız."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bildirimleri nasıl filtreleyebilirim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bildirimler sayfasındaki filtre seçeneklerini kullanarak bildirimlerinizi türüne göre (teklifler, mesajlar vb.) filtreleyebilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Canlı yayın nasıl çalışır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Canlı yayın özelliği ile ürünlerinizi gerçek zamanlı olarak tanıtabilir, alıcılarla anlık iletişim kurabilirsiniz. Canlı yayın sekmesinden aktif yayınları izleyebilir veya kendi yayınınızı başlatabilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kişisel bilgilerim güvende mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet, tüm kişisel bilgileriniz şifreli olarak saklanır. Telefon numaranız ve e-posta adresiniz diğer kullanıcılarla izniniz olmadan paylaşılmaz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Şüpheli bir ilanı nasıl bildiririm?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İlan detay sayfasında bulunan bildirim/şikayet seçeneğini kullanarak şüpheli veya uygunsuz ilanları ekibimize bildirebilirsiniz. Bildirilen ilanlar en kısa sürede incelenir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Güvenli alışveriş için nelere dikkat etmeliyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ürünü teslim almadan ödeme yapmayın, mümkünse yüz yüze ve güvenli bir ortamda buluşun, şüpheli fiyatlandırmalara dikkat edin, kişisel bilgilerinizi (IBAN, TC no vb.) mesajla paylaşmayın."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -26,21 +288,21 @@
   <header class="app-header">
     <div class="header-container">
       <div class="header-left">
-        <a href="../#/" class="header-icon-btn" title="Anasayfaya Dön">
+        <a href="../#/" class="header-icon-btn" title="Anasayfaya Dön" aria-label="Anasayfaya Dön">
           <span class="material-symbols-rounded" style="font-size: 24px;">arrow_back_ios_new</span>
         </a>
       </div>
 
       <!-- Center Logo -->
-      <a href="../#/" class="logo-link" title="Bizde Anasayfa">
-        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+      <a href="../#/" class="logo-link" title="Bizde Anasayfa" aria-label="Bizde Anasayfa">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
           class="logo-img" id="main-logo-img" />
       </a>
 
       <!-- Right Actions -->
       <div class="header-right">
         <button id="theme-toggle-btn" class="header-icon-btn" onclick="toggleTheme()" title="Tema Değiştir"
-          style="margin-right: 12px;">
+          aria-label="Tema Değiştir" style="margin-right: 12px;">
           <span class="material-symbols-rounded" id="theme-toggle-icon" style="font-size: 22px;">light_mode</span>
         </button>
       </div>
@@ -57,73 +319,354 @@
           Destek Merkezi
         </span>
         <h1 class="static-hero-title">Nasıl Yardımcı Olabiliriz?</h1>
-        <p class="static-hero-subtitle">Bizde platformu, ilan yayınlama, teklif verme ve hesap yönetimi hakkında merak
-          ettiğiniz tüm soruların cevapları burada.</p>
+        <p class="static-hero-subtitle">Bizde platformu, ilan yayınlama, teklif verme, mesajlaşma, canlı yayın ve hesap
+          yönetimi hakkında tüm soruların cevapları burada.</p>
       </div>
 
-      <!-- Sıkça Sorulan Sorular Card -->
+      <!-- Section 1: Nasıl Başlarım? -->
       <div class="static-card">
         <h2 class="static-section-heading">
-          <span class="material-symbols-rounded" style="color: var(--primary);">quiz</span>
-          Sıkça Sorulan Sorular
+          <span class="material-symbols-rounded" style="color: var(--primary);">rocket_launch</span>
+          1. Nasıl Başlarım?
         </h2>
 
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Bizde nedir ve nasıl çalışır?</span>
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Bizde nedir?</span>
             <span class="material-symbols-rounded">expand_more</span>
           </div>
           <div class="faq-answer" style="display: none;">
-            Bizde, alıcı ve satıcıları doğrudan buluşturan yenilikçi bir ilan ve teklif platformudur. Normal ilanların
-            yanı sıra açık arttırma ve teklif toplama usulüyle güvenli ticaret yapmanızı sağlar.
+            Bizde, ikinci el ürün alım satımını kolaylaştıran bir platformdur. İlan oluşturabilir, diğer kullanıcıların
+            ilanlarına teklif verebilir ve güvenli bir şekilde alışveriş yapabilirsiniz.
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Nasıl ilan verebilirim?</span>
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Nasıl hesap oluşturabilirim?</span>
             <span class="material-symbols-rounded">expand_more</span>
           </div>
           <div class="faq-answer" style="display: none;">
-            Bizde mobil uygulamasını indirip üye olduktan sonra sağ alttaki "+" butonuna dokunarak ilan kategorinizi,
-            ürün fotoğraflarını ve detaylarını belirleyip saniyeler içinde ücretsiz ilan yayınlayabilirsiniz.
+            Profil sekmesinden "Giriş Yap" butonuna, ardından "Kayıt Ol" bağlantısına tıklayın. Ad, soyad, e-posta,
+            telefon numarası ve 6 haneli şifre ile kaydınızı tamamlayın. E-posta ve telefon doğrulaması yapmanız
+            gerekecektir.
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Teklif verme ve Açık Arttırma nasıl işler?</span>
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Şifremi unuttum, ne yapmalıyım?</span>
             <span class="material-symbols-rounded">expand_more</span>
           </div>
           <div class="faq-answer" style="display: none;">
-            Teklif usulü ilanlarda bütçenize uygun teklifi satıcıya iletebilirsiniz. Açık arttırma ilanlarında ise
-            belirlenen süre bitene kadar en yüksek teklifi vererek ürünü almaya hak kazanırsınız.
+            Giriş ekranında "Şifremi Unuttum" seçeneğine tıklayın. Kayıtlı e-posta adresinize bir doğrulama kodu
+            gönderilecektir. Kodu girerek yeni şifrenizi oluşturabilirsiniz.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: İlan Oluşturma -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #38BDF8;">post_add</span>
+          2. İlan Oluşturma
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Nasıl ilan oluşturabilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Alt menüdeki "+" butonuna tıklayın. Kategori seçimi yapın, ürün bilgilerini (başlık, açıklama, fiyat, konum,
+            fotoğraf) girin ve ilanınızı yayınlayın. İlanınız onaylandıktan sonra diğer kullanıcılar tarafından
+            görülebilir.
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">
-            <span>İlan vermek ücretli mi?</span>
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Kaç adet ilan oluşturabilirim?</span>
             <span class="material-symbols-rounded">expand_more</span>
           </div>
           <div class="faq-answer" style="display: none;">
-            Bizde'de bireysel kullanıcılar için standart ilan vermek tamamen ücretsizdir.
+            Aktif ilan sayınızda herhangi bir sınırlama bulunmamaktadır. Dilediğiniz kadar ilan oluşturabilirsiniz.
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>İlanımı nasıl düzenleyebilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Profil &gt; İlanlarım bölümünden düzenlemek istediğiniz ilana tıklayın. İlan detay sayfasında düzenleme
+            seçeneğini kullanarak başlık, açıklama, fiyat ve diğer bilgileri güncelleyebilirsiniz.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>İlanımı nasıl silebilir veya kapatabilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            İlanlarım sayfasından ilgili ilanın detayına gidin. Düzenleme menüsünden ilanınızı pasife alabilir veya
+            silebilirsiniz. Satılan ürünlerin ilanları otomatik olarak "Satıldı" durumuna geçer.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Teklif Verme & Alma -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #F59E0B;">local_offer</span>
+          3. Teklif Verme &amp; Alma
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Bir ilana nasıl teklif verebilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Beğendiğiniz ilanın detay sayfasına gidin ve "Teklif Ver" butonuna tıklayın. Teklif tutarınızı girerek
+            teklifinizi gönderin. İlan sahibi teklifinizi kabul ederse bildirim alırsınız.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Gelen teklifleri nasıl görebilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            İlanlarım sayfasından ilanınızın detayına gidin. "Teklifler" sekmesinden gelen tüm teklifleri görebilir,
+            kabul veya red işlemi yapabilirsiniz.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Teklifimi geri çekebilir miyim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Verdiğiniz teklif henüz kabul edilmemişse geri çekebilirsiniz. İlan detay sayfasından teklifinizi iptal
+            edebilirsiniz.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Mesajlaşma -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #10B981;">chat</span>
+          4. Mesajlaşma
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
             <span>Satıcıyla nasıl iletişime geçebilirim?</span>
             <span class="material-symbols-rounded">expand_more</span>
           </div>
           <div class="faq-answer" style="display: none;">
-            İlan detay sayfasındaki "Ara" butonunu kullanarak doğrudan arayabilir veya "Mesaj" butonu ile uygulama içi
-            anlık mesajlaşma başlatabilirsiniz.
+            İlan detay sayfasında "Mesaj Gönder" butonuna tıklayarak satıcıyla doğrudan iletişime geçebilirsiniz. İlan
+            alıntısı otomatik olarak mesaja eklenir.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Mesaj karakter limiti var mı?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Evet, her mesaj en fazla 500 karakter olabilir. Uzun açıklamalar için birden fazla mesaj gönderebilirsiniz.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Mesajlarımı nasıl görebilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Alt menüdeki "Mesajlar" sekmesine tıklayarak tüm sohbetlerinizi görüntüleyebilirsiniz. Yeni mesaj geldiğinde
+            bildirim alırsınız.
           </div>
         </div>
       </div>
 
-      <!-- İletişim & Destek Card -->
+      <!-- Section 5: Favoriler -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #EC4899;">favorite</span>
+          5. Favoriler
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Bir ilanı nasıl favorilere eklerim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            İlan kartındaki veya ilan detay sayfasındaki kalp ikonuna tıklayarak ilanı favorilerinize ekleyebilirsiniz.
+            Favori ilanlarınızı Profil &gt; Favorilerim bölümünden görüntüleyebilirsiniz.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Favorilerime eklediğim ilan kaldırıldığında ne olur?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            İlan sahibi ilanı kaldırırsa veya ürün satılırsa, favorilerinizden otomatik olarak çıkarılır.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Hesap & Profil -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #8B5CF6;">manage_accounts</span>
+          6. Hesap &amp; Profil
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Profil bilgilerimi nasıl güncellerim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Profil &gt; Profili Düzenle bölümünden ad, soyad bilgilerinizi düzenleyebilirsiniz. E-posta ve telefon
+            numarası değişikliği için doğrulama işlemi gereklidir.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Şifremi nasıl değiştirebilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Profil &gt; Güvenlik &gt; Şifreni Güncelle yolunu izleyin. Mevcut şifrenizi girdikten sonra yeni 6 haneli
+            şifrenizi belirleyebilirsiniz. Şifre sadece rakamlardan oluşmalı ve ardışık sayılar içermemelidir.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Hesabımı nasıl kapatabilirim / silebilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Profil &gt; Profili Düzenle bölümünden veya <a href="../account/delete/"
+              style="color: var(--primary); text-decoration: underline;">Hesap Silme</a> sayfamızdan hesap kapatma
+            talebi oluşturabilirsiniz.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 7: Bildirimler -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #06B6D4;">notifications</span>
+          7. Bildirimler
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Hangi durumlarda bildirim alırım?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            • İlanınıza yeni teklif geldiğinde<br />
+            • Teklifiniz kabul veya reddedildiğinde<br />
+            • Yeni mesaj aldığınızda<br />
+            • İlanınızla ilgili güncellemeler olduğunda<br /><br />
+            Bildirim ayarlarınızı cihazınızın ayarlar bölümünden yönetebilirsiniz.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Bildirimleri nasıl filtreleyebilirim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Bildirimler sayfasındaki filtre seçeneklerini kullanarak bildirimlerinizi türüne göre (teklifler, mesajlar
+            vb.) filtreleyebilirsiniz.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 8: Canlı Yayın -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #EF4444;">live_tv</span>
+          8. Canlı Yayın
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Canlı yayın nasıl çalışır?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Canlı yayın özelliği ile ürünlerinizi gerçek zamanlı olarak tanıtabilir, alıcılarla anlık iletişim
+            kurabilirsiniz. Canlı yayın sekmesinden aktif yayınları izleyebilir veya kendi yayınınızı başlatabilirsiniz.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 9: Güvenlik & Gizlilik -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: #10B981;">security</span>
+          9. Güvenlik &amp; Gizlilik
+        </h2>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Kişisel bilgilerim güvende mi?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Evet, tüm kişisel bilgileriniz şifreli olarak saklanır. Telefon numaranız ve e-posta adresiniz diğer
+            kullanıcılarla doğrudan paylaşılmaz. İletişim sadece uygulama içi mesajlaşma üzerinden veya izin verdiğiniz
+            aramalarda gerçekleşir.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Şüpheli bir ilanı nasıl bildiririm?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            İlan detay sayfasında bulunan bildirim/şikayet seçeneğini kullanarak şüpheli veya uygunsuz ilanları
+            ekibimize bildirebilirsiniz. Bildirilen ilanlar en kısa sürede incelenir.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Güvenli alışveriş için nelere dikkat etmeliyim?</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            • Ürünü teslim almadan ödeme yapmayın<br />
+            • Mümkünse yüz yüze ve güvenli bir ortamda buluşun<br />
+            • Şüpheli fiyatlandırmalara dikkat edin<br />
+            • Kişisel bilgilerinizi (IBAN, TC no vb.) mesajla paylaşmayın<br />
+            • Sorun yaşarsanız destek ekibimize bildirin
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 10: İletişim & Destek Card -->
       <div class="static-card">
         <h2 class="static-section-heading">
           <span class="material-symbols-rounded" style="color: var(--success);">contact_support</span>
@@ -143,8 +686,8 @@
   <footer class="app-footer">
     <div class="footer-container">
       <div class="footer-brand">
-        <a href="../#/" class="footer-logo-link">
-          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+        <a href="../#/" class="footer-logo-link" aria-label="Bizde Anasayfa">
+          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
             class="footer-logo-img" id="footer-logo-img" />
         </a>
         <p class="footer-desc">İlan ve Teklifler.</p>
@@ -187,10 +730,18 @@
       const answer = q.nextElementSibling;
       const icon = q.querySelector('.material-symbols-rounded');
       if (icon) icon.style.transition = 'transform 0.2s';
-      q.addEventListener('click', () => {
+      const toggle = () => {
         const isHidden = answer.style.display === 'none';
         answer.style.display = isHidden ? 'block' : 'none';
+        q.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
         if (icon) icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+      };
+      q.addEventListener('click', toggle);
+      q.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
       });
     });
 

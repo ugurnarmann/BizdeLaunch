@@ -1,0 +1,11 @@
+# Bizde - İlan ve Teklifler
+
+> Bizde (bizde.app), Türkiye'nin yenilikçi, güvenli ve yeni nesil ilan, açık arttırma ve teklif verme pazar yeri platformudur.
+
+- Anasayfa & Canlı İlanlar: https://bizde.app/
+- Destek & SSS (FAQ): https://bizde.app/help/
+- Gizlilik Politikası & KVKK: https://bizde.app/privacy-policy/
+- Hesap Silme Talebi: https://bizde.app/account/delete/
+- Uygulamayı İndir: https://bizde.app/download-app
+- Detaylı AI Dokümantasyonu: https://bizde.app/llms-full.txt
+- İletişim: destek@bizde.app

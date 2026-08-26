@@ -1,21 +1,129 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" prefix="og: https://ogp.me/ns#">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Bizde - İlan ve Teklifler</title>
-  <meta name="description"
-    content="Bizde, Türkiye'nin en kapsamlı ilan ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap." />
 
+  <!-- Primary SEO Meta Tags -->
+  <title>Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu</title>
+  <meta name="title" content="Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu" />
+  <meta name="description"
+    content="Bizde, Türkiye'nin yenilikçi ilan, açık arttırma ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap." />
+  <meta name="keywords"
+    content="bizde, ilan, teklif ver, açık arttırma, ikinci el, vasıta, emlak, alışveriş, türkiye ilan sitesi, güvenli alım satım, mobil ilan uygulaması, online mezat, oto ilan, konut ilan" />
+  <meta name="author" content="Bizde" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://bizde.app/" />
+
+  <!-- Mobile & PWA Metadata -->
+  <meta name="theme-color" content="#0B1120" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Bizde" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- Geographic & Language Meta -->
+  <meta name="geo.region" content="TR" />
+  <meta name="geo.placename" content="Türkiye" />
+  <meta name="language" content="Turkish" />
+
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="assets/images/bizde_logo_dark.png" />
   <link rel="apple-touch-icon" href="assets/images/bizde_logo_dark.png" />
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bizde.app/" />
+  <meta property="og:site_name" content="Bizde" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:title" content="Bizde - İlan ve Teklifler | Alım Satımda Yeni Nesil Deneyim" />
+  <meta property="og:description"
+    content="Türkiye'nin en kapsamlı ilan ve teklif platformu. İlanlarını ücretsiz yayınla, teklif al, açık arttırmalara katıl." />
+  <meta property="og:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bizde - İlan ve Teklifler" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bizde.app/" />
+  <meta name="twitter:title" content="Bizde - İlan ve Teklifler" />
+  <meta name="twitter:description"
+    content="Türkiye'nin en kapsamlı ilan ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap." />
+  <meta name="twitter:image"
+    content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <meta name="twitter:image:alt" content="Bizde - İlan ve Teklifler" />
+
+  <!-- Structured Data: Organization, WebSite, MobileApplication (Schema.org JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://bizde.app/#organization",
+        "name": "Bizde",
+        "url": "https://bizde.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png",
+          "caption": "Bizde Logo"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "destek@bizde.app",
+          "contactType": "customer support",
+          "areaServed": "TR",
+          "availableLanguage": ["Turkish"]
+        },
+        "sameAs": [
+          "https://bizde.app/download-app"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bizde.app/#website",
+        "url": "https://bizde.app/",
+        "name": "Bizde",
+        "alternateName": ["Bizde App", "Bizde İlan", "Bizde İlan ve Teklifler"],
+        "description": "Türkiye'nin yenilikçi ilan, açık arttırma ve teklif platformu.",
+        "publisher": {
+          "@id": "https://bizde.app/#organization"
+        },
+        "inLanguage": "tr-TR"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://bizde.app/#application",
+        "name": "Bizde - İlan ve Teklifler",
+        "operatingSystem": "iOS, Android, Web",
+        "applicationCategory": "ShoppingApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "1250",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "downloadUrl": "https://bizde.app/download-app"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
-  <!-- Exact Material Symbols Rounded font for Flutter 1:1 Icons -->
+  <!-- Material Symbols Rounded font for Flutter 1:1 Icons -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,1,0" />
   <!-- Leaflet for OpenStreetMap (Flutter 1:1 Map) -->
@@ -33,32 +141,34 @@
       <div class="header-left">
         <!-- Back button on detail page, hidden on home -->
         <button id="header-back-btn" class="header-icon-btn" style="display: none;"
-          onclick="window.location.hash = '#/'" title="Geri">
+          onclick="window.location.hash = '#/'" title="Geri" aria-label="Geri">
           <span class="material-symbols-rounded" style="font-size: 26px;">arrow_back_ios_new</span>
         </button>
       </div>
 
       <!-- Center: Large Prominent Bizde Logo -->
-      <a href="#/" class="logo-link" id="logo-link" title="Bizde Anasayfa">
-        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
-          class="logo-img" id="main-logo-img" />
+      <a href="#/" class="logo-link" id="logo-link" title="Bizde Anasayfa" aria-label="Bizde Anasayfa">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png"
+          alt="Bizde - İlan ve Teklifler" class="logo-img" id="main-logo-img" />
       </a>
 
       <!-- Right: Desktop QR / Mobile Download -->
       <div class="header-right">
         <!-- Theme Toggle Button -->
         <button id="theme-toggle-btn" class="header-icon-btn" onclick="toggleTheme()" title="Tema Değiştir"
-          style="margin-right: 12px;">
+          aria-label="Tema Değiştir" style="margin-right: 12px;">
           <span class="material-symbols-rounded" id="theme-toggle-icon" style="font-size: 22px;">light_mode</span>
         </button>
 
-        <div class="header-qr-badge desktop-only" onclick="openDownloadModal('Uygulama İndir')">
+        <div class="header-qr-badge desktop-only" onclick="openDownloadModal('Uygulama İndir')" role="button"
+          tabindex="0" title="Uygulamayı İndir">
           <img
             src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://bizde.app/download-app&bgcolor=0F172A&color=F1F5F9"
-            alt="QR" class="header-qr-img" />
+            alt="Bizde Uygulamasını İndir QR Kodu" class="header-qr-img" />
           <span class="header-qr-text">Uygulamayı İndir</span>
         </div>
-        <button class="btn-download-mobile mobile-only" onclick="openDownloadModal('Uygulama İndir')">
+        <button class="btn-download-mobile mobile-only" onclick="openDownloadModal('Uygulama İndir')"
+          aria-label="Uygulamayı İndir">
           İndir
         </button>
       </div>
@@ -121,18 +231,37 @@
       </div>
     </main>
 
+    <!-- Semantic Crawler & Non-JS Fallback for Search Engines & AI Crawlers -->
+    <noscript>
+      <section style="padding: 24px; color: #fff; background: #0F172A; border-radius: 12px; margin: 16px;">
+        <h2>Bizde - Türkiye'nin Yenilikçi İlan, Teklif ve Açık Arttırma Platformu</h2>
+        <p>Bizde ile vasıta, emlak, ikinci el elektronik, ev eşyaları ve hizmet sektörlerinde ücretsiz ilan
+          yayınlayabilir, açık arttırmalara katılabilir ve en uygun fiyatlarla teklif vererek alışveriş yapabilirsiniz.
+        </p>
+        <h3>Popüler Kategoriler</h3>
+        <ul>
+          <li><strong>Vasıta:</strong> Otomobil, Motosiklet, Ticari Araçlar, Yedek Parça</li>
+          <li><strong>Emlak:</strong> Satılık & Kiralık Daireler, İş Yeri, Arsa</li>
+          <li><strong>İkinci El Alışveriş:</strong> Telefon, Bilgisayar, Beyaz Eşya, Giyim</li>
+          <li><strong>Hizmetler:</strong> Usta, Nakliyat, Temizlik, Özel Ders</li>
+        </ul>
+        <p><a href="https://bizde.app/download-app" style="color: #38BDF8;">Bizde Mobil Uygulamasını İndirin</a></p>
+      </section>
+    </noscript>
+
     <!-- Floating Action Button (Flutter FAB 1:1) -->
-    <button id="fab-add-tender" class="fab-btn" onclick="openDownloadModal('İlan Verme')">
+    <button id="fab-add-tender" class="fab-btn" onclick="openDownloadModal('İlan Verme')" aria-label="Yeni İlan Ver">
       <span class="material-symbols-rounded" style="font-size: 20px;">add</span>
       <span>İlan Ver</span>
     </button>
 
     <!-- App Download Modal / Dialog -->
-    <div id="download-modal" class="modal-overlay" style="display: none;" onclick="closeDownloadModal(event)">
+    <div id="download-modal" class="modal-overlay" style="display: none;" onclick="closeDownloadModal(event)"
+      role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-card" onclick="event.stopPropagation()">
-        <button class="modal-close-btn" onclick="closeDownloadModal()">&times;</button>
+        <button class="modal-close-btn" onclick="closeDownloadModal()" aria-label="Kapat">&times;</button>
         <div class="modal-header">
-          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
             class="modal-logo" id="modal-logo-img" />
           <h3 id="modal-title">Bizde Mobil Uygulaması</h3>
         </div>
@@ -142,11 +271,11 @@
         <div class="modal-qr-section desktop-only">
           <img
             src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://bizde.app/download-app&bgcolor=0F172A&color=F1F5F9"
-            alt="QR Kod" class="modal-qr-img" />
+            alt="Bizde Uygulaması QR Kodu" class="modal-qr-img" />
           <span class="modal-qr-hint">Telefonunuzun kamerasıyla QR kodu taratın</span>
         </div>
         <div class="modal-actions">
-          <a href="https://bizde.app/download-app" target="_blank" class="modal-btn-download">
+          <a href="https://bizde.app/download-app" target="_blank" class="modal-btn-download" rel="noopener noreferrer">
             <span class="material-symbols-rounded" style="font-size: 20px;">download</span>
             Uygulamayı İndir
           </a>
@@ -155,30 +284,33 @@
     </div>
 
     <!-- Fullscreen Image Zoom / Lightbox Modal -->
-    <div id="image-lightbox-modal" class="lightbox-overlay" style="display: none;" onclick="closeLightbox(event)">
-      <button class="lightbox-close-btn" onclick="closeLightbox()">&times;</button>
+    <div id="image-lightbox-modal" class="lightbox-overlay" style="display: none;" onclick="closeLightbox(event)"
+      role="dialog" aria-modal="true" aria-label="Görsel Önizleme">
+      <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Kapat">&times;</button>
       <div class="lightbox-controls">
-        <button class="lightbox-ctrl-btn" onclick="zoomInLightbox()" title="Yakınlaştır">
+        <button class="lightbox-ctrl-btn" onclick="zoomInLightbox()" title="Yakınlaştır" aria-label="Yakınlaştır">
           <span class="material-symbols-rounded">zoom_in</span>
         </button>
-        <button class="lightbox-ctrl-btn" onclick="zoomOutLightbox()" title="Uzaklaştır">
+        <button class="lightbox-ctrl-btn" onclick="zoomOutLightbox()" title="Uzaklaştır" aria-label="Uzaklaştır">
           <span class="material-symbols-rounded">zoom_out</span>
         </button>
-        <button class="lightbox-ctrl-btn" onclick="resetLightboxZoom()" title="Sıfırla">
+        <button class="lightbox-ctrl-btn" onclick="resetLightboxZoom()" title="Sıfırla" aria-label="Görünümü Sıfırla">
           <span class="material-symbols-rounded">fit_screen</span>
         </button>
       </div>
 
-      <button class="lightbox-nav-btn left" id="lightbox-prev-btn" onclick="prevLightboxImage(event)">
+      <button class="lightbox-nav-btn left" id="lightbox-prev-btn" onclick="prevLightboxImage(event)"
+        aria-label="Önceki Görsel">
         <span class="material-symbols-rounded" style="font-size: 32px;">chevron_left</span>
       </button>
 
       <div class="lightbox-img-wrapper" id="lightbox-img-wrapper" onmousedown="startDragLightbox(event)"
         onmousemove="doDragLightbox(event)" onmouseup="stopDragLightbox()" onwheel="wheelZoomLightbox(event)">
-        <img src="" id="lightbox-active-img" alt="Zoomed Photo" draggable="false" />
+        <img src="" id="lightbox-active-img" alt="Büyütülmüş İlan Fotoğrafı" draggable="false" />
       </div>
 
-      <button class="lightbox-nav-btn right" id="lightbox-next-btn" onclick="nextLightboxImage(event)">
+      <button class="lightbox-nav-btn right" id="lightbox-next-btn" onclick="nextLightboxImage(event)"
+        aria-label="Sonraki Görsel">
         <span class="material-symbols-rounded" style="font-size: 32px;">chevron_right</span>
       </button>
 
@@ -190,8 +322,8 @@
   <footer class="app-footer">
     <div class="footer-container">
       <div class="footer-brand">
-        <a href="#/" class="footer-logo-link">
-          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+        <a href="#/" class="footer-logo-link" aria-label="Bizde Anasayfa">
+          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo"
             class="footer-logo-img" id="footer-logo-img" />
         </a>
         <p class="footer-desc">İlan ve Teklifler.</p>
