@@ -1,10 +1,10 @@
 /* ============================================================
    BIZDE – Flutter (BidzyMobile) 1:1 Complete Logic for Web
-   Complete Tender Detail Page with Interactive Gallery & Logics
+   DetailInfo (detailName/detailValue) & OpenStreetMap Integration
    ============================================================ */
 
-const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-  ? '/v1' 
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? '/v1'
   : 'https://api.bizde.app/v1';
 
 const DOWNLOAD_URL = 'https://bizde.app/download-app';
@@ -16,15 +16,60 @@ const fabAddTender = document.getElementById('fab-add-tender');
 const downloadModal = document.getElementById('download-modal');
 const modalTitle = document.getElementById('modal-title');
 const modalDesc = document.getElementById('modal-desc');
+const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+const LOGO_DARK = 'https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png';
+const LOGO_LIGHT = 'https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_light_mode.png';
+
+// ── THEME CONTROLLER (Dark / Light Mode) ──────────────────
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('bizde_theme', theme);
+  if (themeToggleIcon) {
+    themeToggleIcon.textContent = theme === 'light' ? 'dark_mode' : 'light_mode';
+  }
+
+  const logoUrl = theme === 'light' ? LOGO_LIGHT : LOGO_DARK;
+  const mainLogo = document.getElementById('main-logo-img');
+  if (mainLogo) mainLogo.src = logoUrl;
+  const modalLogo = document.getElementById('modal-logo-img');
+  if (modalLogo) modalLogo.src = logoUrl;
+  const footerLogo = document.getElementById('footer-logo-img');
+  if (footerLogo) footerLogo.src = logoUrl;
+};
+
+window.toggleTheme = () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  applyTheme(newTheme);
+};
+
+// Initialize saved theme
+const savedTheme = localStorage.getItem('bizde_theme') || 'dark';
+applyTheme(savedTheme);
+
+// Lightbox Elements
+const lightboxModal = document.getElementById('image-lightbox-modal');
+const lightboxImg = document.getElementById('lightbox-active-img');
+const lightboxWrapper = document.getElementById('lightbox-img-wrapper');
+const lightboxCounter = document.getElementById('lightbox-counter');
 
 let globalMainPageData = null;
 let heroCurrentIndex = 0;
 let heroTimer = null;
 let heroesList = [];
 
-// Detail page state
+// Detail page & Map & Lightbox state
 let currentDetailData = null;
 let currentDetailImageIndex = 0;
+let detailLeafletMap = null;
+
+let lightboxZoom = 1;
+let lightboxPanX = 0;
+let lightboxPanY = 0;
+let isDraggingLightbox = false;
+let dragStartX = 0;
+let dragStartY = 0;
 
 // ── COLOR & FORMAT HELPERS ───────────────────────────────
 const parseColor = (colorHex, defaultColor = '#3B82F6') => {
@@ -51,10 +96,10 @@ const hexToRgba = (hex, opacity = 1) => {
 
 const formatCurrency = (amount) => {
   if (amount === undefined || amount === null) return '0 ₺';
-  return new Intl.NumberFormat('tr-TR', { 
-    style: 'currency', 
+  return new Intl.NumberFormat('tr-TR', {
+    style: 'currency',
     currency: 'TRY',
-    maximumFractionDigits: 0 
+    maximumFractionDigits: 0
   }).format(amount);
 };
 
@@ -68,6 +113,15 @@ const formatShortDate = (dateString) => {
   if (!dateString) return '-';
   const date = new Date(dateString);
   return date.toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: '2-digit' });
+};
+
+const formatDateOnly = (dateString) => {
+  if (!dateString) return '-';
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
 };
 
 const calculateTimeRemaining = (deadlineStr) => {
@@ -100,7 +154,7 @@ const getImage = (item) => {
 // Tender Type Icon & Count Rule
 const getTenderTypeInfo = (type, bidCount) => {
   const t = String(type || '').trim().toLowerCase();
-  
+
   if (t === 'bid' || t === '3' || t === 'offer' || t === 'teklif') {
     return {
       show: true,
@@ -109,7 +163,7 @@ const getTenderTypeInfo = (type, bidCount) => {
       count: bidCount !== undefined && bidCount !== null ? bidCount : 0
     };
   }
-  
+
   if (t === 'auction' || t === '1' || t === 'açık arttırma' || t === 'acikarttirma') {
     return {
       show: true,
@@ -118,7 +172,7 @@ const getTenderTypeInfo = (type, bidCount) => {
       count: bidCount !== undefined && bidCount !== null ? bidCount : 0
     };
   }
-  
+
   return {
     show: false,
     label: 'Normal İlan',
@@ -165,17 +219,18 @@ const renderHomeSkeleton = () => {
 
 const renderDetailSkeleton = () => `
   <div class="detail-view-wrap">
-    <div class="detail-hero-banner shimmer" style="background: #1e293b;"></div>
-    <div class="detail-body">
-      <div class="skeleton-line badge shimmer" style="width: 120px; height: 28px; margin-bottom: 14px; border-radius: 24px;"></div>
-      <div class="skeleton-line title shimmer" style="width: 70%; height: 26px; margin-bottom: 12px;"></div>
-      <div class="skeleton-line location shimmer" style="width: 40%; height: 16px; margin-bottom: 24px;"></div>
-      <div class="detail-stats-grid">
-        <div class="detail-stat-card shimmer" style="height: 64px;"></div>
-        <div class="detail-stat-card shimmer" style="height: 64px;"></div>
-        <div class="detail-stat-card shimmer" style="height: 64px;"></div>
+    <div class="detail-grid-layout">
+      <div class="detail-hero-banner shimmer" style="background: var(--bg-surface); height: 420px; border-radius: var(--radius-lg);"></div>
+      <div class="detail-body">
+        <div class="skeleton-line badge shimmer" style="width: 140px; height: 20px; margin-bottom: 12px; border-radius: 6px;"></div>
+        <div class="skeleton-line title shimmer" style="width: 70%; height: 26px; margin-bottom: 12px;"></div>
+        <div class="skeleton-line location shimmer" style="width: 40%; height: 16px; margin-bottom: 24px;"></div>
+        <div class="detail-stats-grid">
+          <div class="detail-stat-card shimmer" style="height: 64px;"></div>
+          <div class="detail-stat-card shimmer" style="height: 64px;"></div>
+        </div>
+        <div class="detail-tabs-card shimmer" style="height: 180px; margin-top: 20px;"></div>
       </div>
-      <div class="detail-tabs-card shimmer" style="height: 180px; margin-top: 20px;"></div>
     </div>
   </div>
 `;
@@ -231,12 +286,12 @@ const fetchTenderDetail = async (id) => {
 window.setHeroSlide = (index) => {
   if (heroesList.length === 0) return;
   heroCurrentIndex = (index + heroesList.length) % heroesList.length;
-  
+
   const track = document.getElementById('hero-slider-track');
   if (track) {
     track.style.transform = `translateX(-${heroCurrentIndex * 100}%)`;
   }
-  
+
   document.querySelectorAll('.hero-dot').forEach((dot, i) => {
     dot.classList.toggle('active', i === heroCurrentIndex);
   });
@@ -247,7 +302,7 @@ window.setHeroSlide = (index) => {
 const resetHeroTimer = () => {
   if (heroTimer) clearTimeout(heroTimer);
   if (heroesList.length <= 1) return;
-  
+
   const currentHero = heroesList[heroCurrentIndex];
   const rawInterval = currentHero?.passInterval || 4;
   const interval = (rawInterval > 0 && rawInterval < 100) ? rawInterval * 1000 : 4000;
@@ -352,20 +407,20 @@ const renderCategories = (categories) => {
   return html;
 };
 
-// ── 4. HORIZONTAL TENDER CARD (Exact Spacing & Hierarchy) ──
+// ── 4. HORIZONTAL TENDER CARD ────────────────────────────
 const renderTenderCard = (tender) => {
   const imgUrl = getImage(tender);
   const title = tender.title || 'İlan Başlığı';
   const location = tender.location || tender.cityName || 'Türkiye';
   const price = formatCurrency(tender.budget || tender.currentPrice || tender.price || 0);
-  
+
   // Category Details Extraction
   const catObj = tender.categoryDetail || tender.categoryDetails || tender.category || {};
   const categoryTitle = catObj.title || tender.categoryTitle || 'Genel';
   const rawCatColor = parseColor(catObj.color || tender.categoryColor, '#3B82F6');
   const catBg = hexToRgba(rawCatColor, 0.12);
   const catBorder = hexToRgba(rawCatColor, 0.25);
-  
+
   const expireTime = tender.expireTimeString || 'Aktif';
   const typeInfo = getTenderTypeInfo(tender.type, tender.bidCount);
 
@@ -378,7 +433,7 @@ const renderTenderCard = (tender) => {
         <div>
           <h3 class="tender-card-title">${title}</h3>
           <div class="tender-card-location">
-            <span class="material-symbols-rounded" style="font-size: 13px; color: rgba(241, 245, 249, 0.45);">location_on</span>
+            <span class="material-symbols-rounded" style="font-size: 13px; color: var(--text-muted);">location_on</span>
             <span>${location}</span>
           </div>
           <div class="tender-card-category-badge" style="background-color: ${catBg}; border: 1px solid ${catBorder}; color: ${rawCatColor};">
@@ -389,12 +444,12 @@ const renderTenderCard = (tender) => {
         <div class="tender-card-bottom-row">
           <div class="tender-card-meta-stats">
             <div class="tender-stat-entry">
-              <span class="material-symbols-rounded" style="font-size: 13px; color: rgba(241, 245, 249, 0.5);">access_time</span>
+              <span class="material-symbols-rounded" style="font-size: 13px; color: var(--text-muted);">access_time</span>
               <span>${expireTime}</span>
             </div>
             ${typeInfo.show ? `
               <div class="tender-stat-entry">
-                <span class="material-symbols-rounded" style="font-size: 13px; color: rgba(241, 245, 249, 0.5);">${typeInfo.icon}</span>
+                <span class="material-symbols-rounded" style="font-size: 13px; color: var(--text-muted);">${typeInfo.icon}</span>
                 <span>${typeInfo.count}</span>
               </div>
             ` : ''}
@@ -406,7 +461,7 @@ const renderTenderCard = (tender) => {
   `;
 };
 
-// Section Header Helper (Flutter 1:1 with Material Icons)
+// Section Header Helper
 const renderSectionHeader = (title, iconName, iconColor) => {
   const bg = hexToRgba(iconColor, 0.12);
   return `
@@ -438,13 +493,13 @@ const renderHome = async () => {
     if (!globalMainPageData) {
       globalMainPageData = await fetchMainPage();
     }
-    
-    const { 
-      heroes = [], 
-      categories = [], 
-      lastAddedTenders = [], 
-      hypeTenders = [], 
-      discountedTenders = [] 
+
+    const {
+      heroes = [],
+      categories = [],
+      lastAddedTenders = [],
+      hypeTenders = [],
+      discountedTenders = []
     } = globalMainPageData;
 
     let html = '';
@@ -463,19 +518,19 @@ const renderHome = async () => {
     const hypeList = hypeTenders.length > 0 ? hypeTenders : lastAddedTenders;
     const discountedList = discountedTenders.length > 0 ? discountedTenders : lastAddedTenders;
 
-    // 3. Son Eklenenler (Icons.new_releases_rounded)
+    // 3. Son Eklenenler
     if (recentList.length > 0) {
       html += renderSectionHeader('Son Eklenenler', 'new_releases', '#3B82F6');
       html += `<div class="tenders-list-container">${recentList.map(renderTenderCard).join('')}</div>`;
     }
 
-    // 4. En Çok Tıklananlar (Icons.local_fire_department_rounded)
+    // 4. En Çok Tıklananlar
     if (hypeList.length > 0) {
       html += renderSectionHeader('En Çok Tıklananlar', 'local_fire_department', '#F59E0B');
       html += `<div class="tenders-list-container">${hypeList.map(renderTenderCard).join('')}</div>`;
     }
 
-    // 5. Fiyatı Düşenler (Icons.trending_down_rounded)
+    // 5. Fiyatı Düşenler
     if (discountedList.length > 0) {
       html += renderSectionHeader('Fiyatı Düşenler', 'trending_down', '#EF4444');
       html += `<div class="tenders-list-container">${discountedList.map(renderTenderCard).join('')}</div>`;
@@ -502,19 +557,19 @@ window.setDetailImage = (index) => {
   if (!currentDetailData) return;
   const images = currentDetailData.imageUrls || [];
   if (images.length === 0) return;
-  
+
   currentDetailImageIndex = (index + images.length) % images.length;
-  
+
   const mainImg = document.getElementById('detail-main-img');
   if (mainImg) {
     mainImg.src = images[currentDetailImageIndex];
   }
-  
+
   const counter = document.getElementById('detail-img-counter');
   if (counter) {
     counter.textContent = `${currentDetailImageIndex + 1} / ${images.length}`;
   }
-  
+
   document.querySelectorAll('.detail-thumb-item').forEach((thumb, i) => {
     thumb.classList.toggle('active', i === currentDetailImageIndex);
   });
@@ -523,6 +578,7 @@ window.setDetailImage = (index) => {
 window.nextDetailImage = () => window.setDetailImage(currentDetailImageIndex + 1);
 window.prevDetailImage = () => window.setDetailImage(currentDetailImageIndex - 1);
 
+// Tab switching & Map invalidateSize
 window.switchDetailTab = (tabName) => {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.tab === tabName);
@@ -534,17 +590,198 @@ window.switchDetailTab = (tabName) => {
   if (activePane) {
     activePane.style.display = 'block';
   }
-};
 
-window.copyShareLink = () => {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(window.location.href);
-    alert('İlan bağlantısı panoya kopyalandı!');
+  // If switched to location tab, init/update OpenStreetMap
+  if (tabName === 'loc') {
+    setTimeout(() => {
+      initDetailMap();
+    }, 50);
   }
 };
 
+// ── 7. OPENSTREETMAP LEAFLET INITIALIZER (Flutter 1:1) ───
+const initDetailMap = () => {
+  if (!currentDetailData) return;
+  const lat = currentDetailData.latitude || 41.0082;
+  const lng = currentDetailData.longitude || 28.9784;
+  const isApproximate = currentDetailData.isApproximate ?? true;
+  const mapContainer = document.getElementById('detail-map');
+
+  if (!mapContainer || typeof L === 'undefined') return;
+
+  if (detailLeafletMap) {
+    detailLeafletMap.invalidateSize();
+    return;
+  }
+
+  detailLeafletMap = L.map('detail-map', {
+    center: [lat, lng],
+    zoom: 14,
+    zoomControl: true,
+    attributionControl: false
+  });
+
+  // OpenStreetMap Standard Tiles
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(detailLeafletMap);
+
+  // Soft approximate circle (Flutter 1:1)
+  if (isApproximate) {
+    L.circle([lat, lng], {
+      color: '#3B82F6',
+      fillColor: '#3B82F6',
+      fillOpacity: 0.18,
+      radius: 400,
+      weight: 1.5
+    }).addTo(detailLeafletMap);
+  }
+
+  // Glowing center marker
+  const customIcon = L.divIcon({
+    className: 'custom-map-pin',
+    html: `
+      <div style="
+        width: 28px; 
+        height: 28px; 
+        background: #3B82F6; 
+        border: 3px solid #FFF; 
+        border-radius: 50%; 
+        box-shadow: 0 0 14px rgba(59,130,246,0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      ">
+        <div style="width: 8px; height: 8px; background: #FFF; border-radius: 50%;"></div>
+      </div>
+    `,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14]
+  });
+
+  L.marker([lat, lng], { icon: customIcon }).addTo(detailLeafletMap);
+
+  setTimeout(() => {
+    if (detailLeafletMap) detailLeafletMap.invalidateSize();
+  }, 100);
+};
+
+// ── 8. LIGHTBOX & PHOTO ZOOM CONTROLLER ──────────────────
+const updateLightboxTransform = () => {
+  if (lightboxImg) {
+    lightboxImg.style.transform = `scale(${lightboxZoom}) translate(${lightboxPanX / lightboxZoom}px, ${lightboxPanY / lightboxZoom}px)`;
+  }
+};
+
+window.openLightbox = (index = 0) => {
+  if (!currentDetailData) return;
+  const images = currentDetailData.imageUrls || [getImage(currentDetailData)];
+  currentDetailImageIndex = (index + images.length) % images.length;
+
+  lightboxImg.src = images[currentDetailImageIndex];
+  lightboxCounter.textContent = `${currentDetailImageIndex + 1} / ${images.length}`;
+
+  lightboxZoom = 1;
+  lightboxPanX = 0;
+  lightboxPanY = 0;
+  updateLightboxTransform();
+
+  lightboxModal.style.display = 'flex';
+};
+
+window.closeLightbox = (e) => {
+  if (!e || e.target === lightboxModal || e.target.classList.contains('lightbox-close-btn')) {
+    lightboxModal.style.display = 'none';
+    lightboxZoom = 1;
+    lightboxPanX = 0;
+    lightboxPanY = 0;
+  }
+};
+
+window.zoomInLightbox = () => {
+  lightboxZoom = Math.min(lightboxZoom + 0.4, 4);
+  updateLightboxTransform();
+};
+
+window.zoomOutLightbox = () => {
+  lightboxZoom = Math.max(lightboxZoom - 0.4, 1);
+  if (lightboxZoom === 1) {
+    lightboxPanX = 0;
+    lightboxPanY = 0;
+  }
+  updateLightboxTransform();
+};
+
+window.resetLightboxZoom = () => {
+  lightboxZoom = 1;
+  lightboxPanX = 0;
+  lightboxPanY = 0;
+  updateLightboxTransform();
+};
+
+window.wheelZoomLightbox = (e) => {
+  e.preventDefault();
+  if (e.deltaY < 0) {
+    window.zoomInLightbox();
+  } else {
+    window.zoomOutLightbox();
+  }
+};
+
+window.startDragLightbox = (e) => {
+  if (lightboxZoom > 1) {
+    isDraggingLightbox = true;
+    dragStartX = e.clientX - lightboxPanX;
+    dragStartY = e.clientY - lightboxPanY;
+    lightboxWrapper.classList.add('dragging');
+  }
+};
+
+window.doDragLightbox = (e) => {
+  if (isDraggingLightbox && lightboxZoom > 1) {
+    lightboxPanX = e.clientX - dragStartX;
+    lightboxPanY = e.clientY - dragStartY;
+    updateLightboxTransform();
+  }
+};
+
+window.stopDragLightbox = () => {
+  isDraggingLightbox = false;
+  lightboxWrapper.classList.remove('dragging');
+};
+
+window.nextLightboxImage = (e) => {
+  if (e) e.stopPropagation();
+  if (!currentDetailData) return;
+  const images = currentDetailData.imageUrls || [];
+  window.openLightbox(currentDetailImageIndex + 1);
+};
+
+window.prevLightboxImage = (e) => {
+  if (e) e.stopPropagation();
+  if (!currentDetailData) return;
+  window.openLightbox(currentDetailImageIndex - 1);
+};
+
+// Keyboard listener for Lightbox
+window.addEventListener('keydown', (e) => {
+  if (lightboxModal.style.display === 'flex') {
+    if (e.key === 'Escape') window.closeLightbox();
+    if (e.key === 'ArrowRight') window.nextLightboxImage();
+    if (e.key === 'ArrowLeft') window.prevLightboxImage();
+    if (e.key === '+') window.zoomInLightbox();
+    if (e.key === '-') window.zoomOutLightbox();
+  }
+});
+
+// ── 9. RENDER DETAIL PAGE ────────────────────────────────
 const renderDetail = async (id) => {
   if (heroTimer) clearTimeout(heroTimer);
+  if (detailLeafletMap) {
+    detailLeafletMap.remove();
+    detailLeafletMap = null;
+  }
+
   headerBackBtn.style.display = 'flex';
   fabAddTender.style.display = 'none';
 
@@ -561,26 +798,16 @@ const renderDetail = async (id) => {
       : [getImage(detail)];
 
     const title = detail.title || 'İlan Başlığı';
-    
-    // Breadcrumb & Category Info
     const breadcrumb = detail.categoryBreadcrumb || [];
-    const mainCategory = breadcrumb.length > 0 ? breadcrumb[0] : (detail.categoryDetail || detail.category || {});
-    const categoryTitle = mainCategory.title || detail.categoryTitle || 'Genel';
-    const rawCatColor = parseColor(mainCategory.color, '#3B82F6');
-    const catBg = hexToRgba(rawCatColor, 0.15);
-    const catBorder = hexToRgba(rawCatColor, 0.3);
 
-    // Location & Type
     const location = detail.location || detail.cityName || 'Türkiye';
     const typeInfo = getTenderTypeInfo(detail.type, detail.bidCount);
-    
+
     // Pricing & Deadlines
     const budget = detail.budget || detail.currentPrice || detail.price || 0;
     const priceFormatted = formatCurrency(budget);
     const minBidFormatted = detail.minBidPrice ? formatCurrency(detail.minBidPrice) : null;
     const timeRemaining = calculateTimeRemaining(detail.deadline);
-    const deadlineFormatted = detail.deadline ? formatDate(detail.deadline) : '-';
-    const createdAtFormatted = detail.createdAt ? formatDate(detail.createdAt) : '-';
     const bidCount = detail.bidCount !== undefined && detail.bidCount !== null ? detail.bidCount : 0;
 
     // Seller Info
@@ -590,9 +817,14 @@ const renderDetail = async (id) => {
     const initialLetter = userName.charAt(0).toUpperCase();
     const rankText = detail.userRank?.userRank || '4.8 (12)';
 
-    // Description & Detail Key-Values
+    // Description & Detail Key-Values (detailName & detailValue 1:1)
     const description = detail.description || 'Bu ilan için detaylı açıklama belirtilmemiş.';
-    const detailInfo = detail.detailInfo || [];
+    const detailInfo = Array.isArray(detail.detailInfo) ? detail.detailInfo : [];
+
+    // Location Coordinates
+    const lat = detail.latitude || 41.0082;
+    const lng = detail.longitude || 28.9784;
+    const isApproximate = detail.isApproximate ?? true;
 
     // Thumbnail strip HTML
     let thumbsHtml = '';
@@ -608,191 +840,195 @@ const renderDetail = async (id) => {
       `;
     }
 
-    // Breadcrumb pills HTML
+    // Compact Breadcrumb pills HTML (Single line, shortened titles)
     let breadcrumbHtml = '';
     if (breadcrumb.length > 0) {
       breadcrumbHtml = `
         <div class="detail-breadcrumb-bar">
-          ${breadcrumb.map((b, i) => `
-            <span class="detail-breadcrumb-pill" onclick="openDownloadModal('Kategori: ${b.title}')">
-              ${b.title}
-            </span>
-            ${i < breadcrumb.length - 1 ? '<span class="detail-breadcrumb-sep">/</span>' : ''}
-          `).join('')}
+          ${breadcrumb.map((b, i) => {
+            const color = parseColor(b.color, '#3B82F6');
+            const bg = hexToRgba(color, 0.12);
+            const border = hexToRgba(color, 0.25);
+            const isLast = i === breadcrumb.length - 1;
+            const fullTitle = b.title || '';
+            const displayTitle = fullTitle.length > 14 ? fullTitle.slice(0, 12) + '…' : fullTitle;
+            return `
+              <span class="detail-breadcrumb-pill ${isLast ? 'active' : ''}" style="background-color: ${bg}; border: 1px solid ${border}; color: ${color};" onclick="openDownloadModal('Kategori: ${fullTitle}')" title="${fullTitle}">
+                ${displayTitle}
+              </span>
+              ${!isLast ? '<span class="material-symbols-rounded detail-breadcrumb-sep">chevron_right</span>' : ''}
+            `;
+          }).join('')}
         </div>
       `;
     }
 
     appRoot.innerHTML = `
       <div class="detail-view-wrap">
-        <!-- 1. Interactive Image Slider (Flutter 1:1) -->
-        <div class="detail-gallery-container">
-          <div class="detail-hero-banner">
-            <img src="${images[0]}" alt="${title}" id="detail-main-img" class="detail-hero-img" />
-            
-            <div class="detail-nav-actions">
-              <button class="detail-circle-btn" onclick="window.location.hash = '#/'" title="Geri">
-                <span class="material-symbols-rounded" style="font-size: 20px;">arrow_back_ios_new</span>
-              </button>
-              <button class="detail-circle-btn" onclick="copyShareLink()" title="Paylaş">
-                <span class="material-symbols-rounded" style="font-size: 20px;">share</span>
-              </button>
-            </div>
+        <div class="detail-grid-layout">
+          <!-- 1. LEFT: Interactive Image Slider with Zoom Support -->
+          <div class="detail-gallery-container">
+            <div class="detail-hero-banner" onclick="openLightbox(currentDetailImageIndex)">
+              <img src="${images[0]}" alt="${title}" id="detail-main-img" class="detail-hero-img" style="cursor: zoom-in;" />
 
-            ${images.length > 1 ? `
-              <button class="gallery-arrow-btn left" onclick="prevDetailImage()" title="Önceki">
-                <span class="material-symbols-rounded" style="font-size: 24px;">chevron_left</span>
-              </button>
-              <button class="gallery-arrow-btn right" onclick="nextDetailImage()" title="Sonraki">
-                <span class="material-symbols-rounded" style="font-size: 24px;">chevron_right</span>
-              </button>
-              <div class="gallery-counter-pill" id="detail-img-counter">1 / ${images.length}</div>
-            ` : ''}
-          </div>
-
-          ${thumbsHtml}
-        </div>
-
-        <!-- 2. Detail Body -->
-        <div class="detail-body">
-          ${breadcrumbHtml}
-
-          <div class="detail-header-meta">
-            <span class="detail-cat-pill" style="background-color: ${catBg}; border: 1px solid ${catBorder}; color: ${rawCatColor};">
-              ${categoryTitle}
-            </span>
-            <span class="detail-type-badge ${detail.type || 'Bid'}">
-              <span class="material-symbols-rounded" style="font-size: 14px; margin-right: 4px;">
-                ${typeInfo.icon || 'info'}
-              </span>
-              ${typeInfo.label}
-            </span>
-          </div>
-
-          <h1 class="detail-main-title">${title}</h1>
-          
-          <div class="detail-location-row">
-            <span class="material-symbols-rounded" style="font-size: 16px; color: var(--primary);">location_on</span>
-            <span>${location}</span>
-          </div>
-
-          <!-- 3. Stat Cards Grid (Flutter 1:1) -->
-          <div class="detail-stats-grid">
-            <div class="detail-stat-card">
-              <div class="detail-stat-label-wrap">
-                <span class="material-symbols-rounded stat-green" style="font-size: 16px;">payments</span>
-                <span>Fiyat / Bütçe</span>
+              <div class="gallery-zoom-hint" title="Büyüt / Yakınlaştır" onclick="event.stopPropagation(); openLightbox(currentDetailImageIndex);">
+                <span class="material-symbols-rounded" style="font-size: 20px;">zoom_in</span>
               </div>
-              <div class="detail-stat-value stat-green">${priceFormatted}</div>
-              ${minBidFormatted ? `<div class="detail-stat-sub">Min: ${minBidFormatted}</div>` : ''}
-            </div>
 
-            <div class="detail-stat-card">
-              <div class="detail-stat-label-wrap">
-                <span class="material-symbols-rounded stat-blue" style="font-size: 16px;">${typeInfo.icon || 'gavel'}</span>
-                <span>Teklif Durumu</span>
-              </div>
-              <div class="detail-stat-value stat-blue">${bidCount} Teklif</div>
-              <div class="detail-stat-sub">${typeInfo.label}</div>
-            </div>
-
-            <div class="detail-stat-card">
-              <div class="detail-stat-label-wrap">
-                <span class="material-symbols-rounded stat-orange" style="font-size: 16px;">schedule</span>
-                <span>Kalan Süre</span>
-              </div>
-              <div class="detail-stat-value stat-orange">${timeRemaining}</div>
-              <div class="detail-stat-sub">${formatShortDate(detail.deadline)}</div>
-            </div>
-          </div>
-
-          <!-- 4. Tabs Section (Açıklama / Özellikler / İlan Detayları) -->
-          <div class="detail-tabs-card">
-            <div class="tabs-nav-bar">
-              <button class="tab-btn active" data-tab="desc" onclick="switchDetailTab('desc')">
-                <span class="material-symbols-rounded" style="font-size: 16px;">description</span>
-                Açıklama
-              </button>
-              ${detailInfo.length > 0 ? `
-                <button class="tab-btn" data-tab="attr" onclick="switchDetailTab('attr')">
-                  <span class="material-symbols-rounded" style="font-size: 16px;">list_alt</span>
-                  Özellikler
+              ${images.length > 1 ? `
+                <button class="gallery-arrow-btn left" onclick="event.stopPropagation(); prevDetailImage()" title="Önceki">
+                  <span class="material-symbols-rounded" style="font-size: 24px;">chevron_left</span>
                 </button>
+                <button class="gallery-arrow-btn right" onclick="event.stopPropagation(); nextDetailImage()" title="Sonraki">
+                  <span class="material-symbols-rounded" style="font-size: 24px;">chevron_right</span>
+                </button>
+                <div class="gallery-counter-pill" id="detail-img-counter">1 / ${images.length}</div>
               ` : ''}
-              <button class="tab-btn" data-tab="info" onclick="switchDetailTab('info')">
-                <span class="material-symbols-rounded" style="font-size: 16px;">info</span>
-                İlan Bilgileri
-              </button>
             </div>
 
-            <!-- Tab 1: Açıklama -->
-            <div id="tab-desc-pane" class="tab-content-pane" style="display: block;">
-              <p class="detail-desc-text">${description}</p>
-            </div>
+            ${thumbsHtml}
+          </div>
 
-            <!-- Tab 2: Özellikler (Key-Value) -->
-            ${detailInfo.length > 0 ? `
-              <div id="tab-attr-pane" class="tab-content-pane" style="display: none;">
-                <table class="attributes-table">
-                  ${detailInfo.map(item => `
-                    <tr>
-                      <td class="attr-key">${item.key || item.title || 'Özellik'}</td>
-                      <td class="attr-val">${item.value || item.val || '-'}</td>
-                    </tr>
-                  `).join('')}
-                </table>
+          <!-- 2. RIGHT: Detail Body & Content -->
+          <div class="detail-body">
+            ${breadcrumbHtml}
+
+            ${typeInfo.show ? `
+              <div class="detail-header-meta">
+                <span class="detail-type-badge ${detail.type || 'Bid'}">
+                  <span class="material-symbols-rounded" style="font-size: 14px; margin-right: 4px;">
+                    ${typeInfo.icon}
+                  </span>
+                  ${typeInfo.label}
+                </span>
               </div>
             ` : ''}
 
-            <!-- Tab 3: İlan Bilgileri -->
-            <div id="tab-info-pane" class="tab-content-pane" style="display: none;">
-              <table class="attributes-table">
-                <tr>
-                  <td class="attr-key">İlan No</td>
-                  <td class="attr-val">${detail.id.substring(0, 8).toUpperCase()}</td>
-                </tr>
-                <tr>
-                  <td class="attr-key">İlan Tarihi</td>
-                  <td class="attr-val">${createdAtFormatted}</td>
-                </tr>
-                <tr>
-                  <td class="attr-key">Bitiş Tarihi</td>
-                  <td class="attr-val">${deadlineFormatted}</td>
-                </tr>
-                <tr>
-                  <td class="attr-key">İlan Türü</td>
-                  <td class="attr-val">${typeInfo.label}</td>
-                </tr>
-                <tr>
-                  <td class="attr-key">Konum</td>
-                  <td class="attr-val">${location}</td>
-                </tr>
-              </table>
+            <h1 class="detail-main-title">${title}</h1>
+            
+            <div class="detail-location-row">
+              <span class="material-symbols-rounded" style="font-size: 16px; color: var(--primary);">location_on</span>
+              <span>${location}</span>
             </div>
-          </div>
 
-          <!-- 5. Seller Info Card (Flutter 1:1) -->
-          <div class="seller-card" onclick="openDownloadModal('Satıcı Profili')">
-            <div class="seller-header-row">
-              <span class="seller-header-title">İlan Sahibi</span>
-              <div class="seller-rank-badge">
-                <span class="material-symbols-rounded" style="font-size: 16px; color: var(--warning);">star</span>
-                <span>${rankText}</span>
+            <!-- 3. Stat Cards Grid (Label is 'Fiyat') -->
+            <div class="detail-stats-grid">
+              <div class="detail-stat-card">
+                <div class="detail-stat-label-wrap">
+                  <span class="material-symbols-rounded stat-green" style="font-size: 16px;">payments</span>
+                  <span>Fiyat</span>
+                </div>
+                <div class="detail-stat-value stat-green">${priceFormatted}</div>
+              </div>
+
+              ${typeInfo.show ? `
+                <div class="detail-stat-card">
+                  <div class="detail-stat-label-wrap">
+                    <span class="material-symbols-rounded stat-blue" style="font-size: 16px;">${typeInfo.icon}</span>
+                    <span>Teklif</span>
+                  </div>
+                  <div class="detail-stat-value stat-blue">${bidCount}</div>
+                </div>
+              ` : ''}
+
+              <div class="detail-stat-card">
+                <div class="detail-stat-label-wrap">
+                  <span class="material-symbols-rounded stat-orange" style="font-size: 16px;">schedule</span>
+                  <span>Bitiş</span>
+                </div>
+                <div class="detail-stat-value stat-orange">${formatDateOnly(detail.deadline)}</div>
               </div>
             </div>
-            <div class="seller-profile-row">
-              <div class="seller-avatar">
-                ${userAvatar ? `<img src="${userAvatar}" alt="${userName}" />` : `<span>${initialLetter}</span>`}
+
+            <!-- 4. Tabs Section (Açıklama / Özellikler / Konum OpenStreetMap 1:1) -->
+            <div class="detail-tabs-card">
+              <div class="tabs-nav-bar">
+                <button class="tab-btn active" data-tab="desc" onclick="switchDetailTab('desc')">
+                  <span class="material-symbols-rounded" style="font-size: 16px;">description</span>
+                  Açıklama
+                </button>
+                ${detailInfo.length > 0 ? `
+                  <button class="tab-btn" data-tab="attr" onclick="switchDetailTab('attr')">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">list_alt</span>
+                    Özellikler
+                  </button>
+                ` : ''}
+                <button class="tab-btn" data-tab="loc" onclick="switchDetailTab('loc')">
+                  <span class="material-symbols-rounded" style="font-size: 16px;">location_on</span>
+                  Konum
+                </button>
               </div>
-              <div class="seller-info">
-                <div class="seller-name-row">
-                  <span class="seller-name">${userName}</span>
-                  <span class="material-symbols-rounded verified-icon" title="Doğrulanmış Hesap">verified</span>
+
+              <!-- Tab 1: Açıklama -->
+              <div id="tab-desc-pane" class="tab-content-pane" style="display: block;">
+                <p class="detail-desc-text">${description}</p>
+              </div>
+
+              <!-- Tab 2: Özellikler (detailName & detailValue 1:1) -->
+              ${detailInfo.length > 0 ? `
+                <div id="tab-attr-pane" class="tab-content-pane" style="display: none;">
+                  <table class="attributes-table">
+                    ${detailInfo.map(item => {
+      const name = item.detailName || item.key || item.title || item.name || 'Özellik';
+      const val = item.detailValue || item.value || item.val || '-';
+      return `
+                        <tr>
+                          <td class="attr-key">${name}</td>
+                          <td class="attr-val">${val}</td>
+                        </tr>
+                      `;
+    }).join('')}
+                  </table>
                 </div>
-                <div class="seller-company">${userCompany}</div>
+              ` : ''}
+
+              <!-- Tab 3: Konum (OpenStreetMap Leaflet 1:1) -->
+              <div id="tab-loc-pane" class="tab-content-pane" style="display: none;">
+                <div class="map-container-wrap">
+                  <div id="detail-map" class="detail-map-box"></div>
+                  ${isApproximate ? `
+                    <div class="map-approx-badge">
+                      <span class="material-symbols-rounded" style="font-size: 15px;">info</span>
+                      <span>Gizlilik sebebiyle yaklaşık konum gösterilmektedir.</span>
+                    </div>
+                  ` : ''}
+                  <div class="map-location-footer">
+                    <div class="map-location-text">
+                      <span class="material-symbols-rounded" style="font-size: 18px; color: var(--primary);">location_on</span>
+                      <span>${location}</span>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" class="btn-map-external">
+                      <span class="material-symbols-rounded" style="font-size: 14px;">open_in_new</span>
+                      Haritada Aç
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div class="seller-arrow">
-                <span class="material-symbols-rounded" style="font-size: 16px; color: var(--text-muted);">arrow_forward_ios</span>
+            </div>
+
+            <!-- 5. Seller Info Card (Flutter 1:1) -->
+            <div class="seller-card" onclick="openDownloadModal('Satıcı Profili')">
+              <div class="seller-header-row">
+                <span class="seller-header-title">İlan Sahibi</span>
+                <div class="seller-rank-badge">
+                  <span class="material-symbols-rounded" style="font-size: 16px; color: var(--warning);">star</span>
+                  <span>${rankText}</span>
+                </div>
+              </div>
+              <div class="seller-profile-row">
+                <div class="seller-avatar">
+                  ${userAvatar ? `<img src="${userAvatar}" alt="${userName}" />` : `<span>${initialLetter}</span>`}
+                </div>
+                <div class="seller-info">
+                  <div class="seller-name-row">
+                    <span class="seller-name">${userName}</span>
+                    <span class="material-symbols-rounded verified-icon" title="Doğrulanmış Hesap">verified</span>
+                  </div>
+                  <div class="seller-company">${userCompany}</div>
+                </div>
+                <div class="seller-arrow">
+                  <span class="material-symbols-rounded" style="font-size: 16px; color: var(--text-muted);">arrow_forward_ios</span>
+                </div>
               </div>
             </div>
           </div>
@@ -801,11 +1037,11 @@ const renderDetail = async (id) => {
         <!-- 6. Sticky Bottom Action Bar (Flutter 1:1) -->
         <div class="bottom-action-bar">
           <div class="bottom-action-container">
-            <button class="btn-action-outline" onclick="openDownloadModal('Satıcıyı Arama')">
+            <button class="btn-action-green" onclick="openDownloadModal('Satıcıyı Arama')">
               <span class="material-symbols-rounded" style="font-size: 18px;">call</span>
               Ara
             </button>
-            <button class="btn-action-outline" onclick="openDownloadModal('Mesaj Gönderme')">
+            <button class="btn-action-green" onclick="openDownloadModal('Mesaj Gönderme')">
               <span class="material-symbols-rounded" style="font-size: 18px;">chat</span>
               Mesaj
             </button>
@@ -830,10 +1066,10 @@ const renderDetail = async (id) => {
   }
 };
 
-// ── 7. ROUTER ────────────────────────────────────────────
+// ── 10. ROUTER ───────────────────────────────────────────
 const router = () => {
   const hash = window.location.hash || '#/';
-  
+
   if (hash === '#/' || hash === '') {
     renderHome();
   } else if (hash.startsWith('#/tender/')) {

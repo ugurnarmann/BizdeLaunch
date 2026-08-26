@@ -3,710 +3,167 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Primary Meta Tags -->
-  <title>Gizlilik Politikası & KVKK – Bizde</title>
-  <meta name="title" content="Gizlilik Politikası & KVKK – Bizde" />
-  <meta name="description" content="Bizde uygulaması gizlilik politikası, kullanıcı sözleşmesi ve kişisel verilerin korunması kanunu (KVKK) aydınlatma metni." />
-  <meta name="keywords" content="gizlilik politikası, kvkk, kullanıcı sözleşmesi, kişisel veriler, bizde gizlilik" />
-  <link rel="canonical" href="https://bizde.app/privacy-policy/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gizlilik Politikası &amp; KVKK – Bizde</title>
+  <meta name="description"
+    content="Bizde uygulaması gizlilik politikası, kullanıcı sözleşmesi ve kişisel verilerin korunması kanunu (KVKK) aydınlatma metni." />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bizde.app/privacy-policy/" />
-  <meta property="og:title" content="Gizlilik Politikası & KVKK – Bizde" />
-  <meta property="og:description" content="Bizde uygulaması gizlilik politikası ve kişisel verilerin korunması." />
-  <meta property="og:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
-  <meta property="og:site_name" content="Bizde" />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://bizde.app/privacy-policy/" />
-  <meta property="twitter:title" content="Gizlilik Politikası & KVKK – Bizde" />
-  <meta property="twitter:description" content="Bizde uygulaması gizlilik politikası ve kişisel verilerin korunması." />
-  <meta property="twitter:image" content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
+  <link rel="icon" type="image/png"
+    href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
   <link rel="apple-touch-icon" href="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
 
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Gizlilik Politikası & KVKK",
-    "description": "Bizde uygulaması gizlilik politikası ve kişisel verilerin korunması."
-  }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    /* ============================================
-       BIZDE – PRIVACY POLICY / KVKK PAGE
-       Dark, Premium, Professional
-    ============================================ */
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --bg: #080b12;
-      --bg-card: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.1);
-      --accent: #6c63ff;
-      --accent-2: #ff6584;
-      --accent-3: #43e8b0;
-      --text-primary: #f0f2ff;
-      --text-muted: rgba(240,242,255,0.55);
-      --font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text-primary);
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* ── Canvas Particles ── */
-    #particleCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 0;
-      pointer-events: none;
-      display: block;
-    }
-
-    /* ── Noise ── */
-    .noise {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      pointer-events: none;
-      /* background-image removed due to Safari feTurbulence rendering bug */
-      opacity: 0.3;
-    }
-
-    /* ── Orbs ── */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 2;
-      will-change: transform;
-      transform: translateZ(0);
-      animation: orbFloat 14s ease-in-out infinite alternate;
-    }
-
-    .orb-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
-      top: -200px; left: -200px;
-    }
-
-    .orb-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(67,232,176,0.08) 0%, transparent 70%);
-      bottom: -100px; right: -150px;
-      animation-delay: -5s;
-    }
-
-    @keyframes orbFloat {
-      0%   { transform: scale(1) translate(0, 0); }
-      50%  { transform: scale(1.06) translate(20px, -15px); }
-      100% { transform: scale(0.95) translate(-15px, 25px); }
-    }
-
-    /* ── Layout ── */
-    .page-wrap {
-      position: relative;
-      z-index: 20;
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
-
-    /* ── Top Nav ── */
-    .topnav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 52px;
-    }
-
-    .topnav a.back-link {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: color var(--transition);
-    }
-
-    .topnav a.back-link:hover { color: var(--text-primary); }
-
-    .topnav a.back-link svg {
-      width: 16px; height: 16px;
-    }
-
-    .topnav-logo img {
-      height: 36px;
-      width: auto;
-      filter: drop-shadow(0 0 12px rgba(108,99,255,0.3));
-    }
-
-    /* ── Page header ── */
-    .page-header {
-      text-align: center;
-      margin-bottom: 52px;
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
-    }
-
-    .page-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 16px;
-      border: 1px solid rgba(67,232,176,0.3);
-      border-radius: 999px;
-      background: rgba(67,232,176,0.07);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: rgba(67,232,176,0.85);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .page-badge-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent-3);
-      box-shadow: 0 0 8px var(--accent-3);
-      animation: pulseDot 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.4; transform: scale(0.7); }
-    }
-
-    .page-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      color: var(--text-primary);
-      margin-bottom: 12px;
-    }
-
-    .page-title span {
-      background: linear-gradient(135deg, #6c63ff 0%, #43e8b0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page-meta {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    /* ── Table of contents ── */
-    .toc-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 28px;
-      margin-bottom: 40px;
-      backdrop-filter: blur(16px);
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
-    }
-
-    .toc-title {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(108,99,255,0.8);
-      margin-bottom: 14px;
-    }
-
-    .toc-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .toc-list li a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 4px 0;
-      transition: color var(--transition);
-    }
-
-    .toc-list li a:hover { color: var(--text-primary); }
-
-    .toc-list li a::before {
-      content: attr(data-num);
-      font-size: 0.72rem;
-      font-weight: 700;
-      width: 22px; height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      background: rgba(108,99,255,0.12);
-      color: rgba(108,99,255,0.8);
-      flex-shrink: 0;
-    }
-
-    /* ── Content sections ── */
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
-    }
-
-    .content-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 32px 36px;
-      backdrop-filter: blur(16px);
-      transition: border-color var(--transition), box-shadow var(--transition);
-      scroll-margin-top: 24px;
-    }
-
-    .content-section:hover {
-      border-color: rgba(108,99,255,0.2);
-      box-shadow: 0 0 32px rgba(108,99,255,0.06);
-    }
-
-    .section-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px; height: 30px;
-      border-radius: 9px;
-      background: rgba(108,99,255,0.12);
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: rgba(108,99,255,0.9);
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-size: 1.08rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 14px;
-      letter-spacing: -0.01em;
-    }
-
-    .section-body {
-      font-size: 0.93rem;
-      color: rgba(240,242,255,0.72);
-      line-height: 1.75;
-    }
-
-    .section-body p { margin-bottom: 12px; }
-    .section-body p:last-child { margin-bottom: 0; }
-
-    .section-body ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin: 10px 0 14px;
-      padding-left: 0;
-    }
-
-    .section-body ul li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .section-body ul li::before {
-      content: '';
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: rgba(108,99,255,0.7);
-      flex-shrink: 0;
-      margin-top: 8px;
-    }
-
-    .section-body strong {
-      color: rgba(240,242,255,0.9);
-      font-weight: 600;
-    }
-
-    /* ── Contact box ── */
-    .contact-box {
-      background: rgba(67,232,176,0.05);
-      border: 1px solid rgba(67,232,176,0.2);
-      border-radius: 14px;
-      padding: 20px 24px;
-      margin-top: 4px;
-    }
-
-    .contact-box-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: rgba(67,232,176,0.8);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 10px;
-    }
-
-    .contact-box p {
-      font-size: 0.9rem;
-      color: rgba(240,242,255,0.65);
-      line-height: 1.65;
-      margin-bottom: 8px !important;
-    }
-
-    .contact-box a {
-      color: var(--accent-3);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .contact-box a:hover { text-decoration: underline; }
-
-    /* ── Page Footer ── */
-    .page-footer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 40px 24px;
-    }
-
-    .footer-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .footer-link {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color var(--transition), text-decoration-color var(--transition);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .footer-link:hover {
-      color: var(--text-primary);
-      text-decoration: underline;
-      text-decoration-color: rgba(108,99,255,0.8);
-      text-underline-offset: 6px;
-    }
-
-    .footer-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-    }
-
-    .copyright {
-      font-size: 0.78rem;
-      color: rgba(240,242,255,0.25);
-    }
-
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(108,99,255,0.3);
-      border-radius: 3px;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 640px) {
-      .content-section { padding: 24px 20px; }
-      .toc-card { padding: 20px; }
-      .page-title { font-size: 1.7rem; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,1,0" />
+  <link rel="stylesheet" href="../style.css" />
 </head>
 
 <body>
-  <canvas id="particleCanvas"></canvas>
-  <div class="noise"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="../#/" class="header-icon-btn" title="Anasayfaya Dön">
+          <span class="material-symbols-rounded" style="font-size: 24px;">arrow_back_ios_new</span>
+        </a>
+      </div>
 
-  <div class="page-wrap">
-
-    <!-- Top nav -->
-    <nav class="topnav" aria-label="Sayfa navigasyonu">
-      <a href="/" class="back-link" id="back-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        Ana Sayfa
+      <!-- Center Logo -->
+      <a href="../#/" class="logo-link" title="Bizde Anasayfa">
+        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+          class="logo-img" id="main-logo-img" />
       </a>
-      <div class="topnav-logo">
-        <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde Logo" />
+
+      <!-- Right Actions -->
+      <div class="header-right">
+        <button id="theme-toggle-btn" class="header-icon-btn" onclick="toggleTheme()" title="Tema Değiştir"
+          style="margin-right: 12px;">
+          <span class="material-symbols-rounded" id="theme-toggle-icon" style="font-size: 22px;">light_mode</span>
+        </button>
+        <a href="https://bizde.app/download-app" target="_blank" class="btn-download-mobile">Uygulamayı İndir</a>
       </div>
-    </nav>
+    </div>
+  </header>
 
-    <!-- Page header -->
-    <header class="page-header" id="page-header">
-      <div class="page-badge">
-        <span class="page-badge-dot"></span>
-        Yasal Belge
+  <!-- Static Content Main View -->
+  <div class="app-viewport">
+    <main class="static-page-wrap">
+      <!-- Hero Header -->
+      <div class="static-hero-header">
+        <span class="static-badge-pill">
+          <span class="material-symbols-rounded" style="font-size: 16px;">verified_user</span>
+          Yasal Bilgilendirme
+        </span>
+        <h1 class="static-hero-title">Gizlilik Politikası &amp; KVKK</h1>
+        <p class="static-hero-subtitle">Kişisel verilerinizin güvenliği bizim için en yüksek önceliktir. Bizde olarak
+          verilerinizi nasıl koruduğumuzu ve işlediğimizi şeffaflıkla açıklıyoruz.</p>
       </div>
-      <h1 class="page-title" id="privacy-page-title">
-        Gizlilik Politikası &amp;<br /><span>KVKK Aydınlatma Metni</span>
-      </h1>
-      <p class="page-meta" id="privacy-page-meta">Son güncelleme: Haziran 2026 &nbsp;·&nbsp; 6698 sayılı KVKK uyarınca hazırlanmıştır</p>
-    </header>
 
-    <!-- Table of contents -->
-    <nav class="toc-card" aria-label="İçindekiler">
-      <p class="toc-title">İçindekiler</p>
-      <ol class="toc-list">
-        <li><a href="#section-1" data-num="1" id="toc-1">Veri Sorumlusunun Kimliği</a></li>
-        <li><a href="#section-2" data-num="2" id="toc-2">İşlenen Kişisel Verileriniz</a></li>
-        <li><a href="#section-3" data-num="3" id="toc-3">Kişisel Verilerin İşlenme Amaçları</a></li>
-        <li><a href="#section-4" data-num="4" id="toc-4">Verilerin Aktarılabileceği Taraflar</a></li>
-        <li><a href="#section-5" data-num="5" id="toc-5">Veri Toplama Yöntemi ve Hukuki Sebep</a></li>
-        <li><a href="#section-6" data-num="6" id="toc-6">KVKK Madde 11 Kapsamındaki Haklarınız</a></li>
-      </ol>
-    </nav>
-
-    <!-- Giriş -->
-    <div class="content" id="kvkk-content">
-
-      <section class="content-section" id="intro-section">
-        <div class="section-body">
-          <p>
-            <strong>Bizde</strong> ("Şirket" veya "Bizde") olarak, kişisel verilerinizin güvenliği ve gizliliği bizim için büyük önem taşımaktadır. Bu Aydınlatma Metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (<strong>"KVKK"</strong>) uyarınca, <strong>Bizde</strong> mobil uygulaması (<strong>"Uygulama"</strong>) kullanıcılarının kişisel verilerinin toplanması, işlenmesi, aktarılması ve korunmasına ilişkin süreçler hakkında sizleri bilgilendirmek amacıyla hazırlanmıştır.
-          </p>
-        </div>
-      </section>
-
-      <!-- Section 1 -->
-      <section class="content-section" id="section-1">
-        <div class="section-num">1</div>
-        <h2 class="section-title">Veri Sorumlusunun Kimliği</h2>
-        <div class="section-body">
-          <p>
-            KVKK uyarınca, kişisel verileriniz veri sorumlusu sıfatıyla <strong>Bizde</strong> tarafından aşağıda açıklanan kapsamda işlenebilecektir.
-          </p>
-        </div>
-      </section>
-
-      <!-- Section 2 -->
-      <section class="content-section" id="section-2">
-        <div class="section-num">2</div>
-        <h2 class="section-title">İşlenen Kişisel Verileriniz</h2>
-        <div class="section-body">
-          <p>Bizde uygulamasını kullanımınız kapsamında aşağıdaki kişisel verileriniz işlenmektedir:</p>
+      <!-- Content Card 1: Veri Toplama -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: var(--primary);">shield</span>
+          1. Kişisel Verilerin Toplanması ve İşlenmesi
+        </h2>
+        <div class="static-text-block">
+          <p>Bizde ("Platform"), 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca veri sorumlusu
+            sıfatıyla hareket etmektedir. Platformumuz üzerinden hesap oluşturduğunuzda, ilan verdiğinizde veya teklif
+            sunduğunuzda ad-soyad, e-posta adresi, telefon numarası ve konum bilgileriniz güvenli bir şekilde
+            işlenmektedir.</p>
+          <p>Toplanan kişisel verileriniz aşağıdaki amaçlarla kullanılmaktadır:</p>
           <ul>
-            <li><strong>Kimlik Verileri:</strong> Ad, soyad, kullanıcı adı, T.C. Kimlik numarası (fatura veya güvenli ödeme/mezat işlemleri gerektirdiği durumlarda).</li>
-            <li><strong>İletişim Verileri:</strong> E-posta adresi, telefon numarası.</li>
-            <li><strong>Lokasyon Verileri:</strong> Ülke, il, ilçe, mahalle bazlı konum bilgileriniz (ilanların ve içeriklerin konumunuza göre filtrelenmesi ve gösterilmesi amacıyla).</li>
-            <li><strong>Müşteri İşlem Verileri:</strong> Uygulama içi hareketler, ilan oluşturma bilgileri, canlı yayın ve canlı mezat katılım logları, teklif geçmişi, favoriye eklenen ilanlar.</li>
-            <li><strong>İşlem Güvenliği Verileri:</strong> IP adresi, cihaz bilgileri, işletim sistemi, uygulama giriş-çıkış saatleri, şifre bilgileri.</li>
+            <li>İlan oluşturma, düzenleme ve teklif verme süreçlerinin yürütülmesi,</li>
+            <li>Alıcı ve satıcı arasındaki iletişimin ve ticaretin güvenliğinin sağlanması,</li>
+            <li>Yasal yükümlülüklerin ve resmi makam taleplerinin karşılanması,</li>
+            <li>Hizmet kalitesinin artırılması ve kullanıcı deneyiminin iyileştirilmesi.</li>
           </ul>
         </div>
-      </section>
-
-      <!-- Section 3 -->
-      <section class="content-section" id="section-3">
-        <div class="section-num">3</div>
-        <h2 class="section-title">Kişisel Verilerin İşlenme Amaçları</h2>
-        <div class="section-body">
-          <p>Toplanan kişisel verileriniz, KVKK'nın 5. ve 6. maddelerinde belirtilen kişisel veri işleme şartları dâhilinde aşağıdaki amaçlarla işlenmektedir:</p>
-          <ul>
-            <li>Kullanıcı hesabı oluşturulması ve uygulamanın fonksiyonlarının (ilan verme, canlı yayın/mezatlara katılma vb.) eksiksiz sunulması,</li>
-            <li>Lokasyon bazlı ilan arama ve filtreleme hizmetlerinin sağlanması,</li>
-            <li>Kullanıcılar arası iletişimin ve güvenli ticaret ortamının tesis edilmesi,</li>
-            <li>Hizmet kalitesinin artırılması, teknik hataların giderilmesi (sunucu ve altyapı optimizasyonları),</li>
-            <li>Yasal mevzuattan kaynaklanan bilgi saklama, raporlama ve yetkili makamlara bilgi verme yükümlülüklerimizin yerine getirilmesi.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Section 4 -->
-      <section class="content-section" id="section-4">
-        <div class="section-num">4</div>
-        <h2 class="section-title">İşlenen Kişisel Verilerin Kimlere ve Hangi Amaçla Aktarılabileceği</h2>
-        <div class="section-body">
-          <p>
-            Kişisel verileriniz, hukuki yükümlülüklerimizi yerine getirmek ve sizlere kesintisiz hizmet sunabilmek amacıyla; yurt içindeki veya yurt dışındaki bulut bilişim, canlı yayın altyapısı (hosting/sunucu) ve veritabanı hizmeti aldığımız iş ortaklarımıza, teknik destek sağlayıcılarımıza, ödeme kuruluşlarına ve talep edilmesi halinde kanunen yetkili kamu kurum ve kuruluşlarına KVKK'nın 8. ve 9. maddelerinde belirtilen şartlar çerçevesinde aktarılabilecektir.
-          </p>
-        </div>
-      </section>
-
-      <!-- Section 5 -->
-      <section class="content-section" id="section-5">
-        <div class="section-num">5</div>
-        <h2 class="section-title">Kişisel Veri Toplamanın Yöntemi ve Hukuki Sebebi</h2>
-        <div class="section-body">
-          <p>
-            Kişisel verileriniz, Bizde uygulaması üzerinden formların doldurulması, ilan/mezat etkileşimleri ve uygulamanın kullanımı sırasında arka planda çalışan sistemler (log kayıtları, API servisleri) vasıtasıyla tamamen otomatik veya kısmen otomatik yollarla elektronik ortamda toplanmaktadır.
-          </p>
-          <p>
-            Bu veriler; <em>"Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması kaydıyla, sözleşmenin taraflarına ait kişisel verilerin işlenmesinin gerekli olması"</em>, <em>"Veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi için zorunlu olması"</em> ve <em>"İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması"</em> hukuki sebeplerine dayanılarak işlenmektedir.
-          </p>
-        </div>
-      </section>
-
-      <!-- Section 6 -->
-      <section class="content-section" id="section-6">
-        <div class="section-num">6</div>
-        <h2 class="section-title">KVKK'nın 11. Maddesi Kapsamındaki Haklarınız</h2>
-        <div class="section-body">
-          <p>KVKK madde 11 uyarınca, veri sahibi olarak aşağıdaki haklara sahipsiniz:</p>
-          <ul>
-            <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme,</li>
-            <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme,</li>
-            <li>İşlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
-            <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme,</li>
-            <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme,</li>
-            <li>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde silinmesini veya yok edilmesini isteme,</li>
-            <li>Aktarıldığı üçüncü kişilere yukarıdaki işlemlerin bildirilmesini isteme,</li>
-            <li>Münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme,</li>
-            <li>Kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme.</li>
-          </ul>
-
-          <div class="contact-box" id="contact-box">
-            <p class="contact-box-title">İletişim</p>
-            <p>Yukarıda belirtilen haklarınızı kullanmak ile ilgili taleplerinizi, yazılı olarak veya Kişisel Verileri Koruma Kurulu tarafından belirlenen diğer yöntemlerle Şirketimize iletebilirsiniz.</p>
-            <p><strong>E-posta:</strong> <a href="mailto:kvkk@bizde.app" id="kvkk-email-link">kvkk@bizde.app</a></p>
-          </div>
-        </div>
-      </section>
-
-    </div><!-- /content -->
-
-    <!-- Footer -->
-    <footer class="page-footer" id="page-footer-privacy">
-      <div class="footer-links">
-        <a href="/" class="footer-link">Ana Sayfa</a>
-        <span class="footer-dot"></span>
-        <a href="/privacy-policy/" class="footer-link">Gizlilik Politikası</a>
-        <span class="footer-dot"></span>
-        <a href="/help/" class="footer-link">Yardım Merkezi</a>
-        <span class="footer-dot"></span>
-        <a href="/account/delete/" class="footer-link">Hesap Silme</a>
       </div>
-      <p class="copyright">© 2026 Bizde. Tüm hakları saklıdır.</p>
-    </footer>
 
-  </div><!-- /page-wrap -->
+      <!-- Content Card 2: Güvenlik ve Paylaşım -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: var(--secondary);">lock</span>
+          2. Veri Güvenliği ve Paylaşımı
+        </h2>
+        <div class="static-text-block">
+          <p>Verileriniz, endüstri standardı güvenlik protokolleri (SSL/TLS şifreleme, güvenlik duvarları ve
+            yetkilendirilmiş erişim sistemleri) ile korunmaktadır. Kişisel verileriniz hiçbir koşulda ticari amaçlarla
+            üçüncü şahıslara veya kurumlara satılmaz.</p>
+          <p>Verileriniz yalnızca yasal zorunluluk hallerinde veya hizmetin ifası için gerekli teknik altyapı
+            sağlayıcıları (barındırma, SMS/bildirim servisleri) ile gizlilik sözleşmeleri kapsamında paylaşılabilir.</p>
+        </div>
+      </div>
+
+      <!-- Content Card 3: KVKK Hakları -->
+      <div class="static-card">
+        <h2 class="static-section-heading">
+          <span class="material-symbols-rounded" style="color: var(--warning);">gavel</span>
+          3. KVKK Kapsamındaki Haklarınız
+        </h2>
+        <div class="static-text-block">
+          <p>KVKK'nın 11. maddesi uyarınca her kullanıcı:</p>
+          <ul>
+            <li>Kişisel verilerinin işlenip işlenmediğini öğrenme,</li>
+            <li>Kişisel verileri işlenmişse buna ilişkin bilgi talep etme,</li>
+            <li>Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme,</li>
+            <li>Hesabını ve verilerini platform üzerinden kalıcı olarak silme hakkına sahiptir.</li>
+          </ul>
+          <p>Taleplerinizi <a href="mailto:kvkk@bizde.app"
+              style="color: var(--primary); text-decoration: underline;">kvkk@bizde.app</a> adresinden bize
+            iletebilirsiniz.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Unified Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="../#/" class="footer-logo-link">
+          <img src="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" alt="Bizde"
+            class="footer-logo-img" id="footer-logo-img" />
+        </a>
+        <p class="footer-desc">İlan ve Teklifler.</p>
+      </div>
+      <div class="footer-links-row">
+        <a href="../help/" class="footer-link">Yardım &amp; Destek</a>
+        <span class="footer-link-dot">•</span>
+        <a href="../privacy-policy/" class="footer-link">Gizlilik Politikası</a>
+        <span class="footer-link-dot">•</span>
+        <a href="../account/delete/" class="footer-link">Hesap Silme</a>
+      </div>
+      <div class="footer-copyright">
+        © 2026 Bizde. Tüm hakları saklıdır.
+      </div>
+    </div>
+  </footer>
 
   <script>
-    /* ── Particle Canvas ── */
-    (function () {
-      const canvas = document.getElementById('particleCanvas');
-      const ctx = canvas.getContext('2d');
-      let W, H, particles = [];
-      let lastW = 0;
+    const LOGO_DARK = 'https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png';
+    const LOGO_LIGHT = 'https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_light_mode.png';
 
-      function resize() {
-        if (window.innerWidth === lastW) return;
-        lastW = window.innerWidth;
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-      }
+    const applyTheme = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('bizde_theme', theme);
+      const icon = document.getElementById('theme-toggle-icon');
+      if (icon) icon.textContent = theme === 'light' ? 'dark_mode' : 'light_mode';
+      const logo = document.getElementById('main-logo-img');
+      if (logo) logo.src = theme === 'light' ? LOGO_LIGHT : LOGO_DARK;
+      const fLogo = document.getElementById('footer-logo-img');
+      if (fLogo) fLogo.src = theme === 'light' ? LOGO_LIGHT : LOGO_DARK;
+    };
 
-      function mkParticle() {
-        return {
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 1.4 + 0.3,
-          dx: (Math.random() - 0.5) * 0.2,
-          dy: (Math.random() - 0.5) * 0.2,
-          a: Math.random() * 0.35 + 0.05,
-        };
-      }
+    window.toggleTheme = () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    };
 
-      function init() {
-        resize();
-        particles = Array.from({ length: 70 }, mkParticle);
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, W, H);
-        for (const p of particles) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(108,99,255,${p.a})`;
-          ctx.fill();
-          p.x += p.dx; p.y += p.dy;
-          if (p.x < -5 || p.x > W + 5) p.dx *= -1;
-          if (p.y < -5 || p.y > H + 5) p.dy *= -1;
-        }
-        requestAnimationFrame(draw);
-      }
-
-      window.addEventListener('resize', resize);
-      init();
-      draw();
-    })();
-
-    /* ── Scroll-reveal sections ── */
-    const sections = document.querySelectorAll('.content-section');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08 });
-
-      sections.forEach((sec, i) => {
-        sec.style.opacity = '0';
-        sec.style.transform = 'translateY(18px)';
-        sec.style.transition = `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.07}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.07}s`;
-        io.observe(sec);
-      });
-    }
+    applyTheme(localStorage.getItem('bizde_theme') || 'dark');
   </script>
 </body>
 
