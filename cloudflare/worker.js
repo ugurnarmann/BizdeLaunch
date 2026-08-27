@@ -86,7 +86,17 @@ export default {
                               pathname.startsWith('/account') || 
                               pathname.startsWith('/.well-known');
 
-    if (isStaticFile || isStaticDirectory) {
+    if (isStaticFile) {
+      // Eğer /tender/style.css veya /tender/app.js gibi bir alt yoldan istenmişse root'tan çek
+      if (pathname.startsWith('/tender/')) {
+        const cleanPath = pathname.replace(/^\/tender/, '');
+        const cleanStaticUrl = new URL(cleanPath, url.origin);
+        return fetch(cleanStaticUrl.toString(), request);
+      }
+      return fetch(request);
+    }
+
+    if (isStaticDirectory) {
       return fetch(request);
     }
 
