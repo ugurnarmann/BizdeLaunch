@@ -4,7 +4,7 @@
    ============================================================ */
 
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:8010/v1'   // local-cors-proxy → https://api.bizde.app/v1
+  ? 'https://api.bizde.app/v1'   // local dev: doğrudan production API (CORS izni gerekir)
   : 'https://api.bizde.app/v1';
 
 const DOWNLOAD_URL = 'https://bizde.app/download-app';
