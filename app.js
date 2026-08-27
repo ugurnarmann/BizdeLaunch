@@ -533,9 +533,6 @@ const renderHome = async () => {
   headerBackBtn.style.display = 'none';
   fabAddTender.style.display = 'flex';
 
-  const geoOverview = document.getElementById('geo-semantic-overview');
-  if (geoOverview) geoOverview.style.display = 'block';
-
   updatePageSEO({
     title: "Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu",
     description: "Bizde, Türkiye'nin yenilikçi ilan, açık arttırma ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap.",
@@ -848,9 +845,6 @@ const renderDetail = async (id) => {
   headerBackBtn.style.display = 'flex';
   fabAddTender.style.display = 'none';
 
-  const geoOverview = document.getElementById('geo-semantic-overview');
-  if (geoOverview) geoOverview.style.display = 'none';
-
   appRoot.innerHTML = renderDetailSkeleton();
   window.scrollTo(0, 0);
 
@@ -1161,11 +1155,25 @@ const renderDetail = async (id) => {
 
     window.scrollTo(0, 0);
   } catch (err) {
+    updatePageSEO({
+      title: "İlan Bulunamadı | Bizde",
+      description: "Aradığınız ilan yayından kaldırılmış, süresi dolmuş veya bağlantı hatalı olabilir.",
+      url: window.location.href
+    });
+
     appRoot.innerHTML = `
-      <div class="error-state">
-        <h3>İlan Detayı Yüklenemedi</h3>
-        <p>${err.message}</p>
-        <button onclick="navigate('/')" class="modal-btn-download" style="max-width: 200px; margin-top: 16px;">İlanlara Dön</button>
+      <div class="error-state" style="padding: 60px 20px;">
+        <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(239, 68, 68, 0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+          <span class="material-symbols-rounded" style="font-size: 36px; color: var(--error);">search_off</span>
+        </div>
+        <h2 style="font-size: 1.4rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">İlan Bulunamadı</h2>
+        <p style="color: var(--text-secondary); max-width: 400px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
+          Bu ilan yayından kaldırılmış, süresi dolmuş veya bağlantı adresi hatalı olabilir.
+        </p>
+        <button onclick="navigate('/')" class="btn-action-primary" style="padding: 12px 24px; border-radius: var(--radius-lg); font-size: 0.95rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; border: none;">
+          <span class="material-symbols-rounded" style="font-size: 20px;">home</span>
+          Tüm İlanları Keşfet
+        </button>
       </div>
     `;
   }

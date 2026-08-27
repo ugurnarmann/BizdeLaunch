@@ -227,6 +227,19 @@ export default {
 
             // Initial shimmer skeleton önüne bot içeriğini ekle
             html = html.replace('<!-- Initial Shimmer Skeleton -->', botContent + '\n      <!-- Initial Shimmer Skeleton -->');
+          } else {
+            // İlan API'de bulunamadı (404/400) -> Arama motorlarına ve botlara 404 dön
+            html = html.replace(/<title>.*?<\/title>/i, `<title>İlan Bulunamadı | Bizde</title>`);
+            html = html.replace(/<meta\s+name="title"\s+content=".*?"\s*\/?>/i, `<meta name="title" content="İlan Bulunamadı | Bizde" />`);
+            html = html.replace(/<meta\s+name="description"\s+content=".*?"\s*\/?>/i, `<meta name="description" content="Aradığınız ilan yayından kaldırılmış veya bulunamamış olabilir." />`);
+            return new Response(html, {
+              status: 404,
+              headers: {
+                'Content-Type': 'text/html; charset=UTF-8',
+                'Cache-Control': 'no-cache',
+                'X-Handled-By': 'Bizde-Edge-Worker-404'
+              }
+            });
           }
         } catch (apiErr) {
           console.error('API Error during Bot SSR injection:', apiErr);
