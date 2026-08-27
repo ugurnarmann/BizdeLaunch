@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bizde - Yönlendiriliyor...</title>
+  <!--
+    GitHub Pages History API SPA Redirect
+    /tender/abc123 gibi clean URL'lere gelen 404 isteklerini
+    sessionStorage üzerinden index.html'e yönlendirir.
+  -->
+  <script>
+    // Mevcut tam URL'yi sessionStorage'a kaydet
+    sessionStorage.setItem('spa_redirect', window.location.pathname + window.location.search + window.location.hash);
+    // Ana sayfaya yönlendir
+    window.location.replace('/');
+  </script>
+</head>
+<body>
+  <p>Yönlendiriliyor...</p>
+</body>
+</html>

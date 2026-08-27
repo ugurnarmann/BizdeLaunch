@@ -4,7 +4,7 @@
    ============================================================ */
 
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? '/v1'
+  ? 'http://localhost:8010/v1'   // local-cors-proxy → https://api.bizde.app/v1
   : 'https://api.bizde.app/v1';
 
 const DOWNLOAD_URL = 'https://bizde.app/download-app';
@@ -473,7 +473,7 @@ const renderTenderCard = (tender) => {
   const typeInfo = getTenderTypeInfo(tender.type, tender.bidCount);
 
   return `
-    <div class="tender-card" onclick="window.location.hash = '#/tender/${tender.id}'">
+    <div class="tender-card" onclick="navigate('/tender/${tender.id}')" role="link" aria-label="${title} ilanını görüntüle">
       <div class="tender-card-image-wrap">
         <img src="${imgUrl}" alt="${title}" loading="lazy" />
       </div>
@@ -540,6 +540,10 @@ const renderHome = async () => {
     url: "https://bizde.app/",
     jsonLd: null
   });
+
+  // Update canonical link for home
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute('href', 'https://bizde.app/');
 
   if (!globalMainPageData) {
     appRoot.innerHTML = renderHomeSkeleton();
@@ -882,11 +886,17 @@ const renderDetail = async (id) => {
     const categoryName = breadcrumbTitles.length > 0 ? breadcrumbTitles.join(' > ') : (detail.categoryTitle || 'Genel');
     const cleanDesc = description.replace(/<[^>]*>?/gm, '').trim();
 
+    const cleanUrl = `https://bizde.app/tender/${id}`;
+
+    // Update canonical for detail page
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', cleanUrl);
+
     updatePageSEO({
       title: `${title} - ${priceFormatted} | Bizde`,
       description: `${title} - ${priceFormatted} (${location}). ${cleanDesc.substring(0, 140)}...`,
       image: images[0] || "https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png",
-      url: window.location.href,
+      url: cleanUrl,
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -894,12 +904,13 @@ const renderDetail = async (id) => {
         "description": cleanDesc.substring(0, 300),
         "image": images,
         "category": categoryName,
+        "url": cleanUrl,
         "offers": {
           "@type": "Offer",
           "price": budget || 0,
           "priceCurrency": "TRY",
           "availability": "https://schema.org/InStock",
-          "url": window.location.href,
+          "url": cleanUrl,
           "seller": {
             "@type": "Person",
             "name": userName
@@ -907,6 +918,7 @@ const renderDetail = async (id) => {
         }
       }
     });
+
 
     // Location Coordinates
     const lat = detail.latitude || 41.0082;
@@ -1147,31 +1159,47 @@ const renderDetail = async (id) => {
       <div class="error-state">
         <h3>İlan Detayı Yüklenemedi</h3>
         <p>${err.message}</p>
-        <button onclick="window.location.hash = '#/'" class="modal-btn-download" style="max-width: 200px; margin-top: 16px;">İlanlara Dön</button>
+        <button onclick="navigate('/')" class="modal-btn-download" style="max-width: 200px; margin-top: 16px;">İlanlara Dön</button>
       </div>
     `;
   }
 };
 
-// ── 10. ROUTER ───────────────────────────────────────────
-const router = () => {
-  const hash = window.location.hash || '#/';
+// ── 10. ROUTER (History API – clean URLs for AI & SEO) ─────
+const navigate = (path) => {
+  history.pushState(null, '', path);
+  router();
+};
 
-  if (hash === '#/' || hash === '') {
+const router = () => {
+  const path = window.location.pathname;
+
+  if (path === '/' || path === '/index.html' || path === '') {
     renderHome();
-  } else if (hash.startsWith('#/tender/')) {
-    const id = hash.split('/')[2];
+  } else if (path.startsWith('/tender/')) {
+    const id = path.split('/')[2];
     renderDetail(id);
   } else {
-    window.location.hash = '#/';
+    navigate('/');
   }
 };
 
-window.addEventListener('hashchange', router);
-window.addEventListener('DOMContentLoaded', router);
+// Handle browser back/forward
+window.addEventListener('popstate', router);
+window.addEventListener('DOMContentLoaded', () => {
+  // Redirect legacy hash URLs to clean paths
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#/tender/')) {
+    const id = hash.split('/')[2];
+    history.replaceState(null, '', '/tender/' + id);
+  } else if (hash === '#/' || hash === '#') {
+    history.replaceState(null, '', '/');
+  }
+  router();
+});
 
 // Logo click -> Home
 document.getElementById('logo-link').addEventListener('click', (e) => {
   e.preventDefault();
-  window.location.hash = '#/';
+  navigate('/');
 });

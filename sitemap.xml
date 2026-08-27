@@ -2,9 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Ana Sayfa -->
   <url>
     <loc>https://bizde.app/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -13,22 +15,37 @@
       <image:caption>Türkiye'nin en kapsamlı ilan ve teklif platformu</image:caption>
     </image:image>
   </url>
+
+  <!-- Yardım & SSS -->
   <url>
     <loc>https://bizde.app/help/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Gizlilik Politikası -->
   <url>
     <loc>https://bizde.app/privacy-policy/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Hesap Silme -->
   <url>
     <loc>https://bizde.app/account/delete/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
+
+  <!--
+    İlan detay sayfaları dinamik olarak aşağıdaki URL yapısını kullanır:
+    https://bizde.app/tender/{id}
+    Örnek: https://bizde.app/tender/abc123
+    Bu sayfalar History API (pushState) ile oluşturulmakta olup
+    Google Search Console üzerinden manuel URL ekleme önerilir.
+  -->
+
 </urlset>

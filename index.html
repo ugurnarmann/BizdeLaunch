@@ -5,6 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
+  <!-- GitHub Pages SPA Routing: sessionStorage'dan gelen path'i clean URL'ye çevirir -->
+  <script>
+    (function() {
+      var redirect = sessionStorage.getItem('spa_redirect');
+      if (redirect) {
+        sessionStorage.removeItem('spa_redirect');
+        var url = new URL(redirect, window.location.origin);
+        if (url.pathname !== window.location.pathname) {
+          window.history.replaceState(null, null, redirect);
+        }
+      }
+    })();
+  </script>
+
+
+
   <!-- Primary SEO Meta Tags -->
   <title>Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu</title>
   <meta name="title" content="Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu" />
@@ -56,7 +72,7 @@
     content="https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png" />
   <meta name="twitter:image:alt" content="Bizde - İlan ve Teklifler" />
 
-  <!-- Structured Data: Organization, WebSite, MobileApplication (Schema.org JSON-LD) -->
+  <!-- Structured Data: Organization, WebSite, SoftwareApplication, BreadcrumbList, ItemList (Schema.org JSON-LD) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -92,7 +108,15 @@
         "publisher": {
           "@id": "https://bizde.app/#organization"
         },
-        "inLanguage": "tr-TR"
+        "inLanguage": "tr-TR",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://bizde.app/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "SoftwareApplication",
@@ -105,18 +129,32 @@
           "price": "0",
           "priceCurrency": "TRY"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "1250",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
         "downloadUrl": "https://bizde.app/download-app"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Anasayfa",
+            "item": "https://bizde.app/"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://bizde.app/#listing",
+        "name": "Güncel İlanlar",
+        "description": "Bizde platformundaki en güncel ilan, açık arttırma ve teklif listeleri.",
+        "url": "https://bizde.app/",
+        "numberOfItems": 0,
+        "itemListOrder": "https://schema.org/ItemListOrderDescending"
       }
     ]
   }
   </script>
+
 
   <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -141,7 +179,7 @@
       <div class="header-left">
         <!-- Back button on detail page, hidden on home -->
         <button id="header-back-btn" class="header-icon-btn" style="display: none;"
-          onclick="window.location.hash = '#/'" title="Geri" aria-label="Geri">
+          onclick="history.back()" title="Geri" aria-label="Geri">
           <span class="material-symbols-rounded" style="font-size: 26px;">arrow_back_ios_new</span>
         </button>
       </div>
@@ -234,18 +272,27 @@
     <!-- Semantic Crawler & Non-JS Fallback for Search Engines & AI Crawlers -->
     <noscript>
       <section style="padding: 24px; color: #fff; background: #0F172A; border-radius: 12px; margin: 16px;">
-        <h2>Bizde - Türkiye'nin Yenilikçi İlan, Teklif ve Açık Arttırma Platformu</h2>
-        <p>Bizde ile vasıta, emlak, ikinci el elektronik, ev eşyaları ve hizmet sektörlerinde ücretsiz ilan
-          yayınlayabilir, açık arttırmalara katılabilir ve en uygun fiyatlarla teklif vererek alışveriş yapabilirsiniz.
+        <h1>Bizde - Türkiye'nin Yenilikçi İlan, Teklif ve Açık Arttırma Platformu</h1>
+        <p>Bizde ile vasıta, emlak, ikinci el elektronik, ev eşyaları ve hizmet sektörlerinde <strong>ücretsiz ilan
+          yayınlayabilir</strong>, açık arttırmalara katılabilir ve en uygun fiyatlarla teklif vererek güvenle alışveriş yapabilirsiniz.
         </p>
-        <h3>Popüler Kategoriler</h3>
+        <h2>Popüler Kategoriler</h2>
         <ul>
           <li><strong>Vasıta:</strong> Otomobil, Motosiklet, Ticari Araçlar, Yedek Parça</li>
-          <li><strong>Emlak:</strong> Satılık & Kiralık Daireler, İş Yeri, Arsa</li>
+          <li><strong>Emlak:</strong> Satılık &amp; Kiralık Daireler, İş Yeri, Arsa</li>
           <li><strong>İkinci El Alışveriş:</strong> Telefon, Bilgisayar, Beyaz Eşya, Giyim</li>
           <li><strong>Hizmetler:</strong> Usta, Nakliyat, Temizlik, Özel Ders</li>
+          <li><strong>İş İlanları:</strong> Yazılım, Satış, Turizm, Üretim</li>
         </ul>
-        <p><a href="https://bizde.app/download-app" style="color: #38BDF8;">Bizde Mobil Uygulamasını İndirin</a></p>
+        <h2>Satış Modelleri</h2>
+        <ul>
+          <li><strong>Standart İlan:</strong> Sabit fiyatlı doğrudan satış</li>
+          <li><strong>Açık Arttırma:</strong> Gerçek zamanlı rekabetçi teklif sistemi</li>
+          <li><strong>Teklif Usulü:</strong> Satıcıya pazarlık teklifi gönder</li>
+        </ul>
+        <p><a href="https://bizde.app/help/" style="color: #38BDF8;">Yardım &amp; SSS</a> &nbsp;|&nbsp;
+           <a href="https://bizde.app/privacy-policy/" style="color: #38BDF8;">Gizlilik Politikası</a> &nbsp;|&nbsp;
+           <a href="https://bizde.app/download-app" style="color: #38BDF8;">Bizde Mobil Uygulamasını İndirin</a></p>
       </section>
     </noscript>
 

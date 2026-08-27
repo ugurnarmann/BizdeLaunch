@@ -164,6 +164,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .header-left, .header-right {
@@ -192,7 +193,7 @@ img {
   transform: scale(1.05);
 }
 
-/* Large & Prominent Bizde Logo */
+/* Large & Prominent Bizde Logo — always centered */
 .logo-link {
   display: flex;
   align-items: center;
@@ -200,10 +201,16 @@ img {
   height: 72px;
   overflow: visible;
   transition: transform 0.2s;
+  /* Absolute centering regardless of left/right widths */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  z-index: 1;
 }
 
 .logo-link:hover {
-  transform: scale(1.04);
+  transform: translateX(-50%) scale(1.04);
 }
 
 .logo-img {
@@ -2005,6 +2012,13 @@ img {
   }
   .logo-link {
     height: 52px;
+    /* keep absolute centering on mobile too */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .logo-link:hover {
+    transform: translateX(-50%) scale(1.04);
   }
   .logo-img {
     height: 52px;

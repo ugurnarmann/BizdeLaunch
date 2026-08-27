@@ -125,7 +125,7 @@ Platform Web, iOS ve Android ekosistemlerinde senkronize olarak çalışmaktadı
 ## URL Yapısı ve Sayfa Haritası
 
 - **Anasayfa**: `https://bizde.app/`
-- **İlan Detay**: `https://bizde.app/#/tender/{id}`
+- **İlan Detay**: `https://bizde.app/tender/{id}`
 - **Yardım ve Destek**: `https://bizde.app/help/`
 - **Gizlilik Politikası ve KVKK**: `https://bizde.app/privacy-policy/`
 - **Hesap Silme**: `https://bizde.app/account/delete/`
