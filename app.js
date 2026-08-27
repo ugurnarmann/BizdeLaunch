@@ -533,6 +533,9 @@ const renderHome = async () => {
   headerBackBtn.style.display = 'none';
   fabAddTender.style.display = 'flex';
 
+  const geoOverview = document.getElementById('geo-semantic-overview');
+  if (geoOverview) geoOverview.style.display = 'block';
+
   updatePageSEO({
     title: "Bizde - İlan ve Teklifler | Türkiye'nin İlan ve Açık Arttırma Platformu",
     description: "Bizde, Türkiye'nin yenilikçi ilan, açık arttırma ve teklif platformu. İlanlarını ücretsiz yayınla, hızlı teklif al, güvenle alım satım yap.",
@@ -844,6 +847,9 @@ const renderDetail = async (id) => {
 
   headerBackBtn.style.display = 'flex';
   fabAddTender.style.display = 'none';
+
+  const geoOverview = document.getElementById('geo-semantic-overview');
+  if (geoOverview) geoOverview.style.display = 'none';
 
   appRoot.innerHTML = renderDetailSkeleton();
   window.scrollTo(0, 0);
