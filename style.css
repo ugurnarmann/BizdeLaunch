@@ -292,9 +292,10 @@ img {
 }
 
 .skeleton-hero {
-  height: 200px;
   margin: 20px 20px 0 20px;
-  border-radius: var(--radius-lg);
+  width: calc(100% - 40px);
+  aspect-ratio: 3 / 1;
+  border-radius: 24px;
   background-color: var(--bg-surface);
 }
 
@@ -415,7 +416,8 @@ img {
 /* ── 3. HERO CAROUSEL SLIDER (HeroCarouselBanner 1:1) ──── */
 .hero-carousel-wrap {
   margin: 20px 20px 0 20px;
-  height: 200px;
+  width: calc(100% - 40px);
+  aspect-ratio: 3 / 1;
   border-radius: 24px;
   overflow: hidden;
   position: relative;
@@ -2036,11 +2038,15 @@ img {
   }
   .hero-carousel-wrap {
     margin: 14px 16px 0 16px;
-    height: 170px;
+    width: calc(100% - 32px);
+    aspect-ratio: 3 / 1;
+    height: auto;
   }
   .skeleton-hero {
-    height: 170px;
     margin: 14px 16px 0 16px;
+    width: calc(100% - 32px);
+    aspect-ratio: 3 / 1;
+    height: auto;
   }
   .categories-header-wrap, .section-header-box {
     padding-left: 16px;
