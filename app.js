@@ -372,17 +372,22 @@ const renderHeroCarousel = (heroes) => {
     const subTitle = hero.subTitle || '';
     const buttonTitle = hero.buttonTitle || '';
 
+    // İçerik var mı? (title, subTitle, buttonTitle hepsi boşsa saf resim modunda çalış)
+    const hasContent = title || subTitle || buttonTitle;
+
     slidesHtml += `
       <div class="hero-slide-item" style="background-image: url('${bgImg}');" onclick="openDownloadModal('${title}')">
+        ${hasContent ? `
         <div class="hero-gradient-overlay">
           <div class="hero-content-row">
             <div class="hero-text-col">
               ${subTitle ? `<span class="hero-subtitle-pill">${subTitle}</span>` : ''}
-              <div class="hero-title-text">${title}</div>
+              ${title ? `<div class="hero-title-text">${title}</div>` : ''}
             </div>
             ${buttonTitle ? `<button class="hero-btn-pill">${buttonTitle}</button>` : ''}
           </div>
         </div>
+        ` : ''}
       </div>
     `;
   });

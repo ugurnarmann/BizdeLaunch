@@ -292,7 +292,7 @@ img {
 }
 
 .skeleton-hero {
-  height: 140px;
+  height: 200px;
   margin: 20px 20px 0 20px;
   border-radius: var(--radius-lg);
   background-color: var(--bg-surface);
@@ -415,13 +415,13 @@ img {
 /* ── 3. HERO CAROUSEL SLIDER (HeroCarouselBanner 1:1) ──── */
 .hero-carousel-wrap {
   margin: 20px 20px 0 20px;
-  height: 140px;
-  border-radius: var(--radius-lg);
+  height: 200px;
+  border-radius: 24px;
   overflow: hidden;
   position: relative;
   background-color: #273549;
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.10);
 }
 
 .hero-slider-track {
@@ -445,17 +445,17 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.25) 100%);
-  border-radius: var(--radius-lg);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 24px;
   display: flex;
-  align-items: center;
-  padding: 0 28px;
+  align-items: flex-end;
+  padding: 0 18px 16px 18px;
 }
 
 .hero-content-row {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
 }
@@ -464,19 +464,20 @@ img {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .hero-subtitle-pill {
   width: fit-content;
-  padding: 3px 8px;
+  padding: 4px 10px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(4px);
-  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
   color: #FFF;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.5px;
   margin-bottom: 6px;
 }
 
@@ -484,19 +485,21 @@ img {
   color: #FFF;
   font-size: 20px;
   font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.3px;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.53);
 }
 
 .hero-btn-pill {
-  padding: 10px 20px;
+  padding: 10px 18px;
   background-color: #FFF;
   color: #000;
-  border-radius: var(--radius-lg);
-  font-size: 14px;
+  border-radius: 30px;
+  font-size: 13px;
   font-weight: 800;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  letter-spacing: 0.1px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s;
 }
 
@@ -506,7 +509,7 @@ img {
 
 .hero-dots-container {
   position: absolute;
-  bottom: 8px;
+  bottom: 12px;
   left: 0;
   right: 0;
   display: flex;
@@ -519,15 +522,16 @@ img {
 .hero-dot {
   height: 6px;
   width: 6px;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.45);
+  transition: all 0.35s ease;
   cursor: pointer;
 }
 
 .hero-dot.active {
-  width: 16px;
+  width: 20px;
   background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ── 4. CATEGORIES SECTION (Dashboard 1:1) ─────────────── */
@@ -2032,7 +2036,11 @@ img {
   }
   .hero-carousel-wrap {
     margin: 14px 16px 0 16px;
-    height: 130px;
+    height: 170px;
+  }
+  .skeleton-hero {
+    height: 170px;
+    margin: 14px 16px 0 16px;
   }
   .categories-header-wrap, .section-header-box {
     padding-left: 16px;
