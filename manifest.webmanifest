@@ -16,21 +16,16 @@
   ],
   "icons": [
     {
-      "src": "/assets/images/bizde_logo_dark.png",
+      "src": "/assets/images/bizde-app-icon-light.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/images/bizde_logo_dark.png",
+      "src": "/assets/images/bizde-app-icon-light.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    },
-    {
-      "src": "https://cdn.bizde.app/images/category-images/app_logos/bizde_logo_dark_mode.png",
-      "sizes": "512x512",
-      "type": "image/png"
     }
   ],
   "shortcuts": [
@@ -41,7 +36,7 @@
       "url": "/#/",
       "icons": [
         {
-          "src": "/assets/images/bizde_logo_dark.png",
+          "src": "/assets/images/bizde-app-icon-light.png",
           "sizes": "96x96"
         }
       ]
@@ -53,7 +48,7 @@
       "url": "/help/",
       "icons": [
         {
-          "src": "/assets/images/bizde_logo_dark.png",
+          "src": "/assets/images/bizde-app-icon-light.png",
           "sizes": "96x96"
         }
       ]
